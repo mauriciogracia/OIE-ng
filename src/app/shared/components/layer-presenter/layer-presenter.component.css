@@ -1,0 +1,12 @@
+.divLayerPresenter {
+    position: absolute ;
+    border: solid 1px darkgray;
+    width: 100%;
+    height: 100%;
+}
+
+.divFloatLayer {
+    position: absolute;
+    transform-origin: left top ;
+    border: solid 1px red; /* TODO remove debug */ 
+}
