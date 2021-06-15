@@ -18,4 +18,8 @@ export class AddEditLayerComponent implements OnInit {
   onClose() {
     this.hideAddEditLayerModalEvent.emit(true);
   }
+  
+  blabli() {
+    console.log("add layer") ;
+  }
 }

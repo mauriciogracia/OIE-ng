@@ -4,4 +4,20 @@
     background-color: white;
     border: solid 2px darkgray;
     border-radius: 5px;
+    padding-right:12px ;
+}
+
+.inputNumeric {
+    width: 30px;
+}
+
+.formLabel {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+}
+
+.leftRightPadding {
+    padding-left:12px ;
+    padding-right:12px ;
 }

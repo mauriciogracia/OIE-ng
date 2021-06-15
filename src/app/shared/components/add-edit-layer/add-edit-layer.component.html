@@ -1,6 +1,19 @@
 <div class="divAddEditLayer">
-    <p>left[],top[]<input type="button" value="X" (click)="onClose()"></p>
-    <p>scale[],layername[]</p>
-    <p>select file upload</p>
+    <p>
+        <span class="leftRightPadding">Layer name</span>
+        <input type="text">
+        <input type="button" value="X" (click)="onClose()">
+    </p>
+    <p>
+        <span class="formLabel">Left</span>
+        <input type="number" value="0" class="inputNumeric">
+        <span class="formLabel">Top</span>
+        <input type="number" value="0" class="inputNumeric">
+        <span class="formLabel">Scale</span>
+        <input type="number" value="0" class="inputNumeric">
+    </p>
+    <p class="leftRightPadding">Select file upload
+        <input type="button" value="Add layer" (click)="blabli()">
+    </p>
 </div>
 
