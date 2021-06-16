@@ -21,3 +21,24 @@
     padding-left:12px ;
     padding-right:12px ;
 }
+
+.topRight {
+    position:absolute ;
+    top: 3px ;
+    right: 3px ;
+}
+
+.bottomRight {
+    position:absolute ;
+    bottom: 3px ;
+    right: 3px ;
+}
+
+.titleBar {
+    display: inline-block;
+    width: 105%; /* because of the padding-right of divAddEditLayer*/
+    height: 28px;
+    line-height: 28px ;
+    text-align: center;
+    background-color: lightgray;
+}

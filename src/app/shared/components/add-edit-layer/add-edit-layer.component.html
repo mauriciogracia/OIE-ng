@@ -1,8 +1,9 @@
 <div class="divAddEditLayer">
+    <span class="titleBar"><b>{{title}}</b></span>
     <p>
         <span class="leftRightPadding">Layer name</span>
         <input type="text">
-        <input type="button" value="X" (click)="onClose()">
+        <input type="button" value="X" (click)="onClose()" class="topRight">
     </p>
     <p>
         <span class="formLabel">Left</span>
@@ -12,8 +13,8 @@
         <span class="formLabel">Scale</span>
         <input type="number" value="0" class="inputNumeric">
     </p>
-    <p class="leftRightPadding">Select file upload
-        <input type="button" value="Add layer" (click)="blabli()">
+    <p class="leftRightPadding">Select file to upload...
+        <input type="button" value="Add layer" (click)="blabli()" class="bottomRight">
     </p>
 </div>
 

@@ -9,6 +9,7 @@ export class AddEditLayerComponent implements OnInit {
 
   @Output() hideAddEditLayerModalEvent = new EventEmitter<boolean>();
   
+  title = "Add/Edit Layer" ;
   constructor() { }
 
   ngOnInit(): void {
@@ -18,7 +19,7 @@ export class AddEditLayerComponent implements OnInit {
   onClose() {
     this.hideAddEditLayerModalEvent.emit(true);
   }
-  
+
   blabli() {
     console.log("add layer") ;
   }
