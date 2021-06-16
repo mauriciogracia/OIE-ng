@@ -35,7 +35,7 @@
 }
 
 .titleBar {
-    width: 105%; /* because of the padding-right of divAddEditLayer*/
+    width: 103%; /* because of the padding-right of divAddEditLayer*/
     height: 28px;
     display: flex;
     justify-content: center; /* align horizontal */
