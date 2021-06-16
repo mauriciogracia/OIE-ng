@@ -35,10 +35,10 @@
 }
 
 .titleBar {
-    display: inline-block;
     width: 105%; /* because of the padding-right of divAddEditLayer*/
     height: 28px;
-    line-height: 28px ;
-    text-align: center;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
     background-color: lightgray;
 }
