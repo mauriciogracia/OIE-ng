@@ -1,6 +1,8 @@
+File upload requires API to process the POST and saving the file to the cloud or database
+https://stackoverflow.com/questions/47936183/angular-file-upload
 
 CSS layouts - cool demo
 https://thoughtbot.com/blog/positioning
 
-Protec angular code ? is it worth it ?
+Protect angular code ? is it worth it ?
 https://hackernoon.com/how-to-protect-angular-code-against-theft-and-reverse-engineering-7fe218641afe
