@@ -1,5 +1,6 @@
 File upload requires API to process the POST and saving the file to the cloud or database
-https://stackoverflow.com/questions/47936183/angular-file-upload
+- https://stackoverflow.com/questions/47936183/angular-file-upload
+- https://blog.angular-university.io/angular-file-upload/
 
 CSS layouts - cool demo
 https://thoughtbot.com/blog/positioning
