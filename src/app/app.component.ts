@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { LayerPresenter } from './shared/components/layer-presenter/layer-presenter.component';
+import { ImageLayer } from './shared/models/image-layer';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'OIE-ng';
   isAddEditLayerVisisble = false ;
+  @ViewChild (LayerPresenter) layerPresenter! : LayerPresenter ;
 
   showAddEditLayerModal() {
     this.isAddEditLayerVisisble = true ;
@@ -15,5 +18,9 @@ export class AppComponent {
 
   hideAddEditLayerModal() {
     this.isAddEditLayerVisisble = false ;
+  }
+
+  handleAddEditLayerEvent(imgLayer:ImageLayer) {
+    this.layerPresenter.addImageLayer(imgLayer)
   }
 }

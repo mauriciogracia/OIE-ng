@@ -4,17 +4,18 @@
     background-color: white;
     border: solid 2px darkgray;
     border-radius: 5px;
-    padding-right:12px ;
 }
 
 .inputNumeric {
-    width: 30px;
+    width: 50px;
+    margin-left: 6px;
 }
 
 .formLabel {
     display: inline-block;
-    width: 50px;
+    /* width: 50px; */
     text-align: center;
+    margin-left: 12px;
 }
 
 .leftRightPadding {
@@ -29,13 +30,13 @@
 }
 
 .bottomRight {
-    position:absolute ;
-    bottom: 3px ;
-    right: 3px ;
+    display: inline-block;
+    width: 100%;
+    justify-content: center;
 }
 
 .titleBar {
-    width: 103%; /* because of the padding-right of divAddEditLayer*/
+    width: 100%; 
     height: 28px;
     display: flex;
     justify-content: center; /* align horizontal */

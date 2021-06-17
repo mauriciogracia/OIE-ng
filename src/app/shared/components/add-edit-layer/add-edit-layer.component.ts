@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ImageLayer } from '../../models/image-layer';
 
 @Component({
   selector: 'app-add-edit-layer',
@@ -7,9 +9,17 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AddEditLayerComponent implements OnInit {
   @Output() hideAddEditLayerModalEvent = new EventEmitter<boolean>();
+  @Output() addEditLayerEvent = new EventEmitter<ImageLayer>();
   
   title = "Add/Edit Layer" ;
   fileToUpload: File | null = null;
+  
+  addEditLayerForm = new FormGroup({
+    layerName: new FormControl(''),
+    leftPos : new FormControl('0'),
+    topPos : new FormControl('0'),
+    layerScale : new FormControl('1'),
+  });
 
   constructor() { }
 
@@ -27,7 +37,16 @@ export class AddEditLayerComponent implements OnInit {
     console.log({fileToUpload:this.fileToUpload}) ;
   }
 
-  blabli() {
-    console.log("add layer") ;
+  onSubmit() {
+    const layer = new ImageLayer() ;
+    layer.id = -1 ;
+    layer.name = this.addEditLayerForm.controls['layerName'].value ;
+    layer.left = this.addEditLayerForm.controls['leftPos'].value ;
+    layer.top = this.addEditLayerForm.controls['topPos'].value ;
+    layer.scale = this.addEditLayerForm.controls['layerScale'].value ;
+    layer.img_src = 'assets/text_02.png' ;
+
+    this.addEditLayerEvent.emit(layer) ;
+    this.hideAddEditLayerModalEvent.emit(true) ;
   }
 }

@@ -12,19 +12,27 @@ export class LayerPresenter implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.addImageLayer(0,0,"assets/back_01.jpg",1) ;
+    const imgLayer = new ImageLayer() ;
+    imgLayer.left = 0 ;
+    imgLayer.top = 0 ;
+    imgLayer.img_src = "assets/back_01.jpg" ;
+    imgLayer.scale = 1 ;
+
+    this.addImageLayer(imgLayer) ;
+    /*
     this.addImageLayer(10,30,"assets/text_02.png",0.5) ;
     this.addImageLayer(10,30,"assets/text_02.png",1) ;
     this.addImageLayer(10,30,"assets/text_02.png",1.5) ;
     this.addImageLayer(10,30,"assets/text_02.png",2) ;
+    */
   }
 
   getNewImageLayerIndex() {
     return (this.imageLayers.length+1) ;
   }
 
-  addImageLayer(x: number, y: number, src: string, scale: number ) {
-    const imgLayer = new ImageLayer(x,y,src, scale, this.getNewImageLayerIndex()) ;
+  addImageLayer(imgLayer: ImageLayer) {
+    imgLayer.z_index = this.getNewImageLayerIndex() ;
     this.imageLayers.push(imgLayer) ;
   }
 

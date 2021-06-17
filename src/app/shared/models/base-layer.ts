@@ -1,14 +1,12 @@
 export class BaseLayer {
-    left = 0 ;
-    top = 0 ;
-    z_index = 0 ;
+    public id = 0;
+    public name = '';
+    public left = 0 ;
+    public top = 0 ;
+    public z_index = 0 ;
     
-    constructor(left:number, top:number, z_index:number) {
-        this.left = left ;
-        this.top = top ;
-        this.z_index = z_index ;
-    }
-
+    constructor(){}
+    
     getLeftPx() {
         return `${this.left}px` ;
     }

@@ -1,23 +1,27 @@
 <div class="divAddEditLayer">
     <span class="titleBar"><b>{{title}}</b></span>
+    <form [formGroup]="addEditLayerForm" (ngSubmit)="onSubmit()">
     <p>
         <span class="leftRightPadding">Layer name</span>
-        <input type="text">
+        <input id="layerName" type="text" formControlName="layerName">
         <input type="button" value="X" (click)="onClose()" class="topRight">
     </p>
     <p>
         <span class="formLabel">Left</span>
-        <input type="number" value="0" class="inputNumeric">
+        <input id="leftPos" type="number" formControlName="leftPos" class="inputNumeric">
         <span class="formLabel">Top</span>
-        <input type="number" value="0" class="inputNumeric">
+        <input id="topPos" type="number" formControlName="topPos" class="inputNumeric">
         <span class="formLabel">Scale</span>
-        <input type="number" value="0" class="inputNumeric">
+        <input id="layerScales" type="number" formControlName="layerScale" class="inputNumeric">
+        &nbsp;&nbsp;
     </p>
-    <p class="leftRightPadding">Select file to upload...
+    <p class="leftRightPadding">
+        <!--Select file to upload...
         <input type="file"
            id="file"
-           (change)="handleFileInput($event)">
-        <input type="button" value="Add layer" (click)="blabli()" class="bottomRight">
+           (change)="handleFileInput($event)">--><br>
+        <input type="submit" value="Add layer" class="bottomRight">
     </p>
+    </form>
 </div>
 
