@@ -1,3 +1,44 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; 
+  border: solid 3px yellow; /*debug */
+}
+
+.divMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid; /*debug */
+}
+
+.divToolBar {
+    border: 3px solid red; /*debug */
+}
+
+.divLayerPresenter {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border: 3px solid darkgrey; /*debug */
+}
+
+.divAddEditLayer {
+    position: absolute ;
+    left: 50px;
+    top: 50px;
+    z-index: 9999;
+    background-color: white;
+    border: solid 2px darkgray;
+    border-radius: 5px;
+}

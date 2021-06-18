@@ -3,7 +3,7 @@ import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 
 @Component({
-  selector: 'app-image-layers',
+  selector: 'app-layer-presenter',
   templateUrl: './layer-presenter.component.html',
   styleUrls: ['./layer-presenter.component.css']
 })
@@ -17,9 +17,9 @@ export class LayerPresenter implements OnInit {
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
 
-    this.layerService.addImageLayer(imgLayer) ;
+    //TODO sthis.layerService.addImageLayer(imgLayer) ;
   }
-  
+
   getLayers() : ImageLayer[] {
     return this.layerService.getLayers() ;
   }

@@ -1,4 +1,4 @@
-<div class="divLayerPresenter">
+<div class="divLayers">
     <div *ngFor="let il of getLayers()">
         <img class="divFloatLayer" 
             [src]="il.img_src" 
@@ -9,3 +9,5 @@
         />
     </div>
 </div>
+<app-layer-list class="divLayerList"></app-layer-list>
+
