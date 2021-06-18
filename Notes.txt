@@ -2,6 +2,11 @@ Migrate to Material - https://material.io/components
     - LayerList i - https://material.io/components/lists
     - The dialog seems to be Full-screen dialog - https://material.io/components/dialogs/android#full-screen-dialog
 
+Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
+    - Desktop
+    - Tablet
+    - Cellphone
+
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload
 - https://blog.angular-university.io/angular-file-upload/
