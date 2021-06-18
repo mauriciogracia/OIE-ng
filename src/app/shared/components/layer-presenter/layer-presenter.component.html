@@ -1,5 +1,5 @@
 <div class="divLayerPresenter">
-    <div *ngFor="let il of imageLayers">
+    <div *ngFor="let il of getLayers()">
         <img class="divFloatLayer" 
             [src]="il.img_src" 
             [style.left]="il.getLeftPx()"

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { LayerPresenter } from './shared/components/layer-presenter/layer-presenter.component';
 import { ImageLayer } from './shared/models/image-layer';
+import { LayerService } from './shared/services/layer.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ export class AppComponent {
   isAddEditLayerVisisble = false ;
   @ViewChild (LayerPresenter) layerPresenter! : LayerPresenter ;
 
+  constructor(private layerService : LayerService) {}
+
   showAddEditLayerModal() {
     this.isAddEditLayerVisisble = true ;
   }
@@ -21,6 +24,6 @@ export class AppComponent {
   }
 
   handleAddEditLayerEvent(imgLayer:ImageLayer) {
-    this.layerPresenter.addImageLayer(imgLayer)
+    this.layerService.addImageLayer(imgLayer)
   }
 }

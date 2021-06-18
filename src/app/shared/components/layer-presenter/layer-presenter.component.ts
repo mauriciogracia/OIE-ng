@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
+import { LayerService } from '../../services/layer.service';
 
 @Component({
   selector: 'app-image-layers',
@@ -7,9 +8,7 @@ import { ImageLayer } from '../../models/image-layer';
   styleUrls: ['./layer-presenter.component.css']
 })
 export class LayerPresenter implements OnInit {
-  imageLayers: ImageLayer[] = [];
-
-  constructor() { }
+  constructor(private layerService : LayerService) { }
 
   ngOnInit(): void {
     const imgLayer = new ImageLayer() ;
@@ -18,22 +17,13 @@ export class LayerPresenter implements OnInit {
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
 
-    this.addImageLayer(imgLayer) ;
-    /*
-    this.addImageLayer(10,30,"assets/text_02.png",0.5) ;
-    this.addImageLayer(10,30,"assets/text_02.png",1) ;
-    this.addImageLayer(10,30,"assets/text_02.png",1.5) ;
-    this.addImageLayer(10,30,"assets/text_02.png",2) ;
-    */
+    this.layerService.addImageLayer(imgLayer) ;
+  }
+  
+  getLayers() : ImageLayer[] {
+    return this.layerService.getLayers() ;
   }
 
-  getNewImageLayerIndex() {
-    return (this.imageLayers.length+1) ;
-  }
-
-  addImageLayer(imgLayer: ImageLayer) {
-    imgLayer.z_index = this.getNewImageLayerIndex() ;
-    this.imageLayers.push(imgLayer) ;
-  }
+  
 
 }

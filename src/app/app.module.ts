@@ -7,20 +7,25 @@ import { LayerPresenter } from './shared/components/layer-presenter/layer-presen
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
 import { AddEditLayerComponent } from './shared/components/add-edit-layer/add-edit-layer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayerListComponent } from './shared/components/layer-list/layer-list.component';
+import { LayerService } from './shared/services/layer.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayerPresenter,
     ToolBarComponent,
-    AddEditLayerComponent
+    AddEditLayerComponent,
+    LayerListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    LayerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
