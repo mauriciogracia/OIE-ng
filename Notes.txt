@@ -1,9 +1,14 @@
+Migrate to Material - https://material.io/components
+    - LayerList i - https://material.io/components/lists
+    - The dialog seems to be Full-screen dialog - https://material.io/components/dialogs/android#full-screen-dialog
+
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload
 - https://blog.angular-university.io/angular-file-upload/
 
 CSS layouts - cool demo
-https://thoughtbot.com/blog/positioning
+    - https://thoughtbot.com/blog/positioning
 
 Protect angular code ? is it worth it ?
-https://hackernoon.com/how-to-protect-angular-code-against-theft-and-reverse-engineering-7fe218641afe
+    - split between front-end / backend rest API
+    - https://hackernoon.com/how-to-protect-angular-code-against-theft-and-reverse-engineering-7fe218641afe

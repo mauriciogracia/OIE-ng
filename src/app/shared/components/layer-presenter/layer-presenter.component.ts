@@ -16,8 +16,8 @@ export class LayerPresenter implements OnInit {
     imgLayer.top = 0 ;
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
-
-    //TODO sthis.layerService.addImageLayer(imgLayer) ;
+    imgLayer.name= "background" ;
+    this.layerService.addImageLayer(imgLayer) ;
   }
 
   getLayers() : ImageLayer[] {
