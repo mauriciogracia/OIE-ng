@@ -1,4 +1,4 @@
-<div class="divLayers">
+<scrollbar class="divLayers">
     <div *ngFor="let il of getLayers()">
         <img class="divFloatLayer" 
             [src]="il.img_src" 
@@ -8,6 +8,6 @@
             [style.transform]="il.getTransform()"
         />
     </div>
-</div>
+</scrollbar>
 <app-layer-list class="divLayerList"></app-layer-list>
 

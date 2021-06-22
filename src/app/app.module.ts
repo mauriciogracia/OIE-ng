@@ -9,6 +9,9 @@ import { AddEditLayerComponent } from './shared/components/add-edit-layer/add-ed
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayerListComponent } from './shared/components/layer-list/layer-list.component';
 import { LayerService } from './shared/services/layer.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollbarModule } from './shared/components/scrollbar/scrollbar.module';
+import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,13 @@ import { LayerService } from './shared/services/layer.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ScrollbarModule
   ],
   providers: [
-    LayerService
+    LayerService,
+    NG_EVENT_PLUGINS
   ],
   bootstrap: [AppComponent]
 })
