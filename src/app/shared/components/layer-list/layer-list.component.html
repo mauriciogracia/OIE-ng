@@ -1,6 +1,4 @@
 <span><b>Layers</b></span>
 <div>
-    <div *ngFor="let il of getLayers()" class="layerItem">
-        {{il.name}}
-    </div>
+    <button class="buttonLayerList" *ngFor="let il of getLayers()"  (click)="showLayerSelection(il.id)">{{il.name}}</button>
 </div>

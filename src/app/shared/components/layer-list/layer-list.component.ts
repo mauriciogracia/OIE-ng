@@ -17,4 +17,8 @@ export class LayerListComponent implements OnInit {
   getLayers() : ImageLayer[] {
     return this.layerService.getLayers() ;
   }
+
+  showLayerSelection(layerId:number) {
+    console.log({layerId:layerId}) ;
+  }
 }
