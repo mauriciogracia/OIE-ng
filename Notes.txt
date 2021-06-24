@@ -3,12 +3,14 @@ To test it from another device
     - disable firewall / add rule 
     - connect to 192.168.1.15:4200
 
-Scrolling techniques (if layers are wider tan layer canvas it should scroll)
+X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
 Migrate to Material - https://material.io/components
     - LayerList i - https://material.io/components/lists
-    - The dialog seems to be Full-screen dialog - https://material.io/components/dialogs/android#full-screen-dialog
+    - The dialog seems to be Full-screen dialog 
+        - https://material.io/components/dialogs/android#full-screen-dialog
+        - https://blog.angular-university.io/angular-material-dialog/
 
 Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
     - Desktop
