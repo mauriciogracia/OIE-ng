@@ -5,7 +5,9 @@ import { ImageLayer } from '../models/image-layer';
   providedIn: 'root'
 })
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class LayerService {
   private imageLayers: ImageLayer[] = [];
