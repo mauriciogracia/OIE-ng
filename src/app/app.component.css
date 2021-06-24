@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   right: 0; 
-  border: solid 3px yellow; /*debug */
+  /*border: solid 3px yellow; debug */
 }
 
 .divMain {
@@ -21,9 +21,11 @@
     border: 1px solid; /*debug */
 }
 
+/*
 .divToolBar {
-    border: 3px solid red; /*debug */
+    border: 3px solid red; debug 
 }
+*/
 
 .divLayerPresenter {
     flex: 1;
