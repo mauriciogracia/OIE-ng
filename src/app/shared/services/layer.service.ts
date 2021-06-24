@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
+import { BaseLayer, LayerType } from '../models/base-layer';
 import { ImageLayer } from '../models/image-layer';
 
 @Injectable({
   providedIn: 'root'
 })
 
-@Injectable({
-  providedIn: 'root'
-})
-
 export class LayerService {
-  private imageLayers: ImageLayer[] = [];
+  private layers: BaseLayer[] = [];
 
   constructor() { }
 
-  getLayers() : ImageLayer[] {
-    return this.imageLayers ;
+  getLayers() : BaseLayer[] {
+    return this.layers ;
   }
 
-  getNewImageLayerIndex() {
-    return (this.imageLayers.length+1) ;
+  getNewLayerDepthIndex() {
+    return (this.layers.length+1) ;
   }
 
-  getNewImageLayerId() {
-    return Math.max(...this.imageLayers.map(x => x.id),0)+1 ;
+  getNewLayerId() {
+    return Math.max(...this.layers.map(x => x.id),0)+1 ;
   }
 
-  addImageLayer(imgLayer: ImageLayer) {
-    imgLayer.z_index = this.getNewImageLayerIndex() ;
-    imgLayer.id = this.getNewImageLayerId() ;
-    this.imageLayers.push(imgLayer) ;
+  addLayer(layer: BaseLayer) {
+    layer.z_index = this.getNewLayerDepthIndex() ;
+    layer.id = this.getNewLayerId() ;
+    this.layers.push(layer) ;
   }
 }

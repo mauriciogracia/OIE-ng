@@ -15,15 +15,15 @@ export class AppComponent {
 
   constructor(private layerService : LayerService) {}
 
-  showAddEditLayerModal() {
+  showAddEditImageLayerModal() {
     this.isAddEditLayerVisisble = true ;
   }
 
-  hideAddEditLayerModal() {
+  hideAddEditImageLayerModal() {
     this.isAddEditLayerVisisble = false ;
   }
 
-  handleAddEditLayerEvent(imgLayer:ImageLayer) {
-    this.layerService.addImageLayer(imgLayer)
+  handleAddEditImageLayerEvent(imgLayer:ImageLayer) {
+    this.layerService.addLayer(imgLayer)
   }
 }

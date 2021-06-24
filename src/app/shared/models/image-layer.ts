@@ -1,4 +1,4 @@
-import { BaseLayer } from "./base-layer";
+import { BaseLayer, LayerType } from "./base-layer";
 
 export class ImageLayer extends BaseLayer {
     public img_src = "" ;
@@ -6,6 +6,7 @@ export class ImageLayer extends BaseLayer {
     
     constructor() {
         super() ;
+        this.type = LayerType.Image ;
     }
 
     getTransform() {

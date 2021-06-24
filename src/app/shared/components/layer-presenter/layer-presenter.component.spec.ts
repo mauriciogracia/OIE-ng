@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayerPresenter } from './layer-presenter.component';
+import {CastTo} from '../../castTo-pipe' ;
 
-describe('ImageLayersComponent', () => {
+describe('LayerPresenterComponent', () => {
   let component: LayerPresenter;
   let fixture: ComponentFixture<LayerPresenter>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayerPresenter ]
+      declarations: [ LayerPresenter, CastTo ]
     })
     .compileComponents();
   });

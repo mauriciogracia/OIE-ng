@@ -1,15 +1,15 @@
-.divLayers {
+.layers {
   width: 95%;
   flex-basis: 95%;
   border: 3px solid green; /*debug */
 } 
 
-.divLayerList {
+.layerList {
   flex :1 ;
   border: 3px solid blue; /*debug */
 }
 
-.divFloatLayer {
+.floatLayer {
     position: absolute;
     transform-origin: left top ;
     /*border: solid 1px red;  -- remove to debug */ 

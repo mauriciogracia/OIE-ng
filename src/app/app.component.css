@@ -13,7 +13,7 @@
   /*border: solid 3px yellow; debug */
 }
 
-.divMain {
+.main {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -22,12 +22,12 @@
 }
 
 /*
-.divToolBar {
+.toolBar {
     border: 3px solid red; debug 
 }
 */
 
-.divLayerPresenter {
+.layerPresenter {
     flex: 1;
     position: relative;
     display: flex;
@@ -35,7 +35,7 @@
     border: 3px solid darkgrey; /*debug */
 }
 
-.divAddEditLayer {
+.addEditLayer {
     position: absolute ;
     left: 50px;
     top: 50px;

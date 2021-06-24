@@ -1,13 +1,24 @@
-<scrollbar class="divLayers">
+<scrollbar class="layers">
     <div *ngFor="let il of getLayers()">
-        <img class="divFloatLayer" 
-            [src]="il.img_src" 
+        <img *ngIf="(il.type === layerType.Image)"
+            class="floatLayer"
+            [src]="(il | castTo: imageLayer).img_src" 
             [style.left]="il.getLeftPx()"
             [style.top]="il.getTopPx()"
             [style.z-index]="il.getZindex()"
-            [style.transform]="il.getTransform()"
+            [style.transform]="(il | castTo: imageLayer).getTransform()"
         />
+        <div *ngIf="(il.type === layerType.Text)"
+            class = "floatLayer" 
+            [style.left]="il.getLeftPx()"
+            [style.top]="il.getTopPx()"
+            [style.z-index]="il.getZindex()"
+        >
+            <span>
+                {{(il | castTo: textLayer).text}}
+            </span>
+        </div>
     </div>
 </scrollbar>
-<app-layer-list class="divLayerList"></app-layer-list>
+<app-layer-list class="layerList"></app-layer-list>
 

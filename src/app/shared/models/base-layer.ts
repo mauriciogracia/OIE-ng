@@ -1,5 +1,11 @@
+export enum LayerType {
+    Undefined,
+    Image,
+    Text,
+}
 export class BaseLayer {
     public id = 0;
+    public type = LayerType.Undefined ;
     public name = '';
     public left = 0 ;
     public top = 0 ;

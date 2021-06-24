@@ -12,7 +12,8 @@ import { LayerService } from './shared/services/layer.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollbarModule } from './shared/components/scrollbar/scrollbar.module';
 import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { CastTo } from './shared/castTo-pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
     LayerPresenter,
     ToolBarComponent,
     AddEditLayerComponent,
-    LayerListComponent
+    LayerListComponent,
+    CastTo
   ],
   imports: [
     BrowserModule,

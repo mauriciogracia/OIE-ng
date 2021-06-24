@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageLayer } from '../../models/image-layer';
+import { BaseLayer } from '../../models/base-layer';
 import { LayerService } from '../../services/layer.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class LayerListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getLayers() : ImageLayer[] {
+  getLayers() : BaseLayer[] {
     return this.layerService.getLayers() ;
   }
 
