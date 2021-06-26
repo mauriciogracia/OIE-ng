@@ -14,6 +14,7 @@ import { ScrollbarModule } from './shared/components/scrollbar/scrollbar.module'
 import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
 import { MatIconModule } from '@angular/material/icon';
 import { CastTo } from './shared/castTo-pipe';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CastTo } from './shared/castTo-pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ScrollbarModule,
-    MatIconModule
+    MatIconModule,
+    DragDropModule
   ],
   providers: [
     LayerService,

@@ -6,25 +6,44 @@ To test it from another device
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
-Use Angular Material - https://material.io/components
-    - LayerList : Items should have:
-        - "eye" icon to show or hide layer
-        - "trash" icon to remove layer (confirmation message)
-        - items should be draggable from layer list to change order
-        - https://material.io/components/lists
-    - The dialog seems to be Full-screen dialog 
-        - https://material.io/components/dialogs/android#full-screen-dialog
-        - https://blog.angular-university.io/angular-material-dialog/
+- Layer Operations
+    X Move by dragging
+    - Move to exact position
+    - Rotate
+    - Scale
+    - TextLayer 
+        - Input Text
+        - Font
+        - Color
+        - Bold, Italic, Subrayado, Strike..etc
+
+- LayerList : Items should have:
+    - "eye" icon to show or hide layer
+    - "trash" icon to remove layer (confirmation message)
+    - items should be draggable from layer list to change order
+    - https://material.angular.io/cdk/drag-drop/overview
+    - https://material.io/components/lists
+
+- Use Material Dialog 
+    - implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
+    - https://material.io/components/dialogs/android#full-screen-dialog
+    - https://blog.angular-university.io/angular-material-dialog/
 
 X Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
     - Desktop
     - Tablet
     - Cellphone
 
+- Export functionality
+    - as HTML (div, images, styles)
+    - as image
+
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload
 - https://blog.angular-university.io/angular-file-upload/
 
+
+----------------
 CSS layouts - cool demo
     - https://thoughtbot.com/blog/positioning
 

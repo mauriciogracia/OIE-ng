@@ -1,7 +1,7 @@
 <scrollbar class="layers">
     <div *ngFor="let il of getLayers()">
         <img *ngIf="(il.type === layerType.Image)"
-            class="floatLayer"
+            class="floatLayer" cdkDrag
             [src]="(il | castTo: imageLayer).img_src" 
             [style.left]="il.getLeftPx()"
             [style.top]="il.getTopPx()"
@@ -9,8 +9,8 @@
             [style.transform]="(il | castTo: imageLayer).getTransform()"
             [style.outline]="(il.selected) ? 'dashed 1px red':''"
         />
-        <div *ngIf="(il.type === layerType.Text)"
-            class = "floatLayer" 
+        <div *ngIf="(il.type === layerType.Text)" 
+            class = "floatLayer" cdkDrag
             [style.left]="il.getLeftPx()"
             [style.top]="il.getTopPx()"
             [style.z-index]="il.getZindex()"
