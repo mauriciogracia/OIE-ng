@@ -7,9 +7,11 @@ export class BaseLayer {
     public id = 0;
     public type = LayerType.Undefined ;
     public name = '';
-    public left = 0 ;
-    public top = 0 ;
+    public left = 1 ;
+    public top = 1 ;
     public z_index = 0 ;
+    public selected = false ;
+    public visible = true ;
     
     constructor(){}
     

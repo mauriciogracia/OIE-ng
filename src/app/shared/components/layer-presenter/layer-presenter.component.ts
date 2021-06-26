@@ -19,8 +19,6 @@ export class LayerPresenter implements OnInit {
 
   ngOnInit(): void {
     const imgLayer = new ImageLayer() ;
-    imgLayer.left = 0 ;
-    imgLayer.top = 0 ;
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
     imgLayer.name= "background" ;

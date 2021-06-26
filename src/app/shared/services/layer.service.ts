@@ -28,4 +28,26 @@ export class LayerService {
     layer.id = this.getNewLayerId() ;
     this.layers.push(layer) ;
   }
+
+  getLayerById(layerId: number): BaseLayer | undefined {
+    return this.layers.find(l =>l.id === layerId) ;
+  }
+
+  unselectPreviousLayer() {
+    const layer = this.layers.find(l =>l.selected) ;
+
+    if(layer) {
+      layer.selected = false ;
+    }
+  }
+  
+  setSelectedLayer(layerId: number) {
+    const layer = this.getLayerById(layerId) ;
+
+    this.unselectPreviousLayer() ;
+
+    if(layer) {
+      layer.selected = true ;
+    }
+  }
 }

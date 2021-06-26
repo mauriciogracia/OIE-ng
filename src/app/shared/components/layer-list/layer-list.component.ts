@@ -19,6 +19,6 @@ export class LayerListComponent implements OnInit {
   }
 
   showLayerSelection(layerId:number) {
-    console.log({layerId:layerId}) ;
+    this.layerService.setSelectedLayer(layerId) ;
   }
 }
