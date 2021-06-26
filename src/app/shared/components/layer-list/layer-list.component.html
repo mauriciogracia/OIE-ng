@@ -1,4 +1,7 @@
-<span><b>Layers</b><mat-icon>layers</mat-icon></span>
-<div>
-    <button class="buttonLayerList" *ngFor="let il of getLayers()"  (click)="showLayerSelection(il.id)">{{il.name}}</button>
+<div class="layerListHeader">
+    <b>Layers</b>
+</div>
+<mat-icon>layers</mat-icon>
+<div class="layerList">
+    <button class="layerListItem" *ngFor="let il of getLayers()"  (click)="showLayerSelection(il.id)">{{il.name}}</button>
 </div>

@@ -6,13 +6,17 @@ To test it from another device
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
-Migrate to Material - https://material.io/components
-    - LayerList i - https://material.io/components/lists
+Use Angular Material - https://material.io/components
+    - LayerList : Items should have:
+        - "eye" icon to show or hide layer
+        - "trash" icon to remove layer (confirmation message)
+        - items should be draggable from layer list to change order
+        - https://material.io/components/lists
     - The dialog seems to be Full-screen dialog 
         - https://material.io/components/dialogs/android#full-screen-dialog
         - https://blog.angular-university.io/angular-material-dialog/
 
-Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
+X Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
     - Desktop
     - Tablet
     - Cellphone

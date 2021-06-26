@@ -8,6 +8,7 @@ import { ImageLayer } from '../models/image-layer';
 
 export class LayerService {
   private layers: BaseLayer[] = [];
+  private selectedLayerId = -1;
 
   constructor() { }
 
@@ -33,14 +34,23 @@ export class LayerService {
     return this.layers.find(l =>l.id === layerId) ;
   }
 
+  anyLayerSelected() {
+    return (this.selectedLayerId !== -1) ;
+  }
+
   unselectPreviousLayer() {
-    const layer = this.layers.find(l =>l.selected) ;
+    const layer = this.getSelectedLayer() ;
 
     if(layer) {
       layer.selected = false ;
+      this.selectedLayerId = -1;
     }
   }
-  
+
+  getSelectedLayer() {
+    return this.getLayerById(this.selectedLayerId) ;
+  }
+
   setSelectedLayer(layerId: number) {
     const layer = this.getLayerById(layerId) ;
 
@@ -48,6 +58,7 @@ export class LayerService {
 
     if(layer) {
       layer.selected = true ;
+      this.selectedLayerId = layerId ;
     }
   }
 }

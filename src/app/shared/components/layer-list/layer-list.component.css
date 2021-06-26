@@ -1,3 +1,11 @@
-.buttonLayerList {
+.layerListHeader {
+    display: inline;
+    vertical-align: super;
+    margin-left: 5px;
+}
+.layerList {
+    border-top: solid 2px gray  ;
+}
+.layerListItem {
     width: 100%;
 }
