@@ -1,8 +1,11 @@
 <div class="toolBar">
-    <button mat-icon-button (click)="onAddEditLayerClick()">
+    <button mat-icon-button (click)="onAddEditImageLayerClick()">
         <mat-icon>library_add</mat-icon>
     </button>
     <button mat-icon-button (click)="onAddEditTextLayerClick()">
         <mat-icon>title</mat-icon>
+    </button>
+    <button mat-icon-button [disabled]="!anyLayerSelected()" (click)="onEditLayerClick()">
+        <mat-icon>edit</mat-icon>
     </button>
 </div>

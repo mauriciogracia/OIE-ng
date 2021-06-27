@@ -47,6 +47,10 @@ export class LayerService {
     }
   }
 
+  isAnyLayerSelected() {
+    return (this.getSelectedLayer() !== undefined) ;
+  }
+  
   getSelectedLayer() {
     return this.getLayerById(this.selectedLayerId) ;
   }

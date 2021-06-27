@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommonDialogComponent } from './common-dialog.component';
+import { AddEditImageLayerComponent } from './add-edit-image-layer.component';
 
-describe('CommonDialogComponent', () => {
-  let component: CommonDialogComponent;
-  let fixture: ComponentFixture<CommonDialogComponent>;
+describe('AddEditImageLayerComponent', () => {
+  let component: AddEditImageLayerComponent;
+  let fixture: ComponentFixture<AddEditImageLayerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommonDialogComponent ]
+      declarations: [ AddEditImageLayerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommonDialogComponent);
+    fixture = TestBed.createComponent(AddEditImageLayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

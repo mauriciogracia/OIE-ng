@@ -9,6 +9,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
 - Layer Operations
     X Move by dragging
     X Reorder Layers (z-index)
+    X Edit Layer should be a new button, disabled until a layer is selected
+    - Dragging a layer should select it 
+    - Clickin on a layer should select it
     / Add/Edit image layer (reuse dialog for edit)
         - Add/Change image by :
             - URL (no need to host the file)
@@ -22,7 +25,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Color
         - Bold, Italic, Subrayado, Strike..etc
 
-- Use Material Dialog 
+/ Use Material Dialog 
     - implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog
     - https://blog.angular-university.io/angular-material-dialog/

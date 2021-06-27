@@ -1,17 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ImageLayer } from '../../models/image-layer';
 import { MatDialogRef} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
 
 @Component({
-  selector: 'app-add-edit-layer',
-  templateUrl: './add-edit-text-layer.component.html',
-  styleUrls: ['./add-edit-text-layer.component.css']
+  selector: 'app-add-edit-image-layer',
+  templateUrl: './add-edit-image-layer.component.html',
+  styleUrls: ['./add-edit-image-layer.component.css']
 })
-export class AddEditTextLayerComponent implements OnInit {
-  
-  title = "Add/Edit Text" ;
+export class AddEditImageLayerComponent implements OnInit {
+  title = "Add/Edit Layer" ;
   fileToUpload: File | null = null;
   
   addEditLayerForm = new FormGroup({
@@ -22,7 +21,7 @@ export class AddEditTextLayerComponent implements OnInit {
   });
 
   constructor(
-    private dialogRef: MatDialogRef<AddEditTextLayerComponent>,
+    private dialogRef: MatDialogRef<AddEditImageLayerComponent>,
     private layerService : LayerService
     ) { }
 
@@ -31,8 +30,8 @@ export class AddEditTextLayerComponent implements OnInit {
   }
 
   save() {
-    //TODO fix/connect logic below  on_Submit() {
-    /*
+    //TODO
+    //this.dialogRef.close(this.form.value);
     const layer = new ImageLayer() ;
     layer.id = -1 ;
     layer.name = this.addEditLayerForm.controls['layerName'].value ;
@@ -40,12 +39,19 @@ export class AddEditTextLayerComponent implements OnInit {
     layer.top = this.addEditLayerForm.controls['topPos'].value ;
     layer.scale = this.addEditLayerForm.controls['layerScale'].value ;
     layer.img_src = 'assets/text_02.png' ;
-    */
-    console.log("not implemented") ;
+
+    this.layerService.addLayer(layer) ;
     this.close() ;
   }
 
   close() {
-    this.dialogRef.close() ;
+    this.dialogRef.close();
   }
+
+  handleFileInput(event:any) {
+    const files = event.target.files ;
+    this.fileToUpload = files.item(0) ;
+    console.log({fileToUpload:this.fileToUpload}) ;
+  }
+
 }

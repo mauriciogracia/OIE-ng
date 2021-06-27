@@ -10,20 +10,8 @@ import { LayerService } from './shared/services/layer.service';
 })
 export class AppComponent {
   title = 'OIE-ng';
-  isAddEditLayerVisisble = false ;
   @ViewChild (LayerPresenter) layerPresenter! : LayerPresenter ;
 
   constructor(private layerService : LayerService) {}
 
-  showAddEditImageLayerModal() {
-    this.isAddEditLayerVisisble = true ;
-  }
-
-  hideAddEditImageLayerModal() {
-    this.isAddEditLayerVisisble = false ;
-  }
-
-  handleAddEditImageLayerEvent(imgLayer:ImageLayer) {
-    this.layerService.addLayer(imgLayer)
-  }
 }

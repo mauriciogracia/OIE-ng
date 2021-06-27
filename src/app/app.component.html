@@ -1,10 +1,6 @@
 <div class="main">
-    <app-tool-bar (showAddEditLayerModalEvent)="showAddEditImageLayerModal()"></app-tool-bar>
+    <app-tool-bar></app-tool-bar>
     <app-layer-presenter class="layerPresenter"></app-layer-presenter >
 </div>
-<app-add-edit-layer *ngIf="isAddEditLayerVisisble" 
-    (hideAddEditLayerModalEvent)="hideAddEditImageLayerModal()"
-    (addEditLayerEvent)="handleAddEditImageLayerEvent($event)"
-    class="addEditLayer">
-</app-add-edit-layer>
+
 

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddEditLayerComponent } from '../add-edit-layer/add-edit-layer.component';
+import { LayerService } from '../../services/layer.service';
+import { AddEditImageLayerComponent } from '../add-edit-image-layer/add-edit-image-layer.component';
+import { AddEditTextLayerComponent } from '../add-edit-text-layer/add-edit-text-layer.component';
 
 @Component({
   selector: 'app-tool-bar',
@@ -9,23 +11,39 @@ import { AddEditLayerComponent } from '../add-edit-layer/add-edit-layer.componen
 })
 export class ToolBarComponent implements OnInit {
 
-  @Output() showAddEditLayerModalEvent = new EventEmitter<boolean>();
-  
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private layerService: LayerService
+    ) { }
 
   ngOnInit(): void {
   }
 
-  onAddEditLayerClick() {
-    this.showAddEditLayerModalEvent.emit(true) ;
+  onAddEditImageLayerClick() {
+    //this.showAddEditImageLayerModalEvent.emit(true) ;
+    this.showDialog(AddEditImageLayerComponent);
+    console.log("onAddEditImageLayerClick") ;
   }
+
   onAddEditTextLayerClick() {
+    this.showDialog(AddEditTextLayerComponent);
+    console.log("onAddEditTextonAddEditTextLayerClickLayerClick") ;
+  }
+
+  showDialog(x: any) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(AddEditLayerComponent, dialogConfig);
-    console.log("onAddEditTextLayerClick") ;
+    this.dialog.open(x, dialogConfig);
+  }
+
+  anyLayerSelected() {
+    return this.layerService.isAnyLayerSelected() ;
+  }
+
+  onEditLayerClick() {
+    console.log("Edit selected layer (image/text)");
   }
 }

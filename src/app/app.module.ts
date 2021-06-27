@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayerPresenter } from './shared/components/layer-presenter/layer-presenter.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
-import { AddEditLayerComponent } from './shared/components/add-edit-layer/add-edit-layer.component';
+import { AddEditImageLayerComponent } from './shared/components/add-edit-image-layer/add-edit-image-layer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayerListComponent } from './shared/components/layer-list/layer-list.component';
 import { LayerService } from './shared/services/layer.service';
@@ -15,18 +15,18 @@ import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
 import { MatIconModule } from '@angular/material/icon';
 import { CastTo } from './shared/castTo-pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CommonDialogComponent } from './shared/components/common-dialog/common-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
+import { AddEditTextLayerComponent } from './shared/components/add-edit-text-layer/add-edit-text-layer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayerPresenter,
     ToolBarComponent,
-    AddEditLayerComponent,
+    AddEditImageLayerComponent,
+    AddEditTextLayerComponent,
     LayerListComponent,
     CastTo,
-    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +43,9 @@ import { MatDialogModule } from "@angular/material/dialog";
     NG_EVENT_PLUGINS
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddEditLayerComponent]
+  entryComponents: [
+    AddEditImageLayerComponent,
+    AddEditTextLayerComponent,
+  ]
 })
 export class AppModule { }
