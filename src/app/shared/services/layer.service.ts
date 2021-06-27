@@ -64,6 +64,7 @@ export class LayerService {
       layer.selected = true ;
       this.selectedLayerId = layerId ;
     }
+    this.logLayers(this.layers) ;
   }
 
   changeOrder(prevIndex: number, newIndex: number) {

@@ -4,5 +4,9 @@
 <mat-icon>layers</mat-icon>
 <div class="layerList" cdkDropList 
     (cdkDropListDropped)="drop($event)">
-    <button class="layerListItem" cdkDrag *ngFor="let il of getLayers()"  (click)="changeLayerSelection(il.id)">{{il.name}}</button>
+    <div class="layerListItem" cdkDrag *ngFor="let il of getLayers()"  
+        (click)="changeLayerSelection(il.id)"
+        [style.background]="(il.selected)?'lightcoral':'white'">
+        {{il.name}}
+    </div>
 </div>

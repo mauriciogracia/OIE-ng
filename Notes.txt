@@ -6,8 +6,6 @@ To test it from another device
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
-- Slide right/left the layer panel to hide it
-
 - Layer Operations
     X Move by dragging
     X Reorder Layers (z-index)
@@ -15,9 +13,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     / Dragging a layer should select it (is being selected at and of drag)
     X Clicking on a layer should select it
     - Duplicate layer 
-    - "eye" button to show or hide selected layer
-    - "trash" icon to remove selected layer (confirmation message)
-
+   
     / Add/Edit image layer (reuse dialog for edit)
         X Suggest layer name 
         / Add/Change image by :
@@ -33,6 +29,15 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Bold, Italic, Subrayado, Strike..etc
     - Flip vertical/horizontal
 
+/ Layer list    
+    - Selected layer should be highlighted on the LayerList 
+    - "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
+    - "trash" icon to remove layer (confirmation message)
+    - Slide right/left the layer list to hide it
+    X items should be draggable from layer list to change order
+    - Improve styling of layer dragging to match this example
+    https://material.angular.io/cdk/drag-drop/overview
+
 - UNDO / REDO 
     - how many steps back ?
 
@@ -40,15 +45,6 @@ X Use Material for Dialogs
     X implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog
     - https://blog.angular-university.io/angular-material-dialog/
-
-/ LayerList : Items should have:
-    
-    X items should be draggable from layer list to change order
-
-    - https://material.angular.io/cdk/drag-drop/overview
-    - https://material.io/components/lists
-
-
 
 X Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
     - Desktop
