@@ -1,27 +1,35 @@
 <h2 mat-dialog-title>{{title}}</h2>
-<div>
-    <form [formGroup]="addEditLayerForm" (ngSubmit)="save()">
+<mat-dialog-content [formGroup]="addEditLayerForm" (ngSubmit)="save()">
     <p>
-        <span class="leftRightPadding">Layer name</span>
-        <input id="layerName" type="text" formControlName="layerName">
-        <input type="button" value="X" (click)="close()" class="topRight">
+        <mat-form-field appearance="outline">
+            <mat-label>Layer name</mat-label>
+            <input matInput id="layerName" type="text" formControlName="layerName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Image Scale</mat-label>
+            <input matInput id="layerScale" type="number" formControlName="layerScale">
+        </mat-form-field>
     </p>
     <p>
-        <span class="formLabel">Left</span>
-        <input id="leftPos" type="number" formControlName="leftPos" class="inputNumeric">
-        <span class="formLabel">Top</span>
-        <input id="topPos" type="number" formControlName="topPos" class="inputNumeric">
-        <span class="formLabel">Scale</span>
-        <input id="layerScales" type="number" formControlName="layerScale" class="inputNumeric">
-        &nbsp;&nbsp;
+        <mat-form-field>
+            <mat-label>Left position</mat-label>
+            <input matInput id="leftPos" type="number" formControlName="leftPos">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Top position</mat-label>
+            <input matInput id="topPos" type="number" formControlName="topPos">
+        </mat-form-field>
+
+        
     </p>
-    <p class="leftRightPadding">
-        <!--Select file to upload...
+    <!-- //TODO -- Select file to upload...
         <input type="file"
            id="file"
-           (change)="handleFileInput($event)">--><br>
-        <input type="submit" value="Add layer" class="bottomRight">
-    </p>
-    </form>
-</div>
+           (change)="handleFileInput($event)">-->
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>
 

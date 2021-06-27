@@ -17,6 +17,7 @@ import { CastTo } from './shared/castTo-pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from "@angular/material/dialog";
 import { AddEditTextLayerComponent } from './shared/components/add-edit-text-layer/add-edit-text-layer.component';
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddEditTextLayerComponent } from './shared/components/add-edit-text-lay
     ScrollbarModule,
     MatIconModule,
     DragDropModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
   ],
   providers: [
     LayerService,
