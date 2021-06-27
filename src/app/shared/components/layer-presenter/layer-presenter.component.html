@@ -2,6 +2,7 @@
     <div *ngFor="let il of getLayers()">
         <img *ngIf="(il.type === layerType.Image)"
             class="floatLayer" cdkDrag
+            (click)="selectLayerByClick(il.id)"
             [src]="(il | castTo: imageLayer).img_src" 
             [style.left]="il.getLeftPx()"
             [style.top]="il.getTopPx()"
@@ -11,6 +12,7 @@
         />
         <div *ngIf="(il.type === layerType.Text)" 
             class = "floatLayer" cdkDrag
+            (click)="selectLayerByClick(il.id)"
             [style.left]="il.getLeftPx()"
             [style.top]="il.getTopPx()"
             [style.z-index]="il.getZindex()"

@@ -1,28 +1,32 @@
 <h2 mat-dialog-title>{{title}}</h2>
 <mat-dialog-content [formGroup]="addEditLayerForm" (ngSubmit)="save()">
     <div>
-        <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-form-field appearance="outline" class="fullWidth">
             <mat-label>Image URL</mat-label>
             <input matInput id="imageURL" type="text" formControlName="imageURL">
         </mat-form-field>
     </div>
     <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="inputNumeric">
             <mat-label>Left position</mat-label>
             <input matInput id="leftPos" type="number" formControlName="leftPos">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="inputNumeric">
             <mat-label>Top position</mat-label>
             <input matInput id="topPos" type="number" formControlName="topPos">
         </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Image Scale</mat-label>
+        <mat-form-field appearance="outline" class="inputNumeric">
+            <mat-label>Scale</mat-label>
             <input matInput id="layerScale" type="number" formControlName="layerScale">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="inputNumeric">
+            <mat-label>Rotation</mat-label>
+            <input matInput id="layerRotation" type="number" formControlName="layerRotation">
         </mat-form-field>
     </div>
     <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="fullWidth">
             <mat-label>Layer name</mat-label>
             <input matInput id="layerName" type="text" formControlName="layerName">
         </mat-form-field>

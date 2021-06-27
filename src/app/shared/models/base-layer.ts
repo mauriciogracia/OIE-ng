@@ -12,6 +12,7 @@ export class BaseLayer {
     public z_index = 0 ;
     public selected = false ;
     public visible = true ;
+    public rotation = 0 ;
     
     constructor(){}
     

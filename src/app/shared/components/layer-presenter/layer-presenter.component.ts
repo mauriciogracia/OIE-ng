@@ -33,6 +33,8 @@ export class LayerPresenter implements OnInit {
     return this.layerService.getLayers() ;
   }
 
-  
+  selectLayerByClick(layerId: number) {
+    this.layerService.setSelectedLayer(layerId) ;
+  }
 
 }

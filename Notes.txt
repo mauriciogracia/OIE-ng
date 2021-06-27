@@ -6,33 +6,43 @@ To test it from another device
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
+- Slide right/left the layer panel to hide it
+
 - Layer Operations
     X Move by dragging
     X Reorder Layers (z-index)
     X Edit Layer should be a new button, disabled until a layer is selected
-    - Dragging a layer should select it 
-    - Clickin on a layer should select it
+    / Dragging a layer should select it (is being selected at and of drag)
+    X Clicking on a layer should select it
+    - Duplicate layer 
+    - "eye" button to show or hide selected layer
+    - "trash" icon to remove selected layer (confirmation message)
+
     / Add/Edit image layer (reuse dialog for edit)
-        - Add/Change image by :
-            - URL (no need to host the file)
+        X Suggest layer name 
+        / Add/Change image by :
+            X URL (no need to host the file)
             - uploading files
-        - Position (initial/relacote)
-        - Scale (initial/new scale)
-        - Rotate 
+        / Position (initial/relacote)
+        / Scale (initial/new scale)
+        / Rotate (initial/new scale)
     - Add/Edit TextLayer 
         - Input Text
         - Font
         - Color
         - Bold, Italic, Subrayado, Strike..etc
+    - Flip vertical/horizontal
 
-/ Use Material Dialog 
-    - implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
+- UNDO / REDO 
+    - how many steps back ?
+
+X Use Material for Dialogs 
+    X implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog
     - https://blog.angular-university.io/angular-material-dialog/
 
-X LayerList : Items should have:
-    - "eye" icon to show or hide layer
-    - "trash" icon to remove layer (confirmation message)
+/ LayerList : Items should have:
+    
     X items should be draggable from layer list to change order
 
     - https://material.angular.io/cdk/drag-drop/overview
@@ -45,6 +55,11 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
     - Tablet
     - Cellphone
 
+- Save 
+    - what format (JSON, xml, ...) ?
+    - where ? in the cloud ? locally 
+    - Load 
+
 - Export functionality
     - as HTML (div, images, styles)
     - as image
@@ -52,7 +67,9 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload
 - https://blog.angular-university.io/angular-file-upload/
-
+----------------
+Images URL samples 
+- https://assets.stickpng.com/images/5a679d5e01d15068bdfe87ab.png
 
 ----------------
 CSS layouts - cool demo

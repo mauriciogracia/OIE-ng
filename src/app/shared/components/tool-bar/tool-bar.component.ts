@@ -20,14 +20,11 @@ export class ToolBarComponent implements OnInit {
   }
 
   onAddEditImageLayerClick() {
-    //this.showAddEditImageLayerModalEvent.emit(true) ;
     this.showDialog(AddEditImageLayerComponent);
-    console.log("onAddEditImageLayerClick") ;
   }
 
   onAddEditTextLayerClick() {
     this.showDialog(AddEditTextLayerComponent);
-    console.log("onAddEditTextonAddEditTextLayerClickLayerClick") ;
   }
 
   showDialog(x: any) {

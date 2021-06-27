@@ -11,7 +11,7 @@ import { LayerService } from '../../services/layer.service';
 })
 export class AddEditTextLayerComponent implements OnInit {
   
-  title = "Add/Edit Text" ;
+  title = "Add/Edit Text Layer" ;
   fileToUpload: File | null = null;
   
   addEditLayerForm = new FormGroup({
