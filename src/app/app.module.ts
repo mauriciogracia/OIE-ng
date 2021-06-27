@@ -15,6 +15,8 @@ import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
 import { MatIconModule } from '@angular/material/icon';
 import { CastTo } from './shared/castTo-pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CommonDialogComponent } from './shared/components/common-dialog/common-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ToolBarComponent,
     AddEditLayerComponent,
     LayerListComponent,
-    CastTo
+    CastTo,
+    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +35,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BrowserAnimationsModule,
     ScrollbarModule,
     MatIconModule,
-    DragDropModule
+    DragDropModule,
+    MatDialogModule
   ],
   providers: [
     LayerService,
     NG_EVENT_PLUGINS
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddEditLayerComponent]
 })
 export class AppModule { }
