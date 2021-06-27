@@ -2,6 +2,7 @@
     <b>Layers</b>
 </div>
 <mat-icon>layers</mat-icon>
-<div class="layerList">
-    <button class="layerListItem" *ngFor="let il of getLayers()"  (click)="showLayerSelection(il.id)">{{il.name}}</button>
+<div class="layerList" cdkDropList 
+    (cdkDropListDropped)="drop($event)">
+    <button class="layerListItem" cdkDrag *ngFor="let il of getLayers()"  (click)="changeLayerSelection(il.id)">{{il.name}}</button>
 </div>

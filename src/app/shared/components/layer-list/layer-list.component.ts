@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { BaseLayer } from '../../models/base-layer';
 import { LayerService } from '../../services/layer.service';
@@ -18,7 +19,11 @@ export class LayerListComponent implements OnInit {
     return this.layerService.getLayers() ;
   }
 
-  showLayerSelection(layerId:number) {
+  changeLayerSelection(layerId:number) {
     this.layerService.setSelectedLayer(layerId) ;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    this.layerService.changeOrder(event.previousIndex, event.currentIndex) ;
   }
 }

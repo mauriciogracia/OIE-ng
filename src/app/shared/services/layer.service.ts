@@ -61,4 +61,26 @@ export class LayerService {
       this.selectedLayerId = layerId ;
     }
   }
+
+  changeOrder(prevIndex: number, newIndex: number) {
+    if(prevIndex != newIndex) {
+      let delta = (prevIndex > newIndex) ? 1 : -1 ;
+      let i = Math.min(newIndex, prevIndex) ;
+      const max = Math.max(prevIndex, newIndex) ;
+
+      const temp = this.layers[prevIndex].z_index ;
+      this.layers[prevIndex].z_index = this.layers[newIndex].z_index ;
+      this.layers[newIndex].z_index = temp ;
+
+      for(i = i + 1 ; i < max; i++) {
+        this.layers[i].z_index += delta ;
+      }
+      //Keep layers sorted by z_index 
+      this.layers = this.layers.sort((l1,l2) => (l1.z_index - l2.z_index)) ;
+    }
+  }
+
+  logLayers(layers: BaseLayer[]) {
+    layers.forEach(x => console.log(x)) ;
+  }
 }
