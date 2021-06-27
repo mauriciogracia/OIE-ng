@@ -1,28 +1,33 @@
 <h2 mat-dialog-title>{{title}}</h2>
 <mat-dialog-content [formGroup]="addEditLayerForm" (ngSubmit)="save()">
-    <p>
+    <div>
+        <mat-form-field appearance="outline" [style.width.%]="100">
+            <mat-label>Image URL</mat-label>
+            <input matInput id="imageURL" type="text" formControlName="imageURL">
+        </mat-form-field>
+    </div>
+    <div>
         <mat-form-field appearance="outline">
-            <mat-label>Layer name</mat-label>
-            <input matInput id="layerName" type="text" formControlName="layerName">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Image Scale</mat-label>
-            <input matInput id="layerScale" type="number" formControlName="layerScale">
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
             <mat-label>Left position</mat-label>
             <input matInput id="leftPos" type="number" formControlName="leftPos">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Top position</mat-label>
             <input matInput id="topPos" type="number" formControlName="topPos">
         </mat-form-field>
-
-        
-    </p>
+        <mat-form-field appearance="outline">
+            <mat-label>Image Scale</mat-label>
+            <input matInput id="layerScale" type="number" formControlName="layerScale">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Layer name</mat-label>
+            <input matInput id="layerName" type="text" formControlName="layerName">
+        </mat-form-field>
+    </div>
+    
     <!-- //TODO -- Select file to upload...
         <input type="file"
            id="file"
