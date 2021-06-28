@@ -10,7 +10,7 @@ import { TextLayer } from '../../models/text-layer';
   styleUrls: ['./layer-presenter.component.css']
 })
 export class LayerPresenter implements OnInit {
-  /* make the types visible to the template/html*/
+  /* this is done to make the types visible to the template/html*/
   layerType = LayerType ;
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
@@ -24,7 +24,7 @@ export class LayerPresenter implements OnInit {
     imgLayer.name= "background" ;
     this.layerService.addLayer(imgLayer) ;
 
-    const x = new TextLayer("Text : - }");
+    const x = new TextLayer("Text Layer: - }");
     x.top = 200 ;
     x.left = 100 ;
     x.name = "textLayer" ;

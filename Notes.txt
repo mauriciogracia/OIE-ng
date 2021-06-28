@@ -1,7 +1,9 @@
 To test it from another device
-    > ng s --host 0.0.0.0
-    - disable firewall / add rule 
-    - connect to 192.168.1.15:4200
+    - using netlify - https://upbeat-wiles-102f43.netlify.app/
+    - using localhost
+        > ng s --host 0.0.0.0
+        - disable firewall / add rule 
+        - connect to 192.168.1.15:4200
 
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
@@ -10,10 +12,13 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Move by dragging
     X Reorder Layers (z-index)
     X Edit Layer should be a new button, disabled until a layer is selected
-    / Dragging a layer should select it (is being selected at and of drag)
+    / Dragging a layer should 
+        / select it (is being selected at and of drag)
+        - update its positiong at end of drag
     X Clicking on a layer should select it
     - Duplicate layer 
    
+    - Method to update Layer (if data != null UPDATE otherwise ADD)
     / Add/Edit image layer (reuse dialog for edit)
         X Suggest layer name 
         / Add/Change image by :
@@ -29,10 +34,11 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Size 
         - Color - https://www.npmjs.com/search?q=color%20picker
         - Bold, Italic, Subrayado, Strike..etc
+        
     - Flip vertical/horizontal
 
 / Layer list    
-    - Selected layer should be highlighted on the LayerList 
+    X Selected layer should be highlighted on the LayerList 
     - "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
     - "trash" icon to remove layer (confirmation message)
     - Slide right/left the layer list to hide it

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ImageLayer } from '../../models/image-layer';
+import { TextLayer } from '../../models/text-layer';
 import { LayerService } from '../../services/layer.service';
 import { AddEditImageLayerComponent } from '../add-edit-image-layer/add-edit-image-layer.component';
 import { AddEditTextLayerComponent } from '../add-edit-text-layer/add-edit-text-layer.component';
@@ -19,19 +21,23 @@ export class ToolBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddEditImageLayerClick() {
-    this.showDialog(AddEditImageLayerComponent);
+  onAddImageLayer() {
+    this.showDialog(AddEditImageLayerComponent, null);
   }
 
-  onAddEditTextLayerClick() {
-    this.showDialog(AddEditTextLayerComponent);
+  onAddTextLayer() {
+    this.showDialog(AddEditTextLayerComponent, null);
   }
 
-  showDialog(x: any) {
+  showDialog(x: any, data: any) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
+
+    if(data !== null) {
+      dialogConfig.data = data ;
+    }
 
     this.dialog.open(x, dialogConfig);
   }
@@ -40,7 +46,27 @@ export class ToolBarComponent implements OnInit {
     return this.layerService.isAnyLayerSelected() ;
   }
 
-  onEditLayerClick() {
-    console.log("Edit selected layer (image/text)");
+  onEditLayerC() {
+    const layer = this.layerService.getSelectedLayer() ;
+
+    if(layer) {
+      if(layer instanceof ImageLayer) {
+        const data = {
+
+        }
+        console.log("Edit selected layer (image)");
+      }
+      else {
+        const data = {
+          text : (layer as TextLayer).text,
+          leftPos : layer.left,
+          topPos : layer.top,
+        }
+        console.log("Edit selected layer (text)");
+        this.showDialog(AddEditTextLayerComponent,data) ;
+      }
+    }
+    
+    
   }
 }
