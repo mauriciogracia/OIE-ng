@@ -22,10 +22,12 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         / Position (initial/relacote)
         / Scale (initial/new scale)
         / Rotate (initial/new scale)
-    - Add/Edit TextLayer 
-        - Input Text
+    / Add/Edit TextLayer 
+        / Text
+        / Position
         - Font
-        - Color
+        - Size 
+        - Color - https://www.npmjs.com/search?q=color%20picker
         - Bold, Italic, Subrayado, Strike..etc
     - Flip vertical/horizontal
 

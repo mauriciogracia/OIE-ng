@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ImageLayer } from '../../models/image-layer';
 import { MatDialogRef} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
+import { TextLayer } from '../../models/text-layer';
 
 @Component({
   selector: 'app-add-edit-layer',
@@ -15,10 +15,9 @@ export class AddEditTextLayerComponent implements OnInit {
   fileToUpload: File | null = null;
   
   addEditLayerForm = new FormGroup({
-    layerName: new FormControl(''),
+    text: new FormControl('sample'),
     leftPos : new FormControl('0'),
     topPos : new FormControl('0'),
-    layerScale : new FormControl('1'),
   });
 
   constructor(
@@ -31,17 +30,14 @@ export class AddEditTextLayerComponent implements OnInit {
   }
 
   save() {
-    //TODO fix/connect logic below  on_Submit() {
-    /*
-    const layer = new ImageLayer() ;
+    const txt = this.addEditLayerForm.controls['text'].value ;
+    const layer = new TextLayer(txt) ;
     layer.id = -1 ;
-    layer.name = this.addEditLayerForm.controls['layerName'].value ;
+    layer.name = txt ;
     layer.left = this.addEditLayerForm.controls['leftPos'].value ;
     layer.top = this.addEditLayerForm.controls['topPos'].value ;
-    layer.scale = this.addEditLayerForm.controls['layerScale'].value ;
-    layer.img_src = 'assets/text_02.png' ;
-    */
-    console.log("not implemented") ;
+    
+    this.layerService.addLayer(layer) ;
     this.close() ;
   }
 
