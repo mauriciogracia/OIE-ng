@@ -4,10 +4,8 @@ export class TextLayer extends BaseLayer{
     public text = "" ;
     public scale = 1 ;
     
-    constructor(txt:string) {
+    constructor() {
         super() ;
         this.type = LayerType.Text ;
-        this.text = txt ;
     }
-
 }

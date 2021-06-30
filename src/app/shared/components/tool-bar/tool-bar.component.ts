@@ -51,19 +51,14 @@ export class ToolBarComponent implements OnInit {
 
     if(layer) {
       if(layer instanceof ImageLayer) {
-        const data = {
-
-        }
         console.log("Edit selected layer (image)");
+        this.showDialog(AddEditTextLayerComponent,(layer as ImageLayer)) ;
+      }
+      else if (layer instanceof TextLayer){
+        this.showDialog(AddEditTextLayerComponent,(layer as TextLayer)) ;
       }
       else {
-        const data = {
-          text : (layer as TextLayer).text,
-          leftPos : layer.left,
-          topPos : layer.top,
-        }
-        console.log("Edit selected layer (text)");
-        this.showDialog(AddEditTextLayerComponent,data) ;
+        console.log("New type of layer !?");
       }
     }
     

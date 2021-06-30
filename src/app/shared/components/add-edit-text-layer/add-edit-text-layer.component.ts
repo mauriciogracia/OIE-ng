@@ -31,14 +31,28 @@ export class AddEditTextLayerComponent implements OnInit {
   }
 
   save() {
-    const txt = this.addEditTextLayerForm!.controls['text'].value ;
-    const layer = new TextLayer(txt) ;
-    layer.id = -1 ;
-    layer.name = txt ;
+    let layer : TextLayer ;
+
+    console.log({data:this.data});
+
+    if(this.data) {
+      layer = this.data ;
+    }
+    else 
+    {
+      layer = new TextLayer() ;
+    }
+    //When is an existing layer updating the layer data is enough
+    layer.text = this.addEditTextLayerForm!.controls['text'].value ;
+    layer.name = layer.text.substring(0,10) ;
     layer.left = this.addEditTextLayerForm!.controls['leftPos'].value ;
     layer.top = this.addEditTextLayerForm!.controls['topPos'].value ;
     
-    this.layerService.addLayer(layer) ;
+    if(!this.data) 
+    {
+      this.layerService.addLayer(layer) ;
+    }
+    
     this.close() ;
   }
 

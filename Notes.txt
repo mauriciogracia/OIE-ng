@@ -17,8 +17,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - update its positiong at end of drag
     X Clicking on a layer should select it
     - Duplicate layer 
-   
+    - After creating a layer it should be the selected one ?
     - Method to update Layer (if data != null UPDATE otherwise ADD)
+    - Default position to 0,0 for Image and TextLayer (add/edit)
     / Add/Edit image layer (reuse dialog for edit)
         X Suggest layer name 
         / Add/Change image by :
@@ -28,8 +29,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         / Scale (initial/new scale)
         / Rotate (initial/new scale)
     / Add/Edit TextLayer 
-        / Text
+        X Text
         / Position
+        X Layer name is the 10 characters of the text
         - Font
         - Size 
         - Color - https://www.npmjs.com/search?q=color%20picker

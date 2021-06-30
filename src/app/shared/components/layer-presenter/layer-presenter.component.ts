@@ -24,8 +24,9 @@ export class LayerPresenter implements OnInit {
     imgLayer.name= "background" ;
     this.layerService.addLayer(imgLayer) ;
 
-    const x = new TextLayer("Text Layer: - }");
-    x.top = 200 ;
+    const x = new TextLayer();
+    x.text = "Text Layer: - }";
+    x.top = 100 ;
     x.left = 100 ;
     x.name = "textLayer" ;
     this.layerService.addLayer(x) ;

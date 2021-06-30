@@ -30,6 +30,18 @@ export class LayerService {
     this.layers.push(layer) ;
   }
 
+  updateLayer(layer: BaseLayer) {
+    /* up
+    this.logLayers() ;
+
+    let layerindex:number = this.getLayerIndexById(layer.id) ;
+    console.log({layerindex:layerindex});
+    this.layers[layerindex] = layer ;
+
+    this.logLayers() ;
+    */
+  }
+
   getLayerById(layerId: number): BaseLayer | undefined {
     return this.layers.find(l =>l.id === layerId) ;
   }
@@ -53,6 +65,10 @@ export class LayerService {
   
   getSelectedLayer() {
     return this.getLayerById(this.selectedLayerId) ;
+  }
+
+  getLayerIndexById(layerId: number) {
+    return this.layers.findIndex(l => l.id === layerId) ;
   }
 
   setSelectedLayer(layerId: number) {
@@ -84,7 +100,7 @@ export class LayerService {
     }
   }
 
-  logLayers(layers: BaseLayer[]) {
-    layers.forEach(x => console.log(x)) ;
+  logLayers() {
+    this.layers.forEach(x => console.log(x)) ;
   }
 }
