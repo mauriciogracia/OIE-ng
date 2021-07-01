@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ImageLayer } from '../../models/image-layer';
-import { MatDialogRef} from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
 
 @Component({
@@ -12,35 +12,48 @@ import { LayerService } from '../../services/layer.service';
 export class AddEditImageLayerComponent implements OnInit {
   title = "Add/Edit Image Layer" ;
   fileToUpload: File | null = null;
-  
-  addEditLayerForm = new FormGroup({
-    imageURL :  new FormControl('http://...'),
-    layerName: new FormControl('Layer_00X'),
-    leftPos : new FormControl('0'),
-    topPos : new FormControl('0'),
-    layerScale : new FormControl('1'),
-    layerRotation : new FormControl('0'),
-  });
+  addEditImageLayerForm: FormGroup | undefined ;
+ 
 
   constructor(
+    private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditImageLayerComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any,
     private layerService : LayerService
     ) { }
 
   ngOnInit(): void {
-   
+    this.addEditImageLayerForm = this.fb.group({
+      img_src : ['http://...'],
+      name: ['Layer_00X'],
+      left : [1],
+      top : [1],
+      scale : [1],
+      rotation : [0],
+    });
+
+    if(this.data) {
+      this.addEditImageLayerForm.patchValue(this.data) ;
+    }
   }
 
   save() {
-    const layer = new ImageLayer() ;
-    layer.id = -1 ;
-    layer.name = this.addEditLayerForm.controls['layerName'].value ;
-    layer.left = this.addEditLayerForm.controls['leftPos'].value ;
-    layer.top = this.addEditLayerForm.controls['topPos'].value ;
-    layer.scale = this.addEditLayerForm.controls['layerScale'].value ;
-    layer.rotation = this.addEditLayerForm.controls['layerRotation'].value ;
+    let layer : ImageLayer ;
 
-    let imgURL:string = this.addEditLayerForm.controls['imageURL'].value ;
+    if(this.data) {
+      layer = this.data ;
+    }
+    else {
+      layer = new ImageLayer() ;
+    }
+    //When an existing layer is selected updating the layer data is enough
+    layer.name = this.addEditImageLayerForm!.controls['name'].value ;
+    layer.left = this.addEditImageLayerForm!.controls['left'].value ;
+    layer.top = this.addEditImageLayerForm!.controls['top'].value ;
+    layer.scale = this.addEditImageLayerForm!.controls['scale'].value ;
+    layer.rotation = this.addEditImageLayerForm!.controls['rotation'].value ;
+
+    let imgURL:string = this.addEditImageLayerForm!.controls['img_src'].value ;
 
     if(imgURL){
       layer.img_src = imgURL ;
@@ -48,7 +61,11 @@ export class AddEditImageLayerComponent implements OnInit {
     else {
       layer.img_src = 'assets/text_02.png' ;
     }
-    this.layerService.addLayer(layer) ;
+
+    if(!this.data) {
+      this.layerService.addLayer(layer) ;
+    }
+
     this.close() ;
   }
 

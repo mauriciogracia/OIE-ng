@@ -23,11 +23,14 @@ export class AddEditTextLayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.addEditTextLayerForm = this.fb.group({
-      text: [],
-      leftPos : [],
-      topPos : [],
+      text: ['sample'],
+      left : [1],
+      top : [1],
     });
-    this.addEditTextLayerForm.patchValue(this.data) ;
+    
+    if(this.data) {
+      this.addEditTextLayerForm.patchValue(this.data) ;
+    }
   }
 
   save() {
@@ -42,11 +45,11 @@ export class AddEditTextLayerComponent implements OnInit {
     {
       layer = new TextLayer() ;
     }
-    //When is an existing layer updating the layer data is enough
+    //When an existing layer is selected updating the layer data is enough
     layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     layer.name = layer.text.substring(0,10) ;
-    layer.left = this.addEditTextLayerForm!.controls['leftPos'].value ;
-    layer.top = this.addEditTextLayerForm!.controls['topPos'].value ;
+    layer.left = this.addEditTextLayerForm!.controls['left'].value ;
+    layer.top = this.addEditTextLayerForm!.controls['top'].value ;
     
     if(!this.data) 
     {

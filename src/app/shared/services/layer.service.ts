@@ -28,18 +28,7 @@ export class LayerService {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
     this.layers.push(layer) ;
-  }
-
-  updateLayer(layer: BaseLayer) {
-    /* up
-    this.logLayers() ;
-
-    let layerindex:number = this.getLayerIndexById(layer.id) ;
-    console.log({layerindex:layerindex});
-    this.layers[layerindex] = layer ;
-
-    this.logLayers() ;
-    */
+    this.setSelectedLayer(layer.id) ;
   }
 
   getLayerById(layerId: number): BaseLayer | undefined {
