@@ -7,13 +7,18 @@ export class BaseLayer {
     public id = 0;
     public type = LayerType.Undefined ;
     public name = '';
+    
     public left = 1 ;
     public top = 1 ;
+    public deltaX = 0 ;
+    public deltaY = 0 ;
+
     public z_index = 0 ;
     public selected = false ;
     public visible = true ;
     public rotation = 0 ;
-    
+    public scale = 1 ;
+
     constructor(){}
     
     getLeftPx() {
@@ -26,5 +31,27 @@ export class BaseLayer {
 
     getZindex() {
         return `${this.z_index}` ;
+    }
+
+    getTransform() {
+        let transform = '' ;
+
+        if(this.scale != 1)
+        {
+            transform = `scale(${this.scale}) ` ;
+        }
+
+        if(this.rotation != 0)
+        {
+            transform = `rotate(${this.scale}) ` ;
+        }
+
+        // if((this.deltaX != 0) || (this.deltaY != 0))
+        // {
+        //     transform = `translate(${this.deltaX, this.deltaY}) ` ;
+        // }
+        
+        
+        return transform ;
     }
 }

@@ -17,7 +17,7 @@ export class AddEditTextLayerComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditTextLayerComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any,
+    @Inject(MAT_DIALOG_DATA) private data: TextLayer,
     private layerService : LayerService
     ) {}
 
@@ -30,6 +30,8 @@ export class AddEditTextLayerComponent implements OnInit {
     
     if(this.data) {
       this.addEditTextLayerForm.patchValue(this.data) ;
+      this.addEditTextLayerForm.controls['left'].setValue(this.data.left + this.data.deltaX) ;
+      this.addEditTextLayerForm.controls['top'].setValue(this.data.top + this.data.deltaY) ;
     }
   }
 
@@ -50,6 +52,8 @@ export class AddEditTextLayerComponent implements OnInit {
     layer.name = layer.text.substring(0,10) ;
     layer.left = this.addEditTextLayerForm!.controls['left'].value ;
     layer.top = this.addEditTextLayerForm!.controls['top'].value ;
+    layer.deltaX = 0 ;
+    layer.deltaY = 0 ;
     
     if(!this.data) 
     {
