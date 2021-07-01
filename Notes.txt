@@ -8,7 +8,7 @@ To test it from another device
 X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
-- Layer Operations
+/ Layer Operations
     X Move by dragging
     X Reorder Layers (z-index)
     X Edit Layer should be a new button, disabled until a layer is selected
@@ -17,20 +17,20 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - update its positiong at end of drag
     X Clicking on a layer should select it
     - Duplicate layer 
-    - After creating a layer it should be the selected one ?
-    - Method to update Layer (if data != null UPDATE otherwise ADD)
-    - Default position to 0,0 for Image and TextLayer (add/edit)
+    X After creating a layer it should be selected 
+    X Method to update Layer (if data != null UPDATE otherwise ADD)
+    X Default edit position to selected layer(text/image)
     / Add/Edit image layer (reuse dialog for edit)
         X Suggest layer name 
-        / Add/Change image by :
+        X Add/Change image by :
             X URL (no need to host the file)
             - uploading files
-        / Position (initial/relacote)
-        / Scale (initial/new scale)
+        X Position (initial/relacote)
+        X Scale (initial/new scale)
         / Rotate (initial/new scale)
     / Add/Edit TextLayer 
         X Text
-        / Position
+        X Position
         X Layer name is the 10 characters of the text
         - Font
         - Size 
