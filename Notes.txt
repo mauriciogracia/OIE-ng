@@ -13,15 +13,16 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Reorder Layers (z-index)
     X Edit Layer should be a new button, disabled until a layer is selected
     X Dragging a layer should select it from the begging(it was being selected at and of drag)
-    / At end of drag update layer position/transformations 
-        
     X Clicking on a layer should select it
-    - Duplicate layer 
     X After creating a layer it should be selected 
     X Method to update Layer (if data != null UPDATE otherwise ADD)
     X Default edit position to selected layer(text/image)
+    X Suggest a UNIQUE layername for image layers
+
+    - Validate date of Dialog forms (numeric fields)
+    / At end of drag update layer position/transformations 
+
     / Add/Edit image layer (reuse dialog for edit)
-        X Suggest layer name 
         X Add/Change image by :
             X URL (no need to host the file)
             - uploading files
@@ -44,6 +45,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Selected layer should be highlighted on the LayerList 
     - "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
     - "trash" icon to remove layer (confirmation message)
+    - Duplicate layer 
     - Slide right/left the layer list to hide it
     X items should be draggable from layer list to change order
     - Improve styling of layer dragging to match this example
@@ -85,3 +87,6 @@ CSS layouts - cool demo
 Protect angular code ? is it worth it ?
     - split between front-end / backend rest API
     - https://hackernoon.com/how-to-protect-angular-code-against-theft-and-reverse-engineering-7fe218641afe
+
+This site appears to use a scroll-linked positioning effect. This may not work well with asynchronous panning; 
+see https://developer.mozilla.org/docs/Mozilla/Performance/ScrollLinkedEffects for further details and to join the discussion on related tools and features!
