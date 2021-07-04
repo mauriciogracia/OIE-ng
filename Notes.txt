@@ -19,7 +19,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Default edit position to selected layer(text/image)
     X Suggest a UNIQUE layername for image layers
 
+    - Dialog titles should be ADD or EDIT (not both)
     - Validate date of Dialog forms (numeric fields)
+
     / At end of drag update layer position/transformations 
 
     / Add/Edit image layer (reuse dialog for edit)
@@ -39,12 +41,12 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Color - https://www.npmjs.com/search?q=color%20picker
         - Bold, Italic, Subrayado, Strike..etc
         
-    - Flip vertical/horizontal
+    - Flip vertical/horizontal (as toolbar)
 
 / Layer list    
     X Selected layer should be highlighted on the LayerList 
     X "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
-    - "trash" icon to remove layer (confirmation message)
+    - "trash" icon to remove layer (select layer to delete and show confirmation message)
     - Duplicate layer 
 
     - Slide right/left the layer list to hide it
