@@ -34,7 +34,7 @@ export class LayerPresenter implements OnInit {
   }
 
   getLayers() : BaseLayer[] {
-    return this.layerService.getLayers() ;
+    return this.layerService.getVisibleLayers() ;
   }
 
   selectLayerByClick(layerId: number) {

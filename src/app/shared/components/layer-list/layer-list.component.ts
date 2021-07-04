@@ -26,4 +26,8 @@ export class LayerListComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     this.layerService.changeOrder(event.previousIndex, event.currentIndex) ;
   }
+
+  toggleLayerVisibility(layerId:number) {
+    this.layerService.toggleLayerVisibility(layerId) ;
+  }
 }

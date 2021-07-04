@@ -7,6 +7,9 @@
     <div class="layerListItem" cdkDrag *ngFor="let il of getLayers()"  
         (click)="changeLayerSelection(il.id)"
         [style.background]="(il.selected)?'lightcoral':'white'">
+        <button mat-icon-button (click)="toggleLayerVisibility(il.id)">
+            <mat-icon class="layerListItemIconSize">{{il.visible?'visibility':'visibility_off'}}</mat-icon>
+        </button>
         {{il.name}}
     </div>
 </div>

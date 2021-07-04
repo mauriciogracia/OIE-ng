@@ -7,6 +7,7 @@ import { ImageLayer } from '../models/image-layer';
 })
 
 export class LayerService {
+  
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
 
@@ -14,6 +15,10 @@ export class LayerService {
 
   getLayers() : BaseLayer[] {
     return this.layers ;
+  }
+
+  getVisibleLayers() : BaseLayer[] {
+    return this.layers.filter(l => l.visible) ;
   }
 
   private getNewLayerDepthIndex() {
@@ -99,6 +104,14 @@ export class LayerService {
       //Keep layers sorted by z_index 
       this.layers = this.layers.sort((l1,l2) => (l1.z_index - l2.z_index)) ;
     }
+  }
+
+  toggleLayerVisibility(layerId: number) {
+    
+    let layer = this.getLayerById(layerId)! ;
+    
+    layer.visible = !layer.visible ;
+    
   }
 
   logLayers() {
