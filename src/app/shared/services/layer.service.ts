@@ -111,6 +111,11 @@ export class LayerService {
     let layer = this.getLayerById(layerId)! ;
     
     layer.visible = !layer.visible ;
+
+    if((!layer.visible) && (layer.id === this.getSelectedLayer()?.id))
+    {
+      this.unselectPreviousLayer() ;
+    }
     
   }
 
