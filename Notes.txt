@@ -32,6 +32,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         X Text
         X Position
         X Layer name is the 10 characters of the text
+        - Scale
         - Font
         - Size 
         - Color - https://www.npmjs.com/search?q=color%20picker
