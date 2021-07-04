@@ -5,11 +5,15 @@
 <div class="layerList" cdkDropList 
     (cdkDropListDropped)="drop($event)">
     <div class="layerListItem" cdkDrag *ngFor="let il of getLayers()"  
-        (click)="changeLayerSelection(il.id)"
         [style.background]="(il.selected)?'lightcoral':'white'">
         <button mat-icon-button (click)="toggleLayerVisibility(il.id)">
             <mat-icon class="layerListItemIconSize">{{il.visible?'visibility':'visibility_off'}}</mat-icon>
         </button>
-        {{il.name}}
+        <span (click)="changeLayerSelection(il.id)">
+            {{il.name}}
+        </span>
+        <button mat-icon-button (click)="confirmLayerDelete(il.id)">
+            <mat-icon class="layerListItemIconSize">delete_forever</mat-icon>
+        </button>
     </div>
 </div>

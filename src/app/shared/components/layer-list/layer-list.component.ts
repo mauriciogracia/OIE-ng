@@ -30,4 +30,8 @@ export class LayerListComponent implements OnInit {
   toggleLayerVisibility(layerId:number) {
     this.layerService.toggleLayerVisibility(layerId) ;
   }
+
+  confirmLayerDelete(layerId:number) {
+    window.alert("want to delete ?") ;
+  }
 }
