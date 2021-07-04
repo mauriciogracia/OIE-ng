@@ -16,11 +16,23 @@ export class LayerService {
     return this.layers ;
   }
 
-  getNewLayerDepthIndex() {
+  private getNewLayerDepthIndex() {
     return (this.layers.length+1) ;
   }
 
-  getNewLayerId() {
+  getSuggestedLayerName() {
+    let max = Math.max(...this.layers.map(x => x.id),0)+1 ;
+
+    return `Layer_${this.digits(''+max,3)}` ;
+  }
+
+  //TODO if more methods that are utilitary appear consider creating a UtilService and move this there
+  private digits(value:string, padding:number) {
+    var zeroes = new Array(padding+1).join("0");
+    return (zeroes + value).slice(-padding);
+  }
+
+  private getNewLayerId() {
     return Math.max(...this.layers.map(x => x.id),0)+1 ;
   }
 

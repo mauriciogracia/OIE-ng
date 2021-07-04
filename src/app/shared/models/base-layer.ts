@@ -38,19 +38,20 @@ export class BaseLayer {
 
         if(this.scale != 1)
         {
-            transform = `scale(${this.scale}) ` ;
+            transform += `scale(${this.scale}) ` ;
         }
 
         if(this.rotation != 0)
         {
-            transform = `rotate(${this.scale}) ` ;
+            transform += `rotate(${this.rotation}deg) ` ;
         }
 
-        // if((this.deltaX != 0) || (this.deltaY != 0))
-        // {
-        //     transform = `translate(${this.deltaX, this.deltaY}) ` ;
-        // }
+        if((this.deltaX != 0) || (this.deltaY != 0))
+        {
+            transform += `translate(${this.deltaX}px, ${this.deltaY}px) ` ;
+        }
         
+        console.log(transform) ;
         
         return transform ;
     }

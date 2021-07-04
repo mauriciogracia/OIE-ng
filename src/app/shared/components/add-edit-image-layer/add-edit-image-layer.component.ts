@@ -25,7 +25,7 @@ export class AddEditImageLayerComponent implements OnInit {
   ngOnInit(): void {
     this.addEditImageLayerForm = this.fb.group({
       img_src : ['http://...'],
-      name: ['Layer_00X'],
+      name: [''],
       left : [1],
       top : [1],
       scale : [1],
@@ -34,6 +34,10 @@ export class AddEditImageLayerComponent implements OnInit {
 
     if(this.data) {
       this.addEditImageLayerForm.patchValue(this.data) ;
+    }
+    else 
+    {
+      this.addEditImageLayerForm!.controls['name'].setValue(this.layerService.getSuggestedLayerName()) ;
     }
   }
 

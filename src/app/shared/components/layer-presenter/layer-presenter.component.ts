@@ -55,29 +55,7 @@ export class LayerPresenter implements OnInit {
 
     layer.deltaX = position.x ;
     layer.deltaY = position.y ;
-    
-    /*
-    let nativeElement = $event.source.element.nativeElement ;
 
-    console.log(nativeElement);
-    //TODO This position seems to not be absolute
-    
-    let position = $event.source.getFreeDragPosition() ;
-    console.log({ended:position});
-    console.log({event:$event});
-    
-    let layer = this.layerService.getSelectedLayer()! ;
-    
-    layer.left += position.x ;
-    layer.top += position.y ;
-
-    console.log({left: layer.left, top: layer.top}) ;
-    nativeElement.style.transform = 'none' //'translate3d(0, 0, 0)' ;
-    nativeElement.style.left = `${layer.left}px` ;
-    nativeElement.style.top = `${layer.top}px` ;
-    //nativeElement.style.
-    console.log($event.source.element.nativeElement);
-    this.layerService.logLayers();
-    */
+    console.log({layerDragEnded:layer}) ;
   }
 }
