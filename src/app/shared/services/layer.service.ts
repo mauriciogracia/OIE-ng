@@ -126,6 +126,12 @@ export class LayerService {
     }
   }
 
+  duplicateSelectedLayer() {
+    let newLayer = new BaseLayer() ;
+    Object.assign(newLayer, this.getSelectedLayer());
+    this.addLayer(newLayer) ;
+  }
+
   logLayers() {
     this.layers.forEach(x => console.log(x)) ;
   }

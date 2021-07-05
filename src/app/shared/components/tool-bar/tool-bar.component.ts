@@ -46,7 +46,7 @@ export class ToolBarComponent implements OnInit {
     return this.layerService.isAnyLayerSelected() ;
   }
 
-  onEditLayerC() {
+  onEditLayer() {
     const layer = this.layerService.getSelectedLayer() ;
 
     if(layer) {
@@ -60,7 +60,9 @@ export class ToolBarComponent implements OnInit {
         console.log("New type of layer !?");
       }
     }
-    
-    
+  }
+
+  onCopyLayer() {
+    this.layerService.duplicateSelectedLayer() ;
   }
 }

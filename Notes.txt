@@ -22,7 +22,8 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - Dialogs
         - Titles should be ADD or EDIT (not both)
         - vertical size of dialog makes its use on mobile (landscape) imposible
-        - Validate date of Dialog forms (numeric fields, etc)
+        - Validate data of Dialog forms (numeric fields, etc)
+        - Enter should trigger default blue button
 
     / At end of drag update layer position/transformations (movinh by dialog and then dragging causes issues)
         - if this is not solved, allow only dragging of layer (not positioning by pixels ?!)
@@ -44,9 +45,12 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Color - https://www.npmjs.com/search?q=color%20picker
         - Bold, Italic, Subrayado, Strike..etc
     
+    - Allow multiple selection to allow certain operations on that selection
+
     - Toolbar buttons
+        - Add tooltips to all buttons (mobile ?)
         - Flip vertical/horizontal (as toolbar button)
-        - Duplicate layer (as toolbar button)
+        X Duplicate layer (as toolbar button)
         - Export (generate the JSON from the layers)
             - what extension ?
             - what format (JSON, xml, ...) ?
