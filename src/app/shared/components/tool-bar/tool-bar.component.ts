@@ -69,4 +69,8 @@ export class ToolBarComponent implements OnInit {
   onCopyLayer() {
     this.layerService.duplicateSelectedLayer() ;
   }
+
+  onSettings() {
+    window.alert("settings") ;
+  }
 }

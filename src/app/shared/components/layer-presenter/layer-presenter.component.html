@@ -10,8 +10,9 @@
             [style.left]="layer.getLeftPx()"
             [style.top]="layer.getTopPx()"
             [style.z-index]="layer.getZindex()"
-            [style.transform]="(layer | castTo: imageLayer).getTransform()"
+            [style.transform]="layer.getTransform()"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
+            [cdkDragDisabled]="!(layer.selected)"
         />
         <div *ngIf="(layer.type === layerType.Text)" 
             id={{layer.id}}
@@ -21,11 +22,12 @@
             (click)="selectLayerByClick(layer)"
             [style.left]="layer.getLeftPx()"
             [style.top]="layer.getTopPx()"
-            [style.transform]="(layer | castTo: textLayer).getTransform()"
+            [style.transform]="layer.getTransform()"
             [style.z-index]="layer.getZindex()"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
+            [cdkDragDisabled]="!(layer.selected)"
         >
-            <span>
+            <span style="white-space: nowrap;">
                 {{(layer | castTo: textLayer).text}}
             </span>
         </div>
