@@ -53,16 +53,6 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
             - where ? in the cloud ? locally 
             - Load 
 
-/ Layer list    
-    X Selected layer should be highlighted on the LayerList 
-    X "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
-    X "trash" icon to remove layer (select layer to delete and show confirmation message)
-    X Slide right/left the layer list to hide it
-    X items should be draggable from layer list to change order
-    
-    - Improve styling of layer dragging to match this example
-        https://material.angular.io/cdk/drag-drop/overview
-
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting to previous stored state ?
     - how many steps back ?
@@ -74,6 +64,15 @@ X Use Material for Dialogs
     X implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog
     - https://blog.angular-university.io/angular-material-dialog/
+
+X Layer list    
+    X Selected layer should be highlighted on the LayerList 
+    X "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
+    X "trash" icon to remove layer (select layer to delete and show confirmation message)
+    X Slide right/left the layer list to hide it
+    X items should be draggable from layer list to change order
+    X Improve styling of layer dragging to match this example
+        https://material.angular.io/cdk/drag-drop/overview
 
 X Host it on netlify and test it - https://docs.netlify.com/configure-builds/common-configurations/angular/
     - Desktop
