@@ -1,11 +1,19 @@
+.layerListScroller {
+    overflow-y: auto ;
+    border: solid 3px red ;
+    height: 90%;
+}
+
+.layerList {
+    overflow: hidden;
+    border-top: solid 2px gray  ;
+}
+
+
 .layerListHeader {
     display: inline;
     vertical-align: super;
     margin-left: 5px;
-}
-
-.layerList {
-    border-top: solid 2px gray  ;
 }
 
 .layerListItemIconSize {
@@ -15,6 +23,8 @@
 }
 
 .layerListItem {
+    height: 22px ;
+    min-height: 22px;
     display: flex;
     flex-direction: row;
     justify-content: space-between

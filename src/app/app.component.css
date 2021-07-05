@@ -10,6 +10,7 @@
   bottom: 0;
   left: 0;
   right: 0; 
+  overflow-y: hidden;
   /*border: solid 3px yellow; debug */
 }
 
@@ -34,13 +35,3 @@
     flex-direction: row;
     border: 2px solid grey; 
 }
-
-/* .addEditLayer {
-    position: absolute ;
-    left: 50px;
-    top: 50px;
-    z-index: 9999;
-    background-color: white;
-    border: solid 2px darkgray;
-    border-radius: 5px;
-} */

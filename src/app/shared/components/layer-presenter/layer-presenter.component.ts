@@ -29,11 +29,13 @@ export class LayerPresenter implements OnInit {
     imgLayer.name= "background" ;
     this.layerService.addLayer(imgLayer) ;
 
-    const x = new TextLayer();
-    x.text = "Text Layer: - }";
-    x.positionLayer(100,100) ;
-    x.name = "textLayer" ;
-    this.layerService.addLayer(x) ;
+    for(let i=1; i < 22 ; i++) {
+      const x = new TextLayer();
+      x.text = "Text Layer: - }";
+      x.positionLayer(100+i*15,100+i*15) ;
+      x.name = "textLayer" ;
+      this.layerService.addLayer(x) ;
+    }
   }
 
   getLayers() : BaseLayer[] {
