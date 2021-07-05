@@ -59,6 +59,8 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - how many steps back ?
     - saving destroys this data ?
 
+- Create generic confirmation dialog - https://stackoverflow.com/questions/41684114/easy-way-to-make-a-confirmation-dialog-in-angular 
+ 
 X Use Material for Dialogs 
     X implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog

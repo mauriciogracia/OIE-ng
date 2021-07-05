@@ -7,7 +7,6 @@ import { ImageLayer } from '../models/image-layer';
 })
 
 export class LayerService {
-  
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
 
@@ -45,7 +44,7 @@ export class LayerService {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
     this.layers.push(layer) ;
-    this.setSelectedLayer(layer.id) ;
+    this.setSelectedLayer(layer) ;
   }
 
   getLayerById(layerId: number): BaseLayer | undefined {
@@ -73,18 +72,17 @@ export class LayerService {
     return this.getLayerById(this.selectedLayerId) ;
   }
 
-  getLayerIndexById(layerId: number) {
-    return this.layers.findIndex(l => l.id === layerId) ;
+  setSelectedLayerById(layerId: number) {
+    this.setSelectedLayer(this.getLayerById(layerId)) ;
   }
-
-  setSelectedLayer(layerId: number) {
-    const layer = this.getLayerById(layerId) ;
+  
+  setSelectedLayer(layer: BaseLayer| undefined) {
 
     this.unselectPreviousLayer() ;
 
     if(layer) {
       layer.selected = true ;
-      this.selectedLayerId = layerId ;
+      this.selectedLayerId = layer.id ;
     }
   }
 
@@ -106,9 +104,7 @@ export class LayerService {
     }
   }
 
-  toggleLayerVisibility(layerId: number) {
-    
-    let layer = this.getLayerById(layerId)! ;
+  toggleLayerVisibility(layer: BaseLayer) {
     
     layer.visible = !layer.visible ;
 
@@ -117,6 +113,10 @@ export class LayerService {
       this.unselectPreviousLayer() ;
     }
     
+  }
+
+  removeLayer(layer: BaseLayer) {
+    throw new Error('Method not implemented.');
   }
 
   logLayers() {

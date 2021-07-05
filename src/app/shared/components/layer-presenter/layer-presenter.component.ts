@@ -37,13 +37,13 @@ export class LayerPresenter implements OnInit {
     return this.layerService.getVisibleLayers() ;
   }
 
-  selectLayerByClick(layerId: number) {
-    this.layerService.setSelectedLayer(layerId) ;
+  selectLayerByClick(layer: BaseLayer) {
+    this.layerService.setSelectedLayer(layer) ;
   }
 
   layerDragStarted($event: CdkDragStart) {
     let layerId = +$event.source.element.nativeElement.id ;
-    this.layerService.setSelectedLayer(layerId) ;
+    this.layerService.setSelectedLayerById(layerId) ;
   }
 
   // https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag

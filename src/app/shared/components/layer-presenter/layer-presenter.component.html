@@ -1,32 +1,32 @@
 <scrollbar class="layers">
-    <div *ngFor="let il of getLayers()">
-        <img *ngIf="(il.type === layerType.Image)"
-            id={{il.id}}
+    <div *ngFor="let layer of getLayers()">
+        <img *ngIf="(layer.type === layerType.Image)"
+            id={{layer.id}}
             class="floatLayer" cdkDrag
             (cdkDragStarted)="layerDragStarted($event)"
             (cdkDragEnded)="layerDragEnded($event)"
-            (click)="selectLayerByClick(il.id)"
-            [src]="(il | castTo: imageLayer).img_src" 
-            [style.left]="il.getLeftPx()"
-            [style.top]="il.getTopPx()"
-            [style.z-index]="il.getZindex()"
-            [style.transform]="(il | castTo: imageLayer).getTransform()"
-            [style.outline]="(il.selected) ? 'dashed 1px red':''"
+            (click)="selectLayerByClick(layer)"
+            [src]="(layer | castTo: imageLayer).img_src" 
+            [style.left]="layer.getLeftPx()"
+            [style.top]="layer.getTopPx()"
+            [style.z-index]="layer.getZindex()"
+            [style.transform]="(layer | castTo: imageLayer).getTransform()"
+            [style.outline]="(layer.selected) ? 'dashed 1px red':''"
         />
-        <div *ngIf="(il.type === layerType.Text)" 
-            id={{il.id}}
+        <div *ngIf="(layer.type === layerType.Text)" 
+            id={{layer.id}}
             class = "floatLayer" cdkDrag
             (cdkDragStarted)="layerDragStarted($event)"
             (cdkDragEnded)="layerDragEnded($event)"
-            (click)="selectLayerByClick(il.id)"
-            [style.left]="il.getLeftPx()"
-            [style.top]="il.getTopPx()"
-            [style.transform]="(il | castTo: textLayer).getTransform()"
-            [style.z-index]="il.getZindex()"
-            [style.outline]="(il.selected) ? 'dashed 1px red':''"
+            (click)="selectLayerByClick(layer)"
+            [style.left]="layer.getLeftPx()"
+            [style.top]="layer.getTopPx()"
+            [style.transform]="(layer | castTo: textLayer).getTransform()"
+            [style.z-index]="layer.getZindex()"
+            [style.outline]="(layer.selected) ? 'dashed 1px red':''"
         >
             <span>
-                {{(il | castTo: textLayer).text}}
+                {{(layer | castTo: textLayer).text}}
             </span>
         </div>
     </div>

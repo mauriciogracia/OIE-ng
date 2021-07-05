@@ -19,19 +19,21 @@ export class LayerListComponent implements OnInit {
     return this.layerService.getLayers() ;
   }
 
-  changeLayerSelection(layerId:number) {
-    this.layerService.setSelectedLayer(layerId) ;
+  changeLayerSelection(layer:BaseLayer) {
+    this.layerService.setSelectedLayer(layer) ;
   }
 
   drop(event: CdkDragDrop<string[]>) {
     this.layerService.changeOrder(event.previousIndex, event.currentIndex) ;
   }
 
-  toggleLayerVisibility(layerId:number) {
-    this.layerService.toggleLayerVisibility(layerId) ;
+  toggleLayerVisibility(layer:BaseLayer) {
+    this.layerService.toggleLayerVisibility(layer) ;
   }
 
-  confirmLayerDelete(layerId:number) {
-    window.alert("want to delete ?") ;
+  confirmLayerDelete(layer:BaseLayer) {
+    if(confirm(`Are you sure to delete layer: ${layer.name}(id=${layer.id})`)) {
+      this.layerService.removeLayer(layer) ;
+    }
   }
 }
