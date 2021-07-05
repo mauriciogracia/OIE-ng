@@ -75,7 +75,7 @@ export class LayerService {
   setSelectedLayerById(layerId: number) {
     this.setSelectedLayer(this.getLayerById(layerId)) ;
   }
-  
+
   setSelectedLayer(layer: BaseLayer| undefined) {
 
     this.unselectPreviousLayer() ;
@@ -115,8 +115,15 @@ export class LayerService {
     
   }
 
+  getIndexOfLayer(layer: BaseLayer) {
+    return this.layers.findIndex(l => l.id === layer.id);
+  }
+
   removeLayer(layer: BaseLayer) {
-    throw new Error('Method not implemented.');
+    let indexOfLayer = this.getIndexOfLayer(layer);
+    if(indexOfLayer >= 0) {
+      this.layers.splice(indexOfLayer,1) ;
+    }
   }
 
   logLayers() {
