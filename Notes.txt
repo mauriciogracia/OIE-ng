@@ -19,6 +19,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Default edit position to selected layer(text/image)
     X Suggest a UNIQUE layername for image layers
 
+    - New design button with confirmation
+    - Vertical scrolling on layerList
+
     - Dialogs
         - Titles should be ADD or EDIT (not both)
         - vertical size of dialog makes its use on mobile (landscape) imposible

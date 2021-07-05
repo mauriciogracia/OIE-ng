@@ -83,10 +83,12 @@ export class BaseLayer {
             transform += `rotate(${this.rotation}deg) ` ;
         }
 
+        /*
         if((this.deltaX != 0) || (this.deltaY != 0))
         {
             transform += `translate(${this.deltaX}px, ${this.deltaY}px) ` ;
         }
+        */
         
         console.log({transform:transform}) ;
         
