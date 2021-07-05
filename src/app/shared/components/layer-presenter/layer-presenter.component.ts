@@ -47,13 +47,11 @@ export class LayerPresenter implements OnInit {
   }
 
   selectLayerByClick(layer: BaseLayer) {
-    if(this.appSettings.selectLayerByClickTouchDrag) {
      this.layerService.setSelectedLayer(layer) ;
-    }
   }
 
   layerDragStarted($event: CdkDragStart) {
-    if(this.appSettings.selectLayerByClickTouchDrag) {
+    if(this.appSettings.selectLayerWhileDragging) {
       let layerId = +$event.source.element.nativeElement.id ;
       this.layerService.setSelectedLayerById(layerId) ;
     }
@@ -62,7 +60,7 @@ export class LayerPresenter implements OnInit {
   // https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag
   // https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
   layerDragEnded($event: CdkDragEnd) {
-    if(this.appSettings.selectLayerByClickTouchDrag) {
+    if(this.appSettings.selectLayerWhileDragging) {
       let layerId = +$event.source.element.nativeElement.id ;
       let layer = this.layerService.getLayerById(layerId)! ;
       let position = $event.source.getFreeDragPosition() ;

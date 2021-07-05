@@ -5,5 +5,5 @@ import { Injectable } from "@angular/core";
   })
 
 export class AppSettings {
-    public selectLayerByClickTouchDrag : boolean = false ;
+    public selectLayerWhileDragging : boolean = false ;
 }
