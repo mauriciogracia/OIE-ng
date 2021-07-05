@@ -21,6 +21,10 @@ export class ToolBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  version() {
+    return this.layerService.version ;
+  }
+  
   onAddImageLayer() {
     this.showDialog(AddEditImageLayerComponent, null);
   }

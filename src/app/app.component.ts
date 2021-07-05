@@ -12,6 +12,6 @@ export class AppComponent {
   title = 'OIE-ng';
   @ViewChild (LayerPresenter) layerPresenter! : LayerPresenter ;
 
-  constructor(private layerService : LayerService) {}
+  constructor() {}
 
 }
