@@ -1,19 +1,36 @@
-<div class="layerListHeader">
-    <b>Layers</b>
+<div>
+    <div *ngIf="isCompactMode; else fullModeHeader">
+        <button mat-icon-button (click)="toggleCompactMode()">
+            <mat-icon class="layerListItemIconSize">keyboard_arrow_left</mat-icon>
+        </button>
+    </div>
+    <ng-template #fullModeHeader>
+        <button mat-icon-button (click)="toggleCompactMode()">
+            <mat-icon class="layerListItemIconSize">keyboard_arrow_right</mat-icon>
+        </button>
+        <div class="layerListHeader">
+            <b>Layers</b>
+        </div>
+        <mat-icon>layers</mat-icon>
+    </ng-template>
 </div>
-<mat-icon>layers</mat-icon>
 <div class="layerList" cdkDropList 
     (cdkDropListDropped)="drop($event)">
     <div class="layerListItem" cdkDrag *ngFor="let layer of getLayers()"  
         [style.background]="(layer.selected)?'lightcoral':'white'">
-        <button mat-icon-button (click)="toggleLayerVisibility(layer)">
-            <mat-icon class="layerListItemIconSize">{{layer.visible?'visibility':'visibility_off'}}</mat-icon>
-        </button>
-        <span (click)="changeLayerSelection(layer)">
-            {{layer.name}}
-        </span>
-        <button mat-icon-button (click)="confirmLayerDelete(layer)">
-            <mat-icon class="layerListItemIconSize">delete</mat-icon>
-        </button>
+        <div *ngIf="isCompactMode; else fullMode">
+            <span (click)="changeLayerSelection(layer)">{{layer.name.substring(0,5)}}</span>
+        </div>
+        <ng-template #fullMode>
+            <button mat-icon-button (click)="toggleLayerVisibility(layer)">
+                <mat-icon class="layerListItemIconSize">{{layer.visible?'visibility':'visibility_off'}}</mat-icon>
+            </button>
+            <span (click)="changeLayerSelection(layer)">
+                {{layer.name}}
+            </span>
+            <button mat-icon-button (click)="confirmLayerDelete(layer)">
+                <mat-icon class="layerListItemIconSize">delete</mat-icon>
+            </button>
+        </ng-template>
     </div>
 </div>

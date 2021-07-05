@@ -20,7 +20,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Suggest a UNIQUE layername for image layers
 
     - Dialog titles should be ADD or EDIT (not both)
-    - Validate date of Dialog forms (numeric fields)
+    - Validate date of Dialog forms (numeric fields, etc)
 
     / At end of drag update layer position/transformations 
 
@@ -47,12 +47,11 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Selected layer should be highlighted on the LayerList 
     X "eye" button to show or hide a layer (it cannot be a toolbar icon, how do you select a hidden layer to show it ?)
     X "trash" icon to remove layer (select layer to delete and show confirmation message)
-    - Duplicate layer 
-
-    - Slide right/left the layer list to hide it
+    X Slide right/left the layer list to hide it
     X items should be draggable from layer list to change order
+    - Duplicate layer 
     - Improve styling of layer dragging to match this example
-    https://material.angular.io/cdk/drag-drop/overview
+        https://material.angular.io/cdk/drag-drop/overview
 
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting to previous stored state ?

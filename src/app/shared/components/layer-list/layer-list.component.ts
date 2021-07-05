@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseLayer } from '../../models/base-layer';
 import { LayerService } from '../../services/layer.service';
 
@@ -9,10 +9,13 @@ import { LayerService } from '../../services/layer.service';
   styleUrls: ['./layer-list.component.css']
 })
 export class LayerListComponent implements OnInit {
+  @Input() CompactMode: boolean = false ;
+  isCompactMode: boolean = false ;
   
   constructor(private layerService : LayerService) { }
 
   ngOnInit(): void {
+    this.isCompactMode = this.CompactMode ;
   }
 
   getLayers() : BaseLayer[] {
@@ -27,6 +30,10 @@ export class LayerListComponent implements OnInit {
     this.layerService.changeOrder(event.previousIndex, event.currentIndex) ;
   }
 
+  toggleCompactMode() {
+    this.isCompactMode = !this.isCompactMode ;
+  }
+  
   toggleLayerVisibility(layer:BaseLayer) {
     this.layerService.toggleLayerVisibility(layer) ;
   }
