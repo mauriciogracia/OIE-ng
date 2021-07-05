@@ -9,7 +9,7 @@ import { ImageLayer } from '../models/image-layer';
 export class LayerService {
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
-  public version = "2021.07.05 - 11:50am" ;
+  public version = "2021.07.05 - 3:35 pm" ;
 
   constructor() { }
 
