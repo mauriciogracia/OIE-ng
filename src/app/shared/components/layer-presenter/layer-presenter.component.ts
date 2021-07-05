@@ -19,6 +19,10 @@ export class LayerPresenter implements OnInit {
   constructor(private layerService : LayerService) { }
 
   ngOnInit(): void {
+    this.addDemoLayers() ;
+  }
+
+  addDemoLayers() {
     const imgLayer = new ImageLayer() ;
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
@@ -27,13 +31,13 @@ export class LayerPresenter implements OnInit {
 
     const x = new TextLayer();
     x.text = "Text Layer: - }";
-    x.top = 100 ;
-    x.left = 100 ;
+    x.positionLayer(100,100) ;
     x.name = "textLayer" ;
     this.layerService.addLayer(x) ;
   }
 
   getLayers() : BaseLayer[] {
+    this.layerService.logLayers() ;
     return this.layerService.getVisibleLayers() ;
   }
 
@@ -53,8 +57,9 @@ export class LayerPresenter implements OnInit {
     let layer = this.layerService.getLayerById(layerId)! ;
     let position = $event.source.getFreeDragPosition() ;
 
-    layer.deltaX = position.x ;
-    layer.deltaY = position.y ;
+    console.log({position:position}) ;
+
+    layer.moveLayer(position.x, position.y) ;
 
     console.log({layerDragEnded:layer}) ;
   }

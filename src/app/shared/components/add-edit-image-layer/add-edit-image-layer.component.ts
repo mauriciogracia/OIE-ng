@@ -34,6 +34,8 @@ export class AddEditImageLayerComponent implements OnInit {
 
     if(this.data) {
       this.addEditImageLayerForm.patchValue(this.data) ;
+      this.addEditImageLayerForm!.controls['left'].setValue(this.data.getLeft()) ;
+      this.addEditImageLayerForm!.controls['top'].setValue(this.data.getTop()) ;
     }
     else 
     {
@@ -52,8 +54,7 @@ export class AddEditImageLayerComponent implements OnInit {
     }
     //When an existing layer is selected updating the layer data is enough
     layer.name = this.addEditImageLayerForm!.controls['name'].value ;
-    layer.left = this.addEditImageLayerForm!.controls['left'].value ;
-    layer.top = this.addEditImageLayerForm!.controls['top'].value ;
+    layer.positionLayer(this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
     layer.scale = this.addEditImageLayerForm!.controls['scale'].value ;
     layer.rotation = this.addEditImageLayerForm!.controls['rotation'].value ;
 

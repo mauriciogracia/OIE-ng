@@ -19,10 +19,13 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Default edit position to selected layer(text/image)
     X Suggest a UNIQUE layername for image layers
 
-    - Dialog titles should be ADD or EDIT (not both)
-    - Validate date of Dialog forms (numeric fields, etc)
+    - Dialogs
+        - Titles should be ADD or EDIT (not both)
+        - vertical size of dialog makes its use on mobile (landscape) imposible
+        - Validate date of Dialog forms (numeric fields, etc)
 
-    / At end of drag update layer position/transformations 
+    / At end of drag update layer position/transformations (movinh by dialog and then dragging causes issues)
+        - if this is not solved, allow only dragging of layer (not positioning by pixels ?!)
 
     / Add/Edit image layer (reuse dialog for edit)
         X Add/Change image by :
@@ -40,8 +43,15 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Size 
         - Color - https://www.npmjs.com/search?q=color%20picker
         - Bold, Italic, Subrayado, Strike..etc
-        
-    - Flip vertical/horizontal (as toolbar)
+    
+    - Toolbar buttons
+        - Flip vertical/horizontal (as toolbar button)
+        - Duplicate layer (as toolbar button)
+        - Export (generate the JSON from the layers)
+            - what extension ?
+            - what format (JSON, xml, ...) ?
+            - where ? in the cloud ? locally 
+            - Load 
 
 / Layer list    
     X Selected layer should be highlighted on the LayerList 
@@ -49,7 +59,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X "trash" icon to remove layer (select layer to delete and show confirmation message)
     X Slide right/left the layer list to hide it
     X items should be draggable from layer list to change order
-    - Duplicate layer 
+    
     - Improve styling of layer dragging to match this example
         https://material.angular.io/cdk/drag-drop/overview
 
@@ -69,12 +79,6 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
     - Desktop
     - Tablet
     - Cellphone
-
-- Save 
-    - what extension ?
-    - what format (JSON, xml, ...) ?
-    - where ? in the cloud ? locally 
-    - Load 
 
 - Export functionality
     - as HTML (div, images, styles)

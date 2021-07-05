@@ -30,8 +30,8 @@ export class AddEditTextLayerComponent implements OnInit {
     
     if(this.data) {
       this.addEditTextLayerForm.patchValue(this.data) ;
-      this.addEditTextLayerForm.controls['left'].setValue(this.data.left + this.data.deltaX) ;
-      this.addEditTextLayerForm.controls['top'].setValue(this.data.top + this.data.deltaY) ;
+      this.addEditTextLayerForm.controls['left'].setValue(this.data.getLeft()) ;
+      this.addEditTextLayerForm.controls['top'].setValue(this.data.getTop()) ;
     }
   }
 
@@ -50,10 +50,7 @@ export class AddEditTextLayerComponent implements OnInit {
     //When an existing layer is selected updating the layer data is enough
     layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     layer.name = layer.text.substring(0,10) ;
-    layer.left = this.addEditTextLayerForm!.controls['left'].value ;
-    layer.top = this.addEditTextLayerForm!.controls['top'].value ;
-    layer.deltaX = 0 ;
-    layer.deltaY = 0 ;
+    layer.positionLayer(this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     if(!this.data) 
     {
