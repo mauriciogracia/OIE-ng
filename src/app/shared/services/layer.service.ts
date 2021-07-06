@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseLayer, LayerType } from '../models/base-layer';
-import { ImageLayer } from '../models/image-layer';
+import { BaseLayer } from '../models/base-layer';
 
 @Injectable({
   providedIn: 'root'
