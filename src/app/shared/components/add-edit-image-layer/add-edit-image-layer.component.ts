@@ -10,7 +10,7 @@ import { LayerService } from '../../services/layer.service';
   styleUrls: ['./add-edit-image-layer.component.css']
 })
 export class AddEditImageLayerComponent implements OnInit {
-  title = "Add/Edit Image Layer" ;
+  title = `${this.data ? 'Edit' : 'Add'} image layer` ;
   fileToUpload: File | null = null;
   addEditImageLayerForm: FormGroup | undefined ;
  

@@ -10,7 +10,7 @@ import { TextLayer } from '../../models/text-layer';
   styleUrls: ['./add-edit-text-layer.component.css']
 })
 export class AddEditTextLayerComponent implements OnInit {
-  title = "Add/Edit Text Layer" ;
+  title = `${this.data ? 'Edit' : 'Add'} text layer` ;
   fileToUpload: File | null = null;
   addEditTextLayerForm: FormGroup | undefined ;
   

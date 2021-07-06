@@ -23,8 +23,8 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - "New design" button with confirmation
     X FIX Vertical scrolling on layerList
 
-    - Dialogs
-        - Titles should be ADD or EDIT (not both)
+    / Dialogs
+        X Titles should be ADD or EDIT (not both)
         - vertical size of dialog makes its use on mobile (landscape) imposible
         - Validate data of Dialog forms (numeric fields, etc)
         - Enter should trigger default blue button
