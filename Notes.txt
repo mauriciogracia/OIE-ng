@@ -23,9 +23,11 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - "New design" button with confirmation
     X FIX Vertical scrolling on layerList
 
+    - Evaluate if its usefull to move to SASS - https://medium.com/swlh/how-to-structure-scss-in-an-angular-app-a1b8a759a028
+    
     / Dialogs
         X Titles should be ADD or EDIT (not both)
-        - vertical size of dialog makes its use on mobile (landscape) imposible
+        / vertical size of dialog makes its use on mobile (landscape) imposible
         - Validate data of Dialog forms (numeric fields, etc)
         - Enter should trigger default blue button
 

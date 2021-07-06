@@ -38,12 +38,14 @@ export class ToolBarComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-
     if(data !== null) {
       dialogConfig.data = data ;
     }
 
-    this.dialog.open(x, dialogConfig);
+    dialogConfig.panelClass = 'custom-dialog-container' ;
+
+    let diagRef = this.dialog.open(x, dialogConfig);
+    diagRef.updatePosition({left: '50px', top: '20px'}) ;
   }
 
   anyLayerSelected() {
