@@ -21,7 +21,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
 
     X Avoid text wrap on text layers 
     - "New design" button with confirmation
-    X Vertical scrolling on layerList
+    X FIX Vertical scrolling on layerList
 
     - Dialogs
         - Titles should be ADD or EDIT (not both)
@@ -54,7 +54,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     - Toolbar buttons
         / Settings button
             - show/save settings to user
-            - layer can be dragged only when selected on the layerList - setting 
+            / layer can be dragged only when selected - setting 
         - Flip vertical/horizontal (as toolbar button)
         X Duplicate layer (as toolbar button)
         - Add tooltips to all buttons (mobile ?)

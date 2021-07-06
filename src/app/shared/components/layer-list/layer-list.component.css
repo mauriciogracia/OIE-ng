@@ -1,15 +1,15 @@
 .layerListScroller {
     overflow-y: auto ;
-    border: solid 3px red ;
-    height: 90%;
+    height: 0px;
+    flex-grow: 1;
+    /* border: solid 3px red ; debug*/
 }
 
 .layerList {
     border-top: solid 2px gray  ;
 }
 
-
-.layerListHeader {
+.layerListHeaderText {
     display: inline;
     vertical-align: super;
     margin-left: 5px;

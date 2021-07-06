@@ -1,4 +1,4 @@
-<div>
+<div class="layerListHeader">
     <div *ngIf="isCompactMode; else fullModeHeader">
         <button mat-icon-button (click)="toggleCompactMode()">
             <mat-icon class="layerListItemIconSize">keyboard_arrow_left</mat-icon>
@@ -8,7 +8,7 @@
         <button mat-icon-button (click)="toggleCompactMode()">
             <mat-icon class="layerListItemIconSize">keyboard_arrow_right</mat-icon>
         </button>
-        <div class="layerListHeader">
+        <div class="layerListHeaderText">
             <b>Layers</b>
         </div>
         <mat-icon>layers</mat-icon>
