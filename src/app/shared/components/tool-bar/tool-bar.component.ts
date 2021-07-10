@@ -34,6 +34,14 @@ export class ToolBarComponent implements OnInit {
     this.fileService.currentDesign = new Design({name:"demo.oie"}) ;
   }
 
+  onFileUpload() {
+    window.alert("File upload and display") ;
+  }
+
+  onFileDownload() {
+    window.alert("File download") ;
+  }
+
   onAddImageLayer() {
     this.showDialog(AddEditImageLayerComponent, null);
   }

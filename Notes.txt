@@ -64,15 +64,17 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
             - what extension : OIE 
             - what format : JSON
             - where ? in the cloud ? locally 
-            - Show current design name on the title of the app 
+            - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
             - New  
-                - button
-                - ask for design name ?
+                X button
+                - ask for confirmation when changesArePending
+                - ask for design name or only when saving ?
             - Load 
-                - button
+                X button
                 - copy/paste file content ? 
                 - file upload ?
             - Save/Export functionality
+                X button 
                 - as propietary format *.oie 
                 - as HTML (div, images, styles)
                 - as image
