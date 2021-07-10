@@ -1,5 +1,5 @@
-<scrollbar class="layers">
-    <div *ngFor="let layer of getLayers()">
+<scrollbar class="layers" >
+    <div #divLayers *ngFor="let layer of getLayers()">
         <div 
             id={{layer.id}}
             class = "floatLayer" cdkDrag

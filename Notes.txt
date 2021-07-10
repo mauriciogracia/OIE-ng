@@ -81,6 +81,8 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
                 - as propietary format *.oie 
                 - as HTML (div, images, styles)
                 - as image
+                    - https://stackoverflow.com/questions/10721884/render-html-to-an-image
+                    - https://www.npmjs.com/package/dom-to-image
 
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting the previous stored action (opposite)

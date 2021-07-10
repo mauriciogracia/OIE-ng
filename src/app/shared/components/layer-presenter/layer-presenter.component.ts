@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
@@ -7,18 +7,27 @@ import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
 import { AppSettings } from '../../models/app-settings';
 import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
+/*
+let domtoimage = require('dom-to-image');
+let FileSaver = require('file-saver');
+*/
+import domtoimage from 'dom-to-image';
+//TODO
+//let FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-layer-presenter',
   templateUrl: './layer-presenter.component.html',
   styleUrls: ['./layer-presenter.component.css']
 })
-export class LayerPresenter implements OnInit {
+export class LayerPresenter implements OnInit, AfterViewInit  {
   /* this is done to make the types visible to the template/html*/
   layerType = LayerType ;
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
-   
+  
+  @ViewChild('divLayers', { static: false }) currentLayers: ElementRef | undefined ;
+  
   constructor(
     private layerService : LayerService, 
     private fileService : FileService,
@@ -26,7 +35,26 @@ export class LayerPresenter implements OnInit {
 
   ngOnInit(): void {
     this.addDemoLayers() ;
-    console.log({settings:this.appSettings});
+    
+  }
+
+  ngAfterViewInit() {
+    this.exportHtmlNodeToImage
+  }
+
+  exportHtmlNodeToImage() {
+    console.log({currentLayers:this.currentLayers}) ; 
+
+    //domtoimage.toBlob(document.getElementById('my-node'))
+    /*
+    Error while reading CSS rules from null SecurityError: CSSStyleSheet.cssRules getter: Not allowed to access cross-origin stylesheet
+    */
+    domtoimage.toBlob(this.currentLayers!.nativeElement)
+    .then(function (blob:any) {
+        //window.saveAs(blob, 'my-node.png');
+        //FileSaver.saveAs(blob, "abc.png");
+        console.log({imgBlob:blob})
+    });
   }
 
   addDemoLayers() {
