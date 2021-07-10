@@ -12,8 +12,16 @@ export class LayerService {
 
   constructor() { }
 
+  setLayers(layers: BaseLayer[]) {
+    this.layers = layers ;
+  }
+
   getLayers() : BaseLayer[] {
     return this.layers ;
+  }
+
+  clearLayers() {
+    this.layers = [] ;
   }
 
   getVisibleLayers() : BaseLayer[] {

@@ -20,11 +20,11 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     X Suggest a UNIQUE layername for image layers
 
     X Avoid text wrap on text layers 
-    - "New design" button with confirmation
-    X FIX Vertical scrolling on layerList
+    X FIX Heighy Vertical scrolling on layerList by using Flex
+    - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
-    - Evaluate if its usefull to move to SASS - https://medium.com/swlh/how-to-structure-scss-in-an-angular-app-a1b8a759a028
-    
+    - can you free hand paint over the existing layers ? (pencil, brushes) ?
+
     / Dialogs
         X Titles should be ADD or EDIT (not both)
         / vertical size of dialog makes its use on mobile (landscape) imposible
@@ -61,15 +61,26 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         X Duplicate layer (as toolbar button)
         - Add tooltips to all buttons (mobile ?)
         - Export (generate the JSON from the layers)
-            - what extension ?
-            - what format (JSON, xml, ...) ?
+            - what extension : OIE 
+            - what format : JSON
             - where ? in the cloud ? locally 
+            - Show current design name on the title of the app 
+            - New  
+                - button
+                - ask for design name ?
             - Load 
+                - button
+                - copy/paste file content ? 
+                - file upload ?
+            - Save/Export functionality
+                - as propietary format *.oie 
+                - as HTML (div, images, styles)
+                - as image
 
 - UNDO / REDO 
-    - each action that changes the layering in anyway needs to be kept, undoing is reverting to previous stored state ?
+    - each action that changes the layering in anyway needs to be kept, undoing is reverting the previous stored action (opposite)
     - how many steps back ?
-    - saving destroys this data ?
+    - saving clears this data ?
 
 - Create generic confirmation dialog - https://stackoverflow.com/questions/41684114/easy-way-to-make-a-confirmation-dialog-in-angular 
  
@@ -92,9 +103,7 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
     - Tablet
     - Cellphone
 
-- Export functionality
-    - as HTML (div, images, styles)
-    - as image
+
 
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload

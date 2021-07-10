@@ -5,6 +5,8 @@ import { BaseLayer, LayerType } from '../../models/base-layer';
 import { TextLayer } from '../../models/text-layer';
 import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
 import { AppSettings } from '../../models/app-settings';
+import { Design } from '../../models/design';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-layer-presenter',
@@ -19,6 +21,7 @@ export class LayerPresenter implements OnInit {
    
   constructor(
     private layerService : LayerService, 
+    private fileService : FileService,
     private appSettings: AppSettings) { }
 
   ngOnInit(): void {
@@ -27,6 +30,9 @@ export class LayerPresenter implements OnInit {
   }
 
   addDemoLayers() {
+    const design = new Design({name:"demo.oie"}) ;
+    this.fileService.currentDesign = design ;
+
     const imgLayer = new ImageLayer() ;
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
@@ -59,6 +65,7 @@ export class LayerPresenter implements OnInit {
 
   // https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag
   // https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
+  // my question - https://stackoverflow.com/questions/68246400/dragging-and-positioning-elements-is-not-updating-model-as-expected-is-conflict
   layerDragEnded($event: CdkDragEnd) {
     if(this.appSettings.selectLayerWhileDragging) {
       let layerId = +$event.source.element.nativeElement.id ;

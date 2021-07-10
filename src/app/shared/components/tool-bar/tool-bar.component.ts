@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Design } from '../../models/design';
 import { ImageLayer } from '../../models/image-layer';
 import { TextLayer } from '../../models/text-layer';
+import { FileService } from '../../services/file.service';
 import { LayerService } from '../../services/layer.service';
 import { AddEditImageLayerComponent } from '../add-edit-image-layer/add-edit-image-layer.component';
 import { AddEditTextLayerComponent } from '../add-edit-text-layer/add-edit-text-layer.component';
@@ -15,7 +17,8 @@ export class ToolBarComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private layerService: LayerService
+    private layerService: LayerService,
+    private fileService: FileService
     ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,12 @@ export class ToolBarComponent implements OnInit {
     return this.layerService.version ;
   }
   
+  onNewDesign() {
+    //TODO confirmation dialog when changes have been made that are not saved/exported. see hasPendingChanges in FileService
+    this.layerService.clearLayers() ;
+    this.fileService.currentDesign = new Design({name:"demo.oie"}) ;
+  }
+
   onAddImageLayer() {
     this.showDialog(AddEditImageLayerComponent, null);
   }
@@ -38,6 +47,7 @@ export class ToolBarComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
+
     if(data !== null) {
       dialogConfig.data = data ;
     }
