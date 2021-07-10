@@ -53,6 +53,9 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
     
     - Allow multiple selection to allow certain operations on that selection
 
+    X Hide layer list when no layers present
+    X Fix layer list header to show always on a single row
+    
     - Toolbar buttons
         / Settings button
             - show/save settings to user

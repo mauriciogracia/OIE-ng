@@ -9,10 +9,22 @@
     border-top: solid 2px gray  ;
 }
 
+.layerListHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+.equalSpace {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around ;
+    align-items: center;
+}
+
 .layerListHeaderText {
-    display: inline;
-    vertical-align: super;
-    margin-left: 5px;
+    vertical-align: super; 
+    margin-left: 10px; 
 }
 
 .layerListItemIconSize {

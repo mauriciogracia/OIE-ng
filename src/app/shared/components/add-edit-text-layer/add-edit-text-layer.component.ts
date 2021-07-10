@@ -49,7 +49,7 @@ export class AddEditTextLayerComponent implements OnInit {
     }
     //When an existing layer is selected updating the layer data is enough
     layer.text = this.addEditTextLayerForm!.controls['text'].value ;
-    layer.name = layer.text.substring(0,10) ;
+    layer.name = layer.text.substring(0,10).padEnd(10,' ') ;
     layer.positionLayer(this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     if(!this.data) 

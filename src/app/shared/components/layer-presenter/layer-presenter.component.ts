@@ -48,6 +48,10 @@ export class LayerPresenter implements OnInit {
     }
   }
 
+  hasLayers() {
+    return this.layerService.hasLayers() ;
+  }
+  
   getLayers() : BaseLayer[] {
     return this.layerService.getVisibleLayers() ;
   }
