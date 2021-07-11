@@ -11,9 +11,6 @@ import { FileService } from '../../services/file.service';
 let domtoimage = require('dom-to-image');
 let FileSaver = require('file-saver');
 */
-import domtoimage from 'dom-to-image';
-//TODO
-//let FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-layer-presenter',
