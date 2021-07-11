@@ -1,5 +1,9 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BaseLayer } from '../models/base-layer';
 import { Design } from '../models/design';
+import { ImageLayer } from '../models/image-layer';
+import { TextLayer } from '../models/text-layer';
+import { LayerService } from './layer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +11,10 @@ import { Design } from '../models/design';
 export class FileService {
   public currentDesign : Design | null = null;
   public hasPendingChanges : boolean = false ;
-  public exportElement : ElementRef | null = null ;
 
-  constructor() { }
+  constructor(
+    private layerService : LayerService
+  ) { }
 
   public export() : string {
     return JSON.stringify(this.currentDesign) ;
@@ -26,18 +31,50 @@ export class FileService {
     }
   }
 
-  setExportElement(element: ElementRef) {
-    this.exportElement = element ;
+  exportLayerStyle(layer: BaseLayer) {
+    /*
+    [style.left]="layer.getLeftPx()"
+            [style.top]="layer.getTopPx()"
+            [style.transform]="layer.getTransform()"
+            [style.z-index]="layer.getZindex()"
+            [style.outline]="(layer.selected) ? 'dashed 1px red':''"
+    */
+  }
+
+  exportLayerToHTML(layer: BaseLayer) {
+    let div = `<div id="${layer.id}" style="position: absolute;
+    transform-origin: left top ;">` ;
+
+    if(layer instanceof ImageLayer)
+    {
+      div += `<img src="${layer.img_src}" alt="image:${layer.img_src}">` ;
+    }
+    else if(layer instanceof TextLayer)
+    {
+      div += `<span style="white-space: nowrap;">${layer.text}</span>` ;
+    }
+
+    div += '</div>' ;
+
+    return div ;
   }
 
   exportToHTML() {
-    console.log({exportToHTML: this.exportElement}) ;
-    return this.exportElement!.nativeElement.innerHTML.replace(/<!--[\s\S]*?-->/g, '');
-    //return this.exportElement!.nativeElement.querySelector('.content').outerHTML.replace(/<!--[\s\S]*?-->/g, '');
+    let html = `<!DOCTYPE html><html lang="en"><head><title>${this.currentDesign?.name}</title></head><body>` ;
+    this.layerService.getVisibleLayers().forEach(l => {
+      html += this.exportLayerToHTML(l) ;
+    });
+    html += "</body></html>" ;
+
+    console.log(html) ;
   }
       
+  browserSaveAs() {
+
+  }
 
   exportToImage() {
+    /*
     console.log({exportElement:this.exportElement}) ; 
 
     if(this.exportElement) {
@@ -53,7 +90,8 @@ export class FileService {
           //FileSaver.saveAs(blob, "abc.png");
           console.log({imgBlob:blob})
       });
-      */
+     
     }
+     */
   }
 }
