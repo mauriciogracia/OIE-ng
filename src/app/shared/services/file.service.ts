@@ -31,23 +31,30 @@ export class FileService {
     }
   }
 
-  exportLayerStyle(layer: BaseLayer) {
-    /*
-    [style.left]="layer.getLeftPx()"
-            [style.top]="layer.getTopPx()"
-            [style.transform]="layer.getTransform()"
-            [style.z-index]="layer.getZindex()"
-            [style.outline]="(layer.selected) ? 'dashed 1px red':''"
-    */
+  buildLayerStyle(layer: BaseLayer) {
+    let style = 'position: absolute;transform-origin: left top ;'
+
+    style += `left: ${layer.getLeftPx()}; ` ;
+    style += `top: ${layer.getTopPx()}; ` ;
+    style += `z-index: ${layer.getZindex()}; ` ;
+
+    //verify transform
+    if(layer.hasTransform())
+    {
+      style += `transform: ${layer.getTransform()}; ` ;
+    }
+    style = `style="${style}"` ;
+    
+    return style ;
   }
 
   exportLayerToHTML(layer: BaseLayer) {
-    let div = `<div id="${layer.id}" style="position: absolute;
-    transform-origin: left top ;">` ;
+    let div = `<div id="${layer.id}" ${this.buildLayerStyle(layer)}>` ;
 
     if(layer instanceof ImageLayer)
     {
-      div += `<img src="${layer.img_src}" alt="image:${layer.img_src}">` ;
+      let img = layer.getImageurl() ;
+      div += `<img src="${img}" alt="image:${img}">` ;
     }
     else if(layer instanceof TextLayer)
     {

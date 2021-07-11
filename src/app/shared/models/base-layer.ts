@@ -70,6 +70,10 @@ export class BaseLayer {
         this.deltaY = dy ; 
     }
     
+    hasTransform() {
+        return ((this.scale != 1) || (this.rotation != 0)) ;
+    }
+    
     getTransform() {
         let transform = '' ;
 
