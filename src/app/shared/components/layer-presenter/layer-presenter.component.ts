@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
@@ -20,13 +20,13 @@ import domtoimage from 'dom-to-image';
   templateUrl: './layer-presenter.component.html',
   styleUrls: ['./layer-presenter.component.css']
 })
-export class LayerPresenter implements OnInit, AfterViewInit  {
+export class LayerPresenter implements OnInit  {
   /* this is done to make the types visible to the template/html*/
   layerType = LayerType ;
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
   
-  @ViewChild('divLayers', { static: false }) currentLayers: ElementRef | null = null ;
+  //@ViewChild('divLayers', { static: false }) currentLayers: ElementRef | null = null ;
   
   constructor(
     private layerService : LayerService, 
@@ -36,19 +36,6 @@ export class LayerPresenter implements OnInit, AfterViewInit  {
 
   ngOnInit(): void {
     this.addDemoLayers() ;
-  }
-
-  ngAfterViewInit() {
-    this.updateExportElement();
-  }
-
-  getExportElement() {
-    return this.currentLayers ;
-  }
-  updateExportElement() {
-    if(this.currentLayers) {
-      this.fileService.setExportElement(this.currentLayers) ;
-    }
   }
 
   addDemoLayers() {
