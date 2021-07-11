@@ -90,8 +90,6 @@ export class BaseLayer {
         }
         */
         
-        //console.log({transform:transform}) ;
-        
         return transform ;
     }
 }

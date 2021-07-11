@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
@@ -26,35 +26,29 @@ export class LayerPresenter implements OnInit, AfterViewInit  {
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
   
-  @ViewChild('divLayers', { static: false }) currentLayers: ElementRef | undefined ;
+  @ViewChild('divLayers', { static: false }) currentLayers: ElementRef | null = null ;
   
   constructor(
     private layerService : LayerService, 
     private fileService : FileService,
     private appSettings: AppSettings) { }
 
+
   ngOnInit(): void {
     this.addDemoLayers() ;
-    
   }
 
   ngAfterViewInit() {
-    this.exportHtmlNodeToImage
+    this.updateExportElement();
   }
 
-  exportHtmlNodeToImage() {
-    console.log({currentLayers:this.currentLayers}) ; 
-
-    //domtoimage.toBlob(document.getElementById('my-node'))
-    /*
-    Error while reading CSS rules from null SecurityError: CSSStyleSheet.cssRules getter: Not allowed to access cross-origin stylesheet
-    */
-    domtoimage.toBlob(this.currentLayers!.nativeElement)
-    .then(function (blob:any) {
-        //window.saveAs(blob, 'my-node.png');
-        //FileSaver.saveAs(blob, "abc.png");
-        console.log({imgBlob:blob})
-    });
+  getExportElement() {
+    return this.currentLayers ;
+  }
+  updateExportElement() {
+    if(this.currentLayers) {
+      this.fileService.setExportElement(this.currentLayers) ;
+    }
   }
 
   addDemoLayers() {
@@ -69,7 +63,7 @@ export class LayerPresenter implements OnInit, AfterViewInit  {
 
     for(let i=1; i < 22 ; i++) {
       const x = new TextLayer();
-      x.text = "Text Layer: - }";
+      x.text = `Text Layer - ${i} : - }`;
       x.positionLayer(100+i*15,100+i*15) ;
       x.name = "textLayer" ;
       this.layerService.addLayer(x) ;
@@ -105,10 +99,6 @@ export class LayerPresenter implements OnInit, AfterViewInit  {
       let position = $event.source.getFreeDragPosition() ;
 
       layer.moveLayer(position.x, position.y) ;
-      /*
-      console.log({position:position}) ;
-      console.log({layerDragEnded:layer}) ;
-      */
     }
   }
 }

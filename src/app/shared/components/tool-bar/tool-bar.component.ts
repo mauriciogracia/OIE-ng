@@ -39,7 +39,9 @@ export class ToolBarComponent implements OnInit {
   }
 
   onFileDownload() {
-    window.alert("File download") ;
+    this.fileService.exportToImage() ;
+
+    console.log(this.fileService.exportToHTML()) ;
   }
 
   onAddImageLayer() {

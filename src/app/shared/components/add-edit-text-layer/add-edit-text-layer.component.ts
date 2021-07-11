@@ -38,8 +38,6 @@ export class AddEditTextLayerComponent implements OnInit {
   save() {
     let layer : TextLayer ;
 
-    console.log({data:this.data});
-
     if(this.data) {
       layer = this.data ;
     }
