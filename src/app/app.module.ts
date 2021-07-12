@@ -18,6 +18,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from "@angular/material/dialog";
 import { AddEditTextLayerComponent } from './shared/components/add-edit-text-layer/add-edit-text-layer.component';
 import { MatInputModule } from "@angular/material/input";
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatInputModule } from "@angular/material/input";
     DragDropModule,
     MatDialogModule,
     MatInputModule,
+    FileSaverModule,
   ],
   providers: [
     LayerService,

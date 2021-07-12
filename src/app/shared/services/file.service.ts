@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+/* eslint-disable */
+import { FileSaverService } from 'ngx-filesaver';
+/* eslint-enable */
 import { BaseLayer } from '../models/base-layer';
 import { Design } from '../models/design';
 import { ImageLayer } from '../models/image-layer';
@@ -13,7 +16,8 @@ export class FileService {
   public hasPendingChanges : boolean = false ;
 
   constructor(
-    private layerService : LayerService
+    private layerService : LayerService,
+    private fileSaverService: FileSaverService
   ) { }
 
   public export() : string {
@@ -67,17 +71,25 @@ export class FileService {
   }
 
   exportToHTML() {
-    let html = `<!DOCTYPE html><html lang="en"><head><title>${this.currentDesign?.name}</title></head><body>` ;
+    let title: string = this.currentDesign!.name ;
+    let html = `<!DOCTYPE html><html lang="en"><head><title>${title}</title></head><body>` ;
     this.layerService.getVisibleLayers().forEach(l => {
       html += this.exportLayerToHTML(l) ;
     });
     html += "</body></html>" ;
 
     console.log(html) ;
+    this.browserSaveAs(html, `${title}.html`) ;
   }
       
-  browserSaveAs() {
-
+  browserSaveAs(blob: any, filename:string) {
+    try {
+      this.fileSaverService.save(blob, filename);
+    }
+    catch (e)
+    {
+      console.log(e) ;
+    }
   }
 
   exportToImage() {

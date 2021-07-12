@@ -8,7 +8,7 @@ import { BaseLayer } from '../models/base-layer';
 export class LayerService {
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
-  public version = "2021.07.11 - 13:10 pm" ;
+  public version = "2021.07.11 - 08:26 pm" ;
 
   constructor() { }
 
