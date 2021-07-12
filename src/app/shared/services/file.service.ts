@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-/* eslint-disable */
 import { FileSaverService } from 'ngx-filesaver';
-/* eslint-enable */
 import { BaseLayer } from '../models/base-layer';
 import { Design } from '../models/design';
 import { ImageLayer } from '../models/image-layer';
