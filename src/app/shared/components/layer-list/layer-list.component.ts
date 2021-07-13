@@ -23,7 +23,7 @@ export class LayerListComponent implements OnInit, OnDestroy {
     this.isCompactMode = this.CompactMode ;
     this.layerService.getAllLayersObs()
     .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
-    .subscribe(layersFromService => {this.layers = layersFromService ; console.log("layer list reacted")});
+    .subscribe(layersFromService => {this.layers = layersFromService ; console.log("layer list refreshed")});
   }
 
   ngOnDestroy(): void {
@@ -32,11 +32,13 @@ export class LayerListComponent implements OnInit, OnDestroy {
   }
 
   changeLayerSelection(layer:BaseLayer) {
-    this.layerService.setSelectedLayer(layer) ;
+    const notifyChanges = true ;
+    this.layerService.setSelectedLayer(layer, notifyChanges) ;
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    this.layerService.changeOrder(event.previousIndex, event.currentIndex) ;
+    const notifyChanges = true ;
+    this.layerService.changeOrder(event.previousIndex, event.currentIndex, notifyChanges) ;
   }
 
   toggleCompactMode() {
@@ -44,12 +46,14 @@ export class LayerListComponent implements OnInit, OnDestroy {
   }
   
   toggleLayerVisibility(layer:BaseLayer) {
-    this.layerService.toggleLayerVisibility(layer) ;
+    const notifyChanges = true ;
+    this.layerService.toggleLayerVisibility(layer, notifyChanges) ;
   }
 
   confirmLayerDelete(layer:BaseLayer) {
     if(confirm(`Are you sure to delete layer: ${layer.name}(id=${layer.id})`)) {
-      this.layerService.removeLayer(layer) ;
+      const notifyChanges = true ;
+      this.layerService.removeLayer(layer, notifyChanges) ;
     }
   }
 }

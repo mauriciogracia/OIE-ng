@@ -52,7 +52,8 @@ export class AddEditTextLayerComponent implements OnInit {
     
     if(!this.data) 
     {
-      this.layerService.addLayer(layer) ;
+      const notifyChanges = true ;
+      this.layerService.addLayer(layer, notifyChanges) ;
     }
     
     this.close() ;

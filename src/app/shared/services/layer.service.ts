@@ -19,8 +19,16 @@ export class LayerService {
     return (this.layers.length > 0) ;
   }
   
-  clearLayers() {
+  notifyLayerChanges() {
+    this.allLayersObs$.next(this.layers) ;
+  }
+
+  clearLayers(notifyChanges: boolean) {
     this.layers = [] ;
+    
+    if(notifyChanges) {
+      this.notifyLayerChanges() ;
+    }
   }
 
   getAllLayersObs() : Observable<BaseLayer[]> {
@@ -52,11 +60,11 @@ export class LayerService {
     return Math.max(...this.layers.map(x => x.id),0)+1 ;
   }
 
-  addLayer(layer: BaseLayer) {
+  addLayer(layer: BaseLayer, notifyChanges: boolean) {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
     this.layers.push(layer) ;
-    this.setSelectedLayer(layer) ;
+    this.setSelectedLayer(layer, notifyChanges) ;
   }
 
   getLayerById(layerId: number): BaseLayer | undefined {
@@ -67,12 +75,16 @@ export class LayerService {
     return (this.selectedLayerId !== -1) ;
   }
 
-  unselectPreviousLayer() {
+  unselectPreviousLayer(notifyChanges: boolean) {
     const layer = this.getSelectedLayer() ;
 
     if(layer) {
       layer.selected = false ;
       this.selectedLayerId = -1;
+      
+      if(notifyChanges) {
+        this.notifyLayerChanges() ;
+      }
     }
   }
 
@@ -84,21 +96,23 @@ export class LayerService {
     return this.getLayerById(this.selectedLayerId) ;
   }
 
-  setSelectedLayerById(layerId: number) {
-    this.setSelectedLayer(this.getLayerById(layerId)) ;
+  setSelectedLayerById(layerId: number, notifyChanges: boolean) {
+    this.setSelectedLayer(this.getLayerById(layerId), notifyChanges) ;
   }
 
-  setSelectedLayer(layer: BaseLayer| undefined) {
-
-    this.unselectPreviousLayer() ;
-
+  setSelectedLayer(layer: BaseLayer| undefined, notifyChanges: boolean) {
     if(layer) {
+      this.unselectPreviousLayer(false) ;
       layer.selected = true ;
       this.selectedLayerId = layer.id ;
+
+      if(notifyChanges) {
+        this.notifyLayerChanges() ;
+      }
     }
   }
 
-  changeOrder(prevIndex: number, newIndex: number) {
+  changeOrder(prevIndex: number, newIndex: number, notifyChanges: boolean) {
     if(prevIndex != newIndex) {
       let delta = (prevIndex > newIndex) ? 1 : -1 ;
       let i = Math.min(newIndex, prevIndex) ;
@@ -113,35 +127,45 @@ export class LayerService {
       }
       //Keep layers sorted by z_index 
       this.layers = this.layers.sort((l1,l2) => (l1.z_index - l2.z_index)) ;
+      
+      if(notifyChanges) {
+        this.notifyLayerChanges() ;
+      }
     }
   }
 
-  toggleLayerVisibility(layer: BaseLayer) {
+  toggleLayerVisibility(layer: BaseLayer, notifyChanges: boolean) {
     
     layer.visible = !layer.visible ;
 
     if((!layer.visible) && (layer.id === this.getSelectedLayer()?.id))
     {
-      this.unselectPreviousLayer() ;
+      this.unselectPreviousLayer(notifyChanges) ;
     }
-    
+    else if(notifyChanges) {
+      this.notifyLayerChanges() ;
+    }
   }
 
   getIndexOfLayer(layer: BaseLayer) {
     return this.layers.findIndex(l => l.id === layer.id);
   }
 
-  removeLayer(layer: BaseLayer) {
+  removeLayer(layer: BaseLayer, notifyChanges: boolean) {
     let indexOfLayer = this.getIndexOfLayer(layer);
     if(indexOfLayer >= 0) {
       this.layers.splice(indexOfLayer,1) ;
+      if(notifyChanges) {
+        this.notifyLayerChanges() ;
+      }
     }
   }
 
-  duplicateSelectedLayer() {
+  duplicateSelectedLayer(notifyChanges: boolean) {
     let newLayer = new BaseLayer() ;
     Object.assign(newLayer, this.getSelectedLayer());
-    this.addLayer(newLayer) ;
+
+    this.addLayer(newLayer, notifyChanges) ;
   }
 
   logLayers() {

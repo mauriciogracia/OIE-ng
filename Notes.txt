@@ -8,9 +8,11 @@ To test it from another device
 / Layer Operations 
 
     >> avoid calling methods in HTMl templates
-        - Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
-        - use console.log in those functions to check how often is being used
-        - check other templates
+        X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
+        X use console.log in those functions to check how often is being used
+        - check other templates/methods 
+
+    - When an ImageLayer is duplicated, trying to edit it  showing as "new layer type" !!
 
     / FIX Heighy Vertical scrolling on layerList by using Flex
         - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)

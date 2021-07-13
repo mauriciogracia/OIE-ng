@@ -30,7 +30,8 @@ export class ToolBarComponent implements OnInit {
   
   onNewDesign() {
     //TODO confirmation dialog when changes have been made that are not saved/exported. see hasPendingChanges in FileService
-    this.layerService.clearLayers() ;
+    const notifyChanges = true ;
+    this.layerService.clearLayers(notifyChanges) ;
     this.fileService.currentDesign = new Design({name:"demo.oie"}) ;
   }
 
@@ -39,9 +40,9 @@ export class ToolBarComponent implements OnInit {
   }
 
   onFileDownload() {
-    this.fileService.exportToImage() ;
+    //TODO this.fileService.exportToImage() ;
 
-    console.log(this.fileService.exportToHTML()) ;
+    this.fileService.exportToHTML() ;
   }
 
   onAddImageLayer() {
@@ -84,12 +85,14 @@ export class ToolBarComponent implements OnInit {
       }
       else {
         console.log("New type of layer !?");
+        console.log({layer:layer}) ;
       }
     }
   }
 
   onCopyLayer() {
-    this.layerService.duplicateSelectedLayer() ;
+    const notifyChanges = true ;
+    this.layerService.duplicateSelectedLayer(notifyChanges) ;
   }
 
   onSettings() {

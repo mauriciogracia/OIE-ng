@@ -35,7 +35,7 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     this.addDemoLayers() ;
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
-      .subscribe(layersFromService => {this.visibleLayers = layersFromService.filter(l => l.visible); console.log("layer presented reacted")})
+      .subscribe(layersFromService => {this.visibleLayers = layersFromService.filter(l => l.visible); console.log("layer presenter refreshed")})
   }
 
   ngOnDestroy(): void {
@@ -44,6 +44,7 @@ export class LayerPresenter implements OnInit, OnDestroy  {
   }
 
   addDemoLayers() {
+    let notifyChanges = false ;
     const design = new Design({name:"demo.oie"}) ;
     this.fileService.currentDesign = design ;
 
@@ -51,15 +52,18 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     imgLayer.img_src = "assets/back_01.jpg" ;
     imgLayer.scale = 1 ;
     imgLayer.name= "background" ;
-    this.layerService.addLayer(imgLayer) ;
+    
+    this.layerService.addLayer(imgLayer,notifyChanges) ;
 
     for(let i=1; i < 22 ; i++) {
       const x = new TextLayer();
       x.text = `Text Layer - ${i} : - }`;
       x.positionLayer(100+i*15,100+i*15) ;
       x.name = "textLayer" ;
-      this.layerService.addLayer(x) ;
+      this.layerService.addLayer(x, notifyChanges) ;
     }
+
+    this.layerService.notifyLayerChanges();
   }
 
   hasLayers() {
@@ -67,13 +71,15 @@ export class LayerPresenter implements OnInit, OnDestroy  {
   }
 
   selectLayerByClick(layer: BaseLayer) {
-     this.layerService.setSelectedLayer(layer) ;
+    const notifyChanges = true ;
+    this.layerService.setSelectedLayer(layer, notifyChanges) ;
   }
 
   layerDragStarted($event: CdkDragStart) {
     if(this.appSettings.selectLayerWhileDragging) {
       let layerId = +$event.source.element.nativeElement.id ;
-      this.layerService.setSelectedLayerById(layerId) ;
+      const notifyChanges = true ;
+      this.layerService.setSelectedLayerById(layerId, notifyChanges) ;
     }
   }
 

@@ -68,7 +68,8 @@ export class AddEditImageLayerComponent implements OnInit {
     }
 
     if(!this.data) {
-      this.layerService.addLayer(layer) ;
+      const notifyChanges = true ;
+      this.layerService.addLayer(layer, notifyChanges) ;
     }
 
     this.close() ;
