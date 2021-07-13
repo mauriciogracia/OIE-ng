@@ -19,7 +19,7 @@
 <div class="layerListScroller" cdkScrollable>
     <div class="layerList" cdkDropList 
         (cdkDropListDropped)="drop($event)">
-        <div class="layerListItem" cdkDrag *ngFor="let layer of getLayers()"  
+        <div class="layerListItem" cdkDrag *ngFor="let layer of layers"  
             [style.background]="(layer.selected)?'lightcoral':'white'">
             <div *ngIf="isCompactMode; else fullMode">
                 <span (click)="changeLayerSelection(layer)">{{layer.name.substring(0,5)}}</span>

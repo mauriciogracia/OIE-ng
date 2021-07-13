@@ -71,12 +71,13 @@ export class FileService {
   exportToHTML() {
     let title: string = this.currentDesign!.name ;
     let html = `<!DOCTYPE html><html lang="en"><head><title>${title}</title></head><body>` ;
-    this.layerService.getVisibleLayers().forEach(l => {
+    
+    this.layerService.getCurrentVisibleLayers().forEach(l => {
       html += this.exportLayerToHTML(l) ;
     });
+    
     html += "</body></html>" ;
 
-    console.log(html) ;
     this.browserSaveAs(html, `${title}.html`) ;
   }
       

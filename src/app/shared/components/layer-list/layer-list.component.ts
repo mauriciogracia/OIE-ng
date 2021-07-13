@@ -1,5 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { BaseLayer } from '../../models/base-layer';
 import { LayerService } from '../../services/layer.service';
 
@@ -8,18 +10,25 @@ import { LayerService } from '../../services/layer.service';
   templateUrl: './layer-list.component.html',
   styleUrls: ['./layer-list.component.css']
 })
-export class LayerListComponent implements OnInit {
+export class LayerListComponent implements OnInit, OnDestroy {
   @Input() CompactMode: boolean = false ;
   isCompactMode: boolean = false ;
-  
+  layers: BaseLayer[] = [] ;
+  unsubscribeFromAllLayersObs$: Subject<boolean> = new Subject();
+
   constructor(private layerService : LayerService) { }
+  
 
   ngOnInit(): void {
     this.isCompactMode = this.CompactMode ;
+    this.layerService.getAllLayersObs()
+    .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
+    .subscribe(layersFromService => {this.layers = layersFromService ; console.log("layer list reacted")});
   }
 
-  getLayers() : BaseLayer[] {
-    return this.layerService.getLayers() ;
+  ngOnDestroy(): void {
+    this.unsubscribeFromAllLayersObs$.next(true);
+    this.unsubscribeFromAllLayersObs$.complete();
   }
 
   changeLayerSelection(layer:BaseLayer) {

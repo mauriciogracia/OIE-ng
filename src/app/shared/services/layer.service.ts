@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BaseLayer } from '../models/base-layer';
 
 @Injectable({
@@ -6,19 +7,13 @@ import { BaseLayer } from '../models/base-layer';
 })
 
 export class LayerService {
+  public version = "2021.07.12 - 11:00 pm" ;
+
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
-  public version = "2021.07.11 - 08:26 pm" ;
+  private allLayersObs$: BehaviorSubject<BaseLayer[]> = new BehaviorSubject(this.layers);
 
   constructor() { }
-
-  setLayers(layers: BaseLayer[]) {
-    this.layers = layers ;
-  }
-
-  getLayers() : BaseLayer[] {
-    return this.layers ;
-  }
 
   hasLayers() {
     return (this.layers.length > 0) ;
@@ -28,10 +23,15 @@ export class LayerService {
     this.layers = [] ;
   }
 
-  getVisibleLayers() : BaseLayer[] {
-    return this.layers.filter(l => l.visible) ;
+  getAllLayersObs() : Observable<BaseLayer[]> {
+    return this.allLayersObs$.asObservable() ;
   }
 
+  getCurrentVisibleLayers() 
+  {
+    return this.layers.filter(l => l.visible) ;
+  }
+  
   private getNewLayerDepthIndex() {
     return (this.layers.length+1) ;
   }

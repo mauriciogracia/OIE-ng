@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
@@ -7,22 +7,22 @@ import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
 import { AppSettings } from '../../models/app-settings';
 import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
-/*
-let domtoimage = require('dom-to-image');
-*/
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-layer-presenter',
   templateUrl: './layer-presenter.component.html',
   styleUrls: ['./layer-presenter.component.css']
 })
-export class LayerPresenter implements OnInit  {
+export class LayerPresenter implements OnInit, OnDestroy  {
   /* this is done to make the types visible to the template/html*/
   layerType = LayerType ;
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
-  
-  //@ViewChild('divLayers', { static: false }) currentLayers: ElementRef | null = null ;
+
+  visibleLayers : BaseLayer[] = [] ;
+  unsubscribeFromAllLayersObs$: Subject<boolean> = new Subject();
   
   constructor(
     private layerService : LayerService, 
@@ -30,8 +30,17 @@ export class LayerPresenter implements OnInit  {
     private appSettings: AppSettings) { }
 
 
+
   ngOnInit(): void {
     this.addDemoLayers() ;
+    this.layerService.getAllLayersObs()
+      .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
+      .subscribe(layersFromService => {this.visibleLayers = layersFromService.filter(l => l.visible); console.log("layer presented reacted")})
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeFromAllLayersObs$.next(true);
+    this.unsubscribeFromAllLayersObs$.complete();
   }
 
   addDemoLayers() {
@@ -55,11 +64,6 @@ export class LayerPresenter implements OnInit  {
 
   hasLayers() {
     return this.layerService.hasLayers() ;
-  }
-  
-  getLayers() : BaseLayer[] {
-    console.log("getLayers()")
-    return this.layerService.getVisibleLayers() ;
   }
 
   selectLayerByClick(layer: BaseLayer) {
