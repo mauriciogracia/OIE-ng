@@ -9,7 +9,6 @@ import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
 /*
 let domtoimage = require('dom-to-image');
-let FileSaver = require('file-saver');
 */
 
 @Component({
@@ -59,6 +58,7 @@ export class LayerPresenter implements OnInit  {
   }
   
   getLayers() : BaseLayer[] {
+    console.log("getLayers()")
     return this.layerService.getVisibleLayers() ;
   }
 

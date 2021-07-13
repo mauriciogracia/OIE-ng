@@ -5,23 +5,15 @@ To test it from another device
         - disable firewall / add rule 
         - connect to 192.168.1.15:4200
 
-X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
-    - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
+/ Layer Operations 
 
-/ Layer Operations
-    X Move by dragging
-    X Reorder Layers (z-index)
-    X Edit Layer should be a new button, disabled until a layer is selected
-    X Dragging a layer should select it from the begging(it was being selected at and of drag)
-    X Clicking on a layer should select it
-    X After creating a layer it should be selected 
-    X Method to update Layer (if data != null UPDATE otherwise ADD)
-    X Default edit position to selected layer(text/image)
-    X Suggest a UNIQUE layername for image layers
+    >> avoid calling methods in HTMl templates
+        - Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
+        - use console.log in those functions to check how often is being used
+        - check other templates
 
-    X Avoid text wrap on text layers 
-    X FIX Heighy Vertical scrolling on layerList by using Flex
-    - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
+    / FIX Heighy Vertical scrolling on layerList by using Flex
+        - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
     - can you free hand paint over the existing layers ? (pencil, brushes) ?
 
@@ -41,6 +33,7 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         X Position (initial/relacote)
         X Scale (initial/new scale)
         / Rotate (initial/new scale)
+
     / Add/Edit TextLayer 
         X Text
         X Position
@@ -52,16 +45,13 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
         - Bold, Italic, Subrayado, Strike..etc
     
     - Allow multiple selection to allow certain operations on that selection
-
-    X Hide layer list when no layers present
-    X Fix layer list header to show always on a single row
     
     - Toolbar buttons
         / Settings button
             - show/save settings to user
             / layer can be dragged only when selected - setting 
         - Flip vertical/horizontal (as toolbar button)
-        X Duplicate layer (as toolbar button)
+        
         - Add tooltips to all buttons (mobile ?)
         - Export (generate the JSON from the layers)
             - what extension : OIE 
@@ -91,6 +81,25 @@ X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
 
 - Create generic confirmation dialog - https://stackoverflow.com/questions/41684114/easy-way-to-make-a-confirmation-dialog-in-angular 
  
+********
+  DONE
+********
+
+X These Layer Operations
+    X Move by dragging
+    X Reorder Layers (z-index)
+    X Edit Layer should be a new button, disabled until a layer is selected
+    X Dragging a layer should select it from the begging(it was being selected at and of drag)
+    X Clicking on a layer should select it
+    X After creating a layer it should be selected 
+    X Method to update Layer (if data != null UPDATE otherwise ADD)
+    X Default edit position to selected layer(text/image)
+    X Suggest a UNIQUE layername for image layers
+    X Avoid text wrap on text layers 
+    X Hide layer list when no layers present
+    X Fix layer list header to show always on a single row
+    X Duplicate layer (as toolbar button)
+
 X Use Material for Dialogs 
     X implement a "generic dialog" to has the Close/OK-CANCEL and allows to specify content
     - https://material.io/components/dialogs/android#full-screen-dialog
@@ -110,7 +119,12 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
     - Tablet
     - Cellphone
 
+**********
+REFERENCES
+**********
 
+X Scrolling techniques (if layers are wider tan layer canvas it should scroll)
+    - https://material.io/archive/guidelines/patterns/scrolling-techniques.html#
 
 File upload requires API to process the POST and saving the file to the cloud or database
 - https://stackoverflow.com/questions/47936183/angular-file-upload
