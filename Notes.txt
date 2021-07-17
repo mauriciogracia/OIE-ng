@@ -5,6 +5,12 @@ To test it from another device
         - disable firewall / add rule 
         - connect to 192.168.1.15:4200
 
+/ Azure
+    X Activate free account
+    X Deploy from local env to azure web app - https://www.c-sharpcorner.com/article/easily-deploy-angular-app-to-azure-from-visual-studio-code/
+    - Configure pipeline to take code from git hub and deployed when pushed (to specific branch ?)
+    - Blob or media storage for image upload 
+
 / Layer Operations 
 
     >> avoid calling methods in HTMl templates
@@ -12,7 +18,7 @@ To test it from another device
         X use console.log in those functions to check how often is being used
         - check other templates/methods 
 
-    - When an ImageLayer is duplicated, trying to edit it  showing as "new layer type" !!
+    - When any type of layer is duplicated, trying to edit it  showing as "new layer type" !!
 
     / FIX Heighy Vertical scrolling on layerList by using Flex
         - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
