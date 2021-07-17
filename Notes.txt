@@ -8,8 +8,12 @@ To test it from another device
 / Azure
     X Activate free account
     X Deploy from local env to azure web app - https://www.c-sharpcorner.com/article/easily-deploy-angular-app-to-azure-from-visual-studio-code/
-    - Configure pipeline to take code from git hub and deployed when pushed (to specific branch ?)
+    - Configure pipeline to take code from git hub and deployed when pushed (to specific branch) ?
+        - https://portal.azure.com/#create/Microsoft.AzureProject
+        - https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml
+        - https://www.azuredevopslabs.com/labs/azuredevops/github-integration/
     - Blob or media storage for image upload 
+        - https://stackoverflow.com/questions/24810995/image-hosting-azure
 
 / Layer Operations 
 
