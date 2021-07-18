@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LayerType } from '../../models/base-layer';
 import { Design } from '../../models/design';
 import { ImageLayer } from '../../models/image-layer';
 import { TextLayer } from '../../models/text-layer';
@@ -77,15 +78,14 @@ export class ToolBarComponent implements OnInit {
     const layer = this.layerService.getSelectedLayer() ;
 
     if(layer) {
-      if(layer instanceof ImageLayer) {
+      if(layer.type === LayerType.Image) {
         this.showDialog(AddEditImageLayerComponent,(layer as ImageLayer)) ;
       }
-      else if (layer instanceof TextLayer){
+      else if (layer.type === LayerType.Text){
         this.showDialog(AddEditTextLayerComponent,(layer as TextLayer)) ;
       }
       else {
-        console.log("New type of layer !?");
-        console.log({layer:layer}) ;
+        console.log({newtypeOfLayer:layer}) ;
       }
     }
   }

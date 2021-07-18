@@ -9,7 +9,7 @@
             [style.left]="layer.getLeftPx()"
             [style.top]="layer.getTopPx()"
             [style.transform]="layer.getTransform()"
-            [style.z-index]="layer.getZindex()"
+            [style.z-index]="layer.z_index"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
             [cdkDragDisabled]="!(layer.selected)"
         >

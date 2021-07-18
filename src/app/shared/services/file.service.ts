@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FileSaverService } from 'ngx-filesaver';
-import { BaseLayer } from '../models/base-layer';
+import { BaseLayer, LayerType } from '../models/base-layer';
 import { Design } from '../models/design';
 import { ImageLayer } from '../models/image-layer';
 import { TextLayer } from '../models/text-layer';
@@ -38,7 +38,7 @@ export class FileService {
 
     style += `left: ${layer.getLeftPx()}; ` ;
     style += `top: ${layer.getTopPx()}; ` ;
-    style += `z-index: ${layer.getZindex()}; ` ;
+    style += `z-index: ${layer.z_index}; ` ;
 
     //verify transform
     if(layer.hasTransform())
@@ -53,14 +53,14 @@ export class FileService {
   exportLayerToHTML(layer: BaseLayer) {
     let div = `<div id="${layer.id}" ${this.buildLayerStyle(layer)}>` ;
 
-    if(layer instanceof ImageLayer)
+    if(layer.type === LayerType.Image)
     {
-      let img = layer.getImageurl() ;
+      let img = (layer as ImageLayer).getImageurl() ;
       div += `<img src="${img}" alt="image:${img}">` ;
     }
-    else if(layer instanceof TextLayer)
+    else if(layer.type === LayerType.Text)
     {
-      div += `<span style="white-space: nowrap;">${layer.text}</span>` ;
+      div += `<span style="white-space: nowrap;">${(layer as TextLayer).text}</span>` ;
     }
 
     div += '</div>' ;

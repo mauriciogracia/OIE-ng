@@ -36,10 +36,6 @@ export class BaseLayer {
         return this.top + this.deltaY;
     }
 
-    getZindex() {
-        return this.z_index ;
-    }
-
     getLeftPx():string {
         return `${this.left}px` ;
     }

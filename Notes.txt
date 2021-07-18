@@ -20,9 +20,14 @@ To test it from another device
     >> avoid calling methods in HTMl templates
         X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
         X use console.log in those functions to check how often is being used
-        - check other templates/methods 
-
-    - When any type of layer is duplicated, trying to edit it  showing as "new layer type" !!
+        / check other templates/methods 
+            X remove getZindex() method and its use 
+            - left and top methods
+            
+    X When any type of layer is duplicated...
+        X trying to edit is not opening 
+        X exporting not exporting cloned layers
+        * (instanceOf does not work on cloned )
 
     / FIX Heighy Vertical scrolling on layerList by using Flex
         - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
@@ -65,23 +70,21 @@ To test it from another device
         - Flip vertical/horizontal (as toolbar button)
         
         - Add tooltips to all buttons (mobile ?)
-        - Export (generate the JSON from the layers)
-            - what extension : OIE 
-            - what format : JSON
-            - where ? in the cloud ? locally 
-            - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
+
+        - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
+ 
+        / Export (generate the JSON from the layers)
             - New  
                 X button
                 - ask for confirmation when changesArePending
-                - ask for design name or only when saving ?
             - Load 
                 X button
                 - copy/paste file content ? 
                 - file upload ?
             - Save/Export functionality
                 X button 
-                - as propietary format *.oie 
-                - as HTML (div, images, styles)
+                - as propietary format *.oie (format : JSON)
+                X as HTML (div, images, styles)
                 - as image
                     - https://stackoverflow.com/questions/10721884/render-html-to-an-image
                     - https://www.npmjs.com/package/dom-to-image
