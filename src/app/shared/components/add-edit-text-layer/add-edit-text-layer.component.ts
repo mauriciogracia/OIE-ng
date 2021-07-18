@@ -29,32 +29,35 @@ export class AddEditTextLayerComponent implements OnInit {
     });
     
     if(this.data) {
-      this.addEditTextLayerForm.patchValue(this.data) ;
-      this.addEditTextLayerForm.controls['left'].setValue(this.data.getLeft()) ;
-      this.addEditTextLayerForm.controls['top'].setValue(this.data.getTop()) ;
+      let txtLayer : TextLayer = this.data as TextLayer;
+      this.addEditTextLayerForm.patchValue(txtLayer) ;
+      this.addEditTextLayerForm.controls['left'].setValue(txtLayer.left + txtLayer.deltaX) ;
+      this.addEditTextLayerForm.controls['top'].setValue(txtLayer.top + txtLayer.deltaY) ;
     }
   }
 
   save() {
     let layer : TextLayer ;
+    let layerId = -1 ; 
 
     if(this.data) {
       layer = this.data ;
+      layerId = layer.id ;
     }
-    else 
-    {
+    else {
       layer = new TextLayer() ;
     }
     //When an existing layer is selected updating the layer data is enough
-    layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     layer.name = layer.text.substring(0,10).padEnd(10,' ') ;
-    layer.positionLayer(this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
+    layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     
     if(!this.data) 
     {
       const notifyChanges = true ;
-      this.layerService.addLayer(layer, notifyChanges) ;
+      layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
+    
+    this.layerService.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     this.close() ;
   }

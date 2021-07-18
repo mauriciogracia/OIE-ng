@@ -33,9 +33,10 @@ export class AddEditImageLayerComponent implements OnInit {
     });
 
     if(this.data) {
-      this.addEditImageLayerForm.patchValue(this.data) ;
-      this.addEditImageLayerForm!.controls['left'].setValue(this.data.getLeft()) ;
-      this.addEditImageLayerForm!.controls['top'].setValue(this.data.getTop()) ;
+      let imgLayer : ImageLayer = this.data as ImageLayer;
+      this.addEditImageLayerForm.patchValue(imgLayer) ;
+      this.addEditImageLayerForm!.controls['left'].setValue(imgLayer.left + imgLayer.deltaX) ;
+      this.addEditImageLayerForm!.controls['top'].setValue(imgLayer.top + imgLayer.deltaY) ;
     }
     else 
     {
@@ -45,16 +46,17 @@ export class AddEditImageLayerComponent implements OnInit {
 
   save() {
     let layer : ImageLayer ;
+    let layerId = -1 ;
 
     if(this.data) {
       layer = this.data ;
+      layerId = layer.id ;
     }
     else {
       layer = new ImageLayer() ;
     }
     //When an existing layer is selected updating the layer data is enough
     layer.name = this.addEditImageLayerForm!.controls['name'].value ;
-    layer.positionLayer(this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
     layer.scale = this.addEditImageLayerForm!.controls['scale'].value ;
     layer.rotation = this.addEditImageLayerForm!.controls['rotation'].value ;
 
@@ -69,9 +71,11 @@ export class AddEditImageLayerComponent implements OnInit {
 
     if(!this.data) {
       const notifyChanges = true ;
-      this.layerService.addLayer(layer, notifyChanges) ;
+      layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
 
+    this.layerService.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
+   
     this.close() ;
   }
 

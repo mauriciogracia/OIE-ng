@@ -17,13 +17,32 @@ To test it from another device
 
 / Layer Operations 
 
-    >> avoid calling methods in HTMl templates
+    >> Export (generate the JSON from the layers)
+        - New  
+            X button
+            - ask for confirmation when changesArePending
+        - Load 
+            X button
+            - copy/paste file content ? 
+            - file upload ?
+        - Save/Export functionality
+            X button 
+            - as propietary format *.oie (format : JSON)
+            X as HTML (div, images, styles)
+            - Layer with position transform are not exported correctly
+            - Check rotation and scale export
+
+            - as image
+                - https://stackoverflow.com/questions/10721884/render-html-to-an-image
+                - https://www.npmjs.com/package/dom-to-image
+
+    X avoid calling methods in HTMl templates
         X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
         X use console.log in those functions to check how often is being used
-        / check other templates/methods 
+        X check other templates/methods 
             X remove getZindex() method and its use 
-            - left and top methods
-            
+            X left and top methods
+        
     X When any type of layer is duplicated...
         X trying to edit is not opening 
         X exporting not exporting cloned layers
@@ -73,22 +92,6 @@ To test it from another device
 
         - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
  
-        / Export (generate the JSON from the layers)
-            - New  
-                X button
-                - ask for confirmation when changesArePending
-            - Load 
-                X button
-                - copy/paste file content ? 
-                - file upload ?
-            - Save/Export functionality
-                X button 
-                - as propietary format *.oie (format : JSON)
-                X as HTML (div, images, styles)
-                - as image
-                    - https://stackoverflow.com/questions/10721884/render-html-to-an-image
-                    - https://www.npmjs.com/package/dom-to-image
-
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting the previous stored action (opposite)
     - how many steps back ?

@@ -36,11 +36,10 @@ export class FileService {
   buildLayerStyle(layer: BaseLayer) {
     let style = 'position: absolute;transform-origin: left top ;'
 
-    style += `left: ${layer.getLeftPx()}; ` ;
-    style += `top: ${layer.getTopPx()}; ` ;
+    style += `left: ${layer.left}px; ` ;
+    style += `top: ${layer.top}px; ` ;
     style += `z-index: ${layer.z_index}; ` ;
 
-    //verify transform
     if(layer.hasTransform())
     {
       style += `transform: ${layer.getTransform()}; ` ;
@@ -72,8 +71,8 @@ export class FileService {
     let title: string = this.currentDesign!.name ;
     let html = `<!DOCTYPE html><html lang="en"><head><title>${title}</title></head><body>` ;
     
-    this.layerService.getCurrentVisibleLayers().forEach(l => {
-      html += this.exportLayerToHTML(l) ;
+    this.layerService.getCurrentVisibleLayers().forEach(layer => {
+      html += this.exportLayerToHTML(layer) ;
     });
     
     html += "</body></html>" ;

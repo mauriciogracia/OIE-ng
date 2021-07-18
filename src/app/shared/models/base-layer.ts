@@ -8,10 +8,10 @@ export class BaseLayer {
     public type = LayerType.Undefined ;
     public name = '';
     
-    private left = 1 ;
-    private top = 1 ;
-    private deltaX = 0 ;
-    private deltaY = 0 ;
+    public left = 1 ;
+    public top = 1 ;
+    public deltaX = 0 ;
+    public deltaY = 0 ;
     public z_index = 0 ;
     public selected = false ;
     public visible = true ;
@@ -20,54 +20,10 @@ export class BaseLayer {
 
     constructor(){}
     
-    getInitialLeft():number {
-        return this.left ;
-    }
-
-    getInitialTop():number {
-        return this.top ;
-    }
-
-    getLeft():number {
-        return this.left + this.deltaX ;
-    }
-
-    getTop():number {
-        return this.top + this.deltaY;
-    }
-
-    getLeftPx():string {
-        return `${this.left}px` ;
-    }
-
-    getTopPx():string {
-        return `${this.top}px` ;
-    }
-
-    positionLayer(newLeft: number, newTop: number) {
-        /*
-        this.deltaX = newLeft - this.left ;
-        this.deltaY = newTop - this.top ; 
-        */
-        this.left = newLeft ;
-        this.top = newTop ;
-        this.deltaX = 0 ;
-        this.deltaY = 0 ;
-    }
     
-    moveLayer(dx: number, dy: number) {
-        /*
-        this.left += this.deltaX + dx ;
-        this.top += this.deltaY + dy;
-        this.deltaX = 0 ;
-        this.deltaY = 0 ; 
-        */
-        this.deltaX = dx ;
-        this.deltaY = dy ; 
-    }
     
     hasTransform() {
-        return ((this.scale != 1) || (this.rotation != 0)) ;
+        return ((this.scale != 1) || (this.rotation != 0) || (this.deltaX != 0) || (this.deltaY != 0))  ;
     }
     
     getTransform() {
@@ -83,12 +39,10 @@ export class BaseLayer {
             transform += `rotate(${this.rotation}deg) ` ;
         }
 
-        /*
         if((this.deltaX != 0) || (this.deltaY != 0))
         {
             transform += `translate(${this.deltaX}px, ${this.deltaY}px) ` ;
         }
-        */
         
         return transform ;
     }

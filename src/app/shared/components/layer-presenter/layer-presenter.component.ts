@@ -58,9 +58,9 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     for(let i=1; i < 22 ; i++) {
       const x = new TextLayer();
       x.text = `Text Layer - ${i} : - }`;
-      x.positionLayer(100+i*15,100+i*15) ;
-      x.name = "textLayer" ;
-      this.layerService.addLayer(x, notifyChanges) ;
+      x.name = `text_${i}` ;
+      let layerId = this.layerService.addLayer(x, notifyChanges) ;
+      this.layerService.positionLayer(layerId, 100+i*15,100+i*15) ;
     }
 
     this.layerService.notifyLayerChanges();
@@ -87,12 +87,9 @@ export class LayerPresenter implements OnInit, OnDestroy  {
   // https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
   // my question - https://stackoverflow.com/questions/68246400/dragging-and-positioning-elements-is-not-updating-model-as-expected-is-conflict
   layerDragEnded($event: CdkDragEnd) {
-    if(this.appSettings.selectLayerWhileDragging) {
-      let layerId = +$event.source.element.nativeElement.id ;
-      let layer = this.layerService.getLayerById(layerId)! ;
-      let position = $event.source.getFreeDragPosition() ;
+    let layerId = +$event.source.element.nativeElement.id ;
+    let position = $event.source.getFreeDragPosition() ;
 
-      layer.moveLayer(position.x, position.y) ;
-    }
+    this.layerService.moveLayer(layerId, position.x, position.y) ;
   }
 }

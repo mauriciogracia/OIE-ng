@@ -7,13 +7,35 @@ import { BaseLayer } from '../models/base-layer';
 })
 
 export class LayerService {
-  public version = "2021.07.17 - 08:30 pm" ;
+  public version = "2021.07.17 - 10:09 pm" ;
 
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
   private allLayersObs$: BehaviorSubject<BaseLayer[]> = new BehaviorSubject(this.layers);
 
   constructor() { }
+
+  positionLayer(layerId: number, newLeft: number, newTop: number) {
+    let layer = this.getLayerById(layerId) ;
+
+    if(layer) {
+      layer.left = newLeft ;
+      layer.top = newTop ;
+      layer.deltaX = 0 ;
+      layer.deltaY = 0 ;
+    }
+  }
+
+  moveLayer(layerId: number, dx: number, dy: number) {
+    let layer = this.getLayerById(layerId) ;
+
+    if(layer) {
+      layer.deltaX = dx ;
+      layer.deltaY = dy ; 
+    }
+
+    console.log({moveLayer: this.getLayerById(layerId)});
+  }
 
   hasLayers() {
     return (this.layers.length > 0) ;
@@ -60,11 +82,13 @@ export class LayerService {
     return Math.max(...this.layers.map(x => x.id),0)+1 ;
   }
 
-  addLayer(layer: BaseLayer, notifyChanges: boolean) {
+  addLayer(layer: BaseLayer, notifyChanges: boolean): number {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
     this.layers.push(layer) ;
     this.setSelectedLayer(layer, notifyChanges) ;
+
+    return layer.id ;
   }
 
   getLayerById(layerId: number): BaseLayer | undefined {
