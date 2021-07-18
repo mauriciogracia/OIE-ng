@@ -1,9 +1,6 @@
-To test it from another device
-    - using netlify - https://upbeat-wiles-102f43.netlify.app/
-    - using localhost
-        > ng s --host 0.0.0.0
-        - disable firewall / add rule 
-        - connect to 192.168.1.15:4200
+*******
+TODO
+*******
 
 / Azure
     X Activate free account
@@ -15,82 +12,64 @@ To test it from another device
     - Blob or media storage for image upload 
         - https://stackoverflow.com/questions/24810995/image-hosting-azure
 
-/ Layer Operations 
+/ At end of drag operation, updating layer position/transformations (moving by dialog and then dragging causes issues)
 
-    >> Export (generate the JSON from the layers)
-        - New  
-            X button
-            - ask for confirmation when changesArePending
-        - Load 
-            X button
-            - copy/paste file content ? 
-            - file upload ?
-        - Save/Export functionality
-            X button 
-            - as propietary format *.oie (format : JSON)
-            X as HTML (div, images, styles)
-            - Layer with position transform are not exported correctly
-            - Check rotation and scale export
+>> Export (generate the JSON from the layers)
+    / New  
+        X button
+        - ask for confirmation when changesArePending
+    - Load 
+        - button
+        - parse file without uploading - https://stackoverflow.com/questions/47581687/read-a-file-and-parse-its-content
+    - Save/Export functionality
+        X button 
+        - Export as propietary format *.oie (format : JSON)
+        X Export as HTML (div, images, styles)
+        X Layer with position transform are not exported correctly
+        - Check export for layers with rotation and scale 
 
-            - as image
-                - https://stackoverflow.com/questions/10721884/render-html-to-an-image
-                - https://www.npmjs.com/package/dom-to-image
+        - Export as image
+            - https://stackoverflow.com/questions/10721884/render-html-to-an-image
+            - https://www.npmjs.com/package/dom-to-image
 
-    X avoid calling methods in HTMl templates
-        X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
-        X use console.log in those functions to check how often is being used
-        X check other templates/methods 
-            X remove getZindex() method and its use 
-            X left and top methods
-        
-    X When any type of layer is duplicated...
-        X trying to edit is not opening 
-        X exporting not exporting cloned layers
-        * (instanceOf does not work on cloned )
+/ FIX Height of Vertical scrolling on layerList by using Flex
+    - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
-    / FIX Heighy Vertical scrolling on layerList by using Flex
-        - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
+- can you free hand paint over the existing layers ? (pencil, brushes) ?
 
-    - can you free hand paint over the existing layers ? (pencil, brushes) ?
+/ Add/Edit image layer (reuse dialog for edit)
+    X Add/Change image by URL (no need to host the file)
+    X Position (initial/relacote)
+    X Scale (initial/new scale)
+    / Rotate (initial/new scale)
 
-    / Dialogs
-        X Titles should be ADD or EDIT (not both)
-        / vertical size of dialog makes its use on mobile (landscape) imposible
-        - Validate data of Dialog forms (numeric fields, etc)
-        - Enter should trigger default blue button
+/ Add/Edit TextLayer 
+    X Text
+    X Position
+    X Layer name is the 10 characters of the text
+    - Scale
+    - Font
+    - Size 
+    - Color - https://www.npmjs.com/search?q=color%20picker
+    - Bold, Italic, Subrayado, Strike..etc
 
-    / At end of drag update layer position/transformations (movinh by dialog and then dragging causes issues)
-        - if this is not solved, allow only dragging of layer (not positioning by pixels ?!)
+/ Improvements for all Dialogs
+    X Titles should be ADD or EDIT (not both)
+    / vertical size of dialog makes its use on mobile (landscape) imposible
+    - Validate data of Dialog forms (numeric fields, etc)
+    - Enter should trigger default blue button ?
 
-    / Add/Edit image layer (reuse dialog for edit)
-        X Add/Change image by :
-            X URL (no need to host the file)
-            - uploading files
-        X Position (initial/relacote)
-        X Scale (initial/new scale)
-        / Rotate (initial/new scale)
+- Allow multiple selection to allow certain operations on that selection
 
-    / Add/Edit TextLayer 
-        X Text
-        X Position
-        X Layer name is the 10 characters of the text
-        - Scale
-        - Font
-        - Size 
-        - Color - https://www.npmjs.com/search?q=color%20picker
-        - Bold, Italic, Subrayado, Strike..etc
+- Toolbar buttons
+    / Settings button
+        - show/save settings to user
+        / layer can be dragged only when selected - setting 
+    - Flip vertical/horizontal (as toolbar button)
     
-    - Allow multiple selection to allow certain operations on that selection
-    
-    - Toolbar buttons
-        / Settings button
-            - show/save settings to user
-            / layer can be dragged only when selected - setting 
-        - Flip vertical/horizontal (as toolbar button)
-        
-        - Add tooltips to all buttons (mobile ?)
+    - Add tooltips to all buttons (mobile ?)
 
-        - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
+    - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
  
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting the previous stored action (opposite)
@@ -102,6 +81,19 @@ To test it from another device
 ********
   DONE
 ********
+X avoid calling methods in HTML templates
+    X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
+    X use console.log in those functions to check how often is being used
+    X check other templates/methods 
+        X remove getZindex() method and its use 
+        X left and top methods
+        X getTransform no longer used
+
+
+X When any type of layer is duplicated...
+    X trying to edit is not opening 
+    X exporting not exporting cloned layers
+    * (instanceOf does not work on cloned )
 
 X These Layer Operations
     X Move by dragging
@@ -136,6 +128,13 @@ X Host it on netlify and test it - https://docs.netlify.com/configure-builds/com
     - Desktop
     - Tablet
     - Cellphone
+
+To test it from another device
+    - using netlify - https://upbeat-wiles-102f43.netlify.app/
+    - using localhost
+        > ng s --host 0.0.0.0
+        - disable firewall / add rule 
+        - connect to 192.168.1.15:4200
 
 **********
 REFERENCES

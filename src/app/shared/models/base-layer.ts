@@ -17,33 +17,11 @@ export class BaseLayer {
     public visible = true ;
     public rotation = 0 ;
     public scale = 1 ;
+    public transform = '' ;
 
     constructor(){}
     
     
     
-    hasTransform() {
-        return ((this.scale != 1) || (this.rotation != 0) || (this.deltaX != 0) || (this.deltaY != 0))  ;
-    }
     
-    getTransform() {
-        let transform = '' ;
-
-        if(this.scale != 1)
-        {
-            transform += `scale(${this.scale}) ` ;
-        }
-
-        if(this.rotation != 0)
-        {
-            transform += `rotate(${this.rotation}deg) ` ;
-        }
-
-        if((this.deltaX != 0) || (this.deltaY != 0))
-        {
-            transform += `translate(${this.deltaX}px, ${this.deltaY}px) ` ;
-        }
-        
-        return transform ;
-    }
 }

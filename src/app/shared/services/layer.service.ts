@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LayerPresenter } from '../components/layer-presenter/layer-presenter.component';
 import { BaseLayer } from '../models/base-layer';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { BaseLayer } from '../models/base-layer';
 })
 
 export class LayerService {
-  public version = "2021.07.17 - 10:09 pm" ;
+  public version = "2021.07.17 - 11:07 pm" ;
 
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
@@ -32,9 +33,40 @@ export class LayerService {
     if(layer) {
       layer.deltaX = dx ;
       layer.deltaY = dy ; 
+      this.updateTransform(layer) ;
     }
+  }
 
-    console.log({moveLayer: this.getLayerById(layerId)});
+  hasTransform(layer:BaseLayer) {
+    return ((layer.scale != 1) || (layer.rotation != 0) || (layer.deltaX != 0) || (layer.deltaY != 0))  ;
+  }
+
+  updateTransform(layer:BaseLayer) {
+    let transform = undefined ;
+
+    if(!this.hasTransform(layer)) {
+      transform = 'none' ;
+    }
+    else {
+      transform = '' ;
+
+      if(layer.scale != 1)
+      {
+          transform += `scale(${layer.scale}) ` ;
+      }
+
+      if(layer.rotation != 0)
+      {
+          transform += `rotate(${layer.rotation}deg) ` ;
+      }
+
+      if((layer.deltaX != 0) || (layer.deltaY != 0))
+      {
+          transform += `translate(${layer.deltaX}px, ${layer.deltaY}px) ` ;
+      }
+    }
+    
+    layer.transform = transform ;
   }
 
   hasLayers() {

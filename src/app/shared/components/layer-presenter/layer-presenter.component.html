@@ -8,7 +8,7 @@
             (click)="selectLayerByClick(layer)"
             [style.left.px]="layer.left"
             [style.top.px]="layer.top"
-            [style.transform]="layer.getTransform()"
+            [style.transform]="layer.transform"
             [style.z-index]="layer.z_index"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
             [cdkDragDisabled]="!(layer.selected)"

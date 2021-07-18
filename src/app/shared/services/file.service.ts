@@ -39,11 +39,8 @@ export class FileService {
     style += `left: ${layer.left}px; ` ;
     style += `top: ${layer.top}px; ` ;
     style += `z-index: ${layer.z_index}; ` ;
+    style += `transform: ${layer.transform}; ` ;
 
-    if(layer.hasTransform())
-    {
-      style += `transform: ${layer.getTransform()}; ` ;
-    }
     style = `style="${style}"` ;
     
     return style ;
