@@ -19,6 +19,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { AddEditTextLayerComponent } from './shared/components/add-edit-text-layer/add-edit-text-layer.component';
 import { MatInputModule } from "@angular/material/input";
 import { FileSaverModule } from 'ngx-filesaver';
+import { FreeDraggingDirective } from './shared/free-dragging.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FileSaverModule } from 'ngx-filesaver';
     AddEditTextLayerComponent,
     LayerListComponent,
     CastTo,
+    FreeDraggingDirective,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { FileSaverModule } from 'ngx-filesaver';
     LayerService,
     NG_EVENT_PLUGINS
   ],
+  exports: [FreeDraggingDirective],
   bootstrap: [AppComponent],
   entryComponents: [
     AddEditImageLayerComponent,

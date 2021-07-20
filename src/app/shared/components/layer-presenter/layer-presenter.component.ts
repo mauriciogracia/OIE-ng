@@ -3,7 +3,7 @@ import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
 import { TextLayer } from '../../models/text-layer';
-import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
+import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
 import { AppSettings } from '../../models/app-settings';
 import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
@@ -78,18 +78,28 @@ export class LayerPresenter implements OnInit, OnDestroy  {
   layerDragStarted($event: CdkDragStart) {
     if(this.appSettings.selectLayerWhileDragging) {
       let layerId = +$event.source.element.nativeElement.id ;
+      let position = $event.source.getFreeDragPosition() ;
       const notifyChanges = true ;
       this.layerService.setSelectedLayerById(layerId, notifyChanges) ;
+
+      console.log({layerDragStarted:position}) ;
+      this.layerService.dragStart(layerId, position.x, position.y) ;
     }
   }
-
-  // https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag
-  // https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
-  // my question - https://stackoverflow.com/questions/68246400/dragging-and-positioning-elements-is-not-updating-model-as-expected-is-conflict
-  layerDragEnded($event: CdkDragEnd) {
+  
+  layerDragMoved($event: CdkDragMove) {
     let layerId = +$event.source.element.nativeElement.id ;
     let position = $event.source.getFreeDragPosition() ;
-
-    this.layerService.moveLayer(layerId, position.x, position.y) ;
+  
+    console.log({layerDragMoved:position}) ;
+    this.layerService.dragInProgress(layerId, position.x, position.y) ;
   }
+
+  layerDragEnded($event: CdkDragEnd) {
+    let layerId = +$event.source.element.nativeElement.id ;
+
+    this.layerService.dragEnd(layerId) ;
+  }
+
+  
 }

@@ -24,15 +24,39 @@ export class LayerService {
       layer.top = newTop ;
       layer.deltaX = 0 ;
       layer.deltaY = 0 ;
+      this.updateTransform(layer) ;
+   //   this.notifyLayerChanges() ;
     }
   }
 
-  moveLayer(layerId: number, dx: number, dy: number) {
+  dragStart(layerId: number, eventX: number, eventY: number) {
     let layer = this.getLayerById(layerId) ;
 
     if(layer) {
-      layer.deltaX = dx ;
-      layer.deltaY = dy ; 
+      layer.left = layer.left + eventX ;
+      layer.top = layer.top + eventY ;
+    }
+  }
+
+  dragInProgress(layerId: number, eventX: number, eventY: number) {
+    let layer = this.getLayerById(layerId) ;
+
+    if(layer) {
+      layer.deltaX += eventX ;
+      layer.deltaY += eventY ; 
+      this.updateTransform(layer) ;
+    }
+    
+  }
+
+  dragEnd(layerId: number) {
+    let layer = this.getLayerById(layerId) ;
+
+    if(layer) {
+      layer.left += layer.deltaX ;
+      layer.top += layer.deltaY ;
+      layer.deltaX = 0 ;
+      layer.deltaY = 0 ;
       this.updateTransform(layer) ;
     }
   }
@@ -42,7 +66,7 @@ export class LayerService {
   }
 
   updateTransform(layer:BaseLayer) {
-    let transform = undefined ;
+    let transform : string ;
 
     if(!this.hasTransform(layer)) {
       transform = 'none' ;
@@ -62,7 +86,7 @@ export class LayerService {
 
       if((layer.deltaX != 0) || (layer.deltaY != 0))
       {
-          transform += `translate(${layer.deltaX}px, ${layer.deltaY}px) ` ;
+          transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0) ` ;
       }
     }
     
