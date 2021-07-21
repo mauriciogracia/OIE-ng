@@ -16,14 +16,19 @@ export class LayerListComponent implements OnInit, OnDestroy {
   layers: BaseLayer[] = [] ;
   unsubscribeFromAllLayersObs$: Subject<boolean> = new Subject();
 
-  constructor(private layerService : LayerService) { }
+  constructor(
+    private layerService : LayerService
+    ) { }
   
 
   ngOnInit(): void {
     this.isCompactMode = this.CompactMode ;
     this.layerService.getAllLayersObs()
     .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
-    .subscribe(layersFromService => {this.layers = layersFromService ; console.log("layer list refreshed")});
+    .subscribe(layersFromService => {
+      this.layers = layersFromService ; 
+      console.log("layer list refreshed")
+    });
   }
 
   ngOnDestroy(): void {

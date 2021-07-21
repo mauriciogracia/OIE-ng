@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LayerPresenter } from '../components/layer-presenter/layer-presenter.component';
 import { BaseLayer } from '../models/base-layer';
 
 @Injectable({
@@ -19,78 +18,95 @@ export class LayerService {
   positionLayer(layerId: number, newLeft: number, newTop: number) {
     let layer = this.getLayerById(layerId) ;
 
+    console.log("trying updating HTML node:"+ layerId);
     if(layer) {
       layer.left = newLeft ;
       layer.top = newTop ;
       layer.deltaX = 0 ;
       layer.deltaY = 0 ;
-      this.updateTransform(layer) ;
-   //   this.notifyLayerChanges() ;
+
+      if(layer.nativeElement) 
+      {
+        console.log("nativeElementfound");
+        this.updateTransform(layer.id, layer.nativeElement) ;
+        console.log({positionLayer: this.getLayerById(layerId)});
+      }
     }
   }
 
-  dragStart(layerId: number, eventX: number, eventY: number) {
+  moveLayer(layerId: number, dx: number, dy: number, nativeElement: HTMLElement) {
+    let layer = this.getLayerById(layerId) ;
+
+    console.log(`moveLayer:${layerId},${dx},${dy}`) ;
+    if(layer) {
+      layer.deltaX = dx ;
+      layer.deltaY = dy ;
+      this.updateTransform(layer.id, nativeElement) ;
+    }
+  }
+
+  /*
+  linkHtmlNodesToLayers(elementRef: ElementRef) {
+    console.log("linkHtmlNodesToLayers");
+    this.getCurrentVisibleLayers().forEach(vl => {
+      let e = elementRef.nativeElement.querySelector(`#${vl.divId}`);
+      vl.nativeElement = e;
+      this.updateTransform(vl.id) ;
+      console.log({vl:vl,e:e});
+    });
+  }
+  */
+
+  /*
+  linkNativeElementToLayer(layerId: number, elementRef: ElementRef){
     let layer = this.getLayerById(layerId) ;
 
     if(layer) {
-      layer.left = layer.left + eventX ;
-      layer.top = layer.top + eventY ;
+      layer.nativeElement = elementRef.nativeElement.querySelector(`#div_${layerId}`);
     }
   }
-
-  dragInProgress(layerId: number, eventX: number, eventY: number) {
-    let layer = this.getLayerById(layerId) ;
-
-    if(layer) {
-      layer.deltaX += eventX ;
-      layer.deltaY += eventY ; 
-      this.updateTransform(layer) ;
-    }
-    
-  }
-
-  dragEnd(layerId: number) {
-    let layer = this.getLayerById(layerId) ;
-
-    if(layer) {
-      layer.left += layer.deltaX ;
-      layer.top += layer.deltaY ;
-      layer.deltaX = 0 ;
-      layer.deltaY = 0 ;
-      this.updateTransform(layer) ;
-    }
-  }
+  */
 
   hasTransform(layer:BaseLayer) {
     return ((layer.scale != 1) || (layer.rotation != 0) || (layer.deltaX != 0) || (layer.deltaY != 0))  ;
   }
 
-  updateTransform(layer:BaseLayer) {
+  updateTransform(layerId: number, nativeElement: HTMLElement) {
+    let layer = this.getLayerById(layerId) ;
     let transform : string ;
 
-    if(!this.hasTransform(layer)) {
-      transform = 'none' ;
+    if(layer) {
+      if(!this.hasTransform(layer)) {
+        transform = 'none' ;
+      }
+      else {
+        transform = '' ;
+
+        if(layer.scale != 1)
+        {
+            transform += `scale(${layer.scale}) ` ;
+        }
+
+        if(layer.rotation != 0)
+        {
+            transform += `rotate(${layer.rotation}deg) ` ;
+        }
+
+        if((layer.deltaX != 0) || (layer.deltaY != 0))
+        {
+            transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0) ` ;
+        }
+      }
+      layer.transform = transform ;
+      layer.nativeElement = nativeElement ;
+
+      if(layer.nativeElement) {
+        layer.nativeElement.style.transform = transform ;
+      }
+      else {
+        console.log("div not linked") ;
+      }
     }
-    else {
-      transform = '' ;
-
-      if(layer.scale != 1)
-      {
-          transform += `scale(${layer.scale}) ` ;
-      }
-
-      if(layer.rotation != 0)
-      {
-          transform += `rotate(${layer.rotation}deg) ` ;
-      }
-
-      if((layer.deltaX != 0) || (layer.deltaY != 0))
-      {
-          transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0) ` ;
-      }
-    }
-    
-    layer.transform = transform ;
   }
 
   hasLayers() {
@@ -101,6 +117,7 @@ export class LayerService {
     this.allLayersObs$.next(this.layers) ;
   }
 
+  
   clearLayers(notifyChanges: boolean) {
     this.layers = [] ;
     
@@ -141,9 +158,9 @@ export class LayerService {
   addLayer(layer: BaseLayer, notifyChanges: boolean): number {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
+    layer.divId = `div_${layer.id}` ;
     this.layers.push(layer) ;
     this.setSelectedLayer(layer, notifyChanges) ;
-
     return layer.id ;
   }
 

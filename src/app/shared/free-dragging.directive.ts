@@ -2,20 +2,22 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, Inject, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { LayerService } from './services/layer.service';
 
 @Directive({
   selector: '[appFreeDragging]'
 })
 export class FreeDraggingDirective implements OnInit, OnDestroy {
-  private element: HTMLElement ;
+  private nativeElement: HTMLElement ;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private elementRef: ElementRef,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    private layerService: LayerService
   ) {
-    this.element = this.elementRef.nativeElement as HTMLElement;
+    this.nativeElement = this.elementRef.nativeElement as HTMLElement;
   }
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
   }
 
   initDrag(): void {
-    const dragStart$ = fromEvent<MouseEvent>(this.element, "mousedown");
+    const dragStart$ = fromEvent<MouseEvent>(this.nativeElement, "mousedown");
     const dragEnd$ = fromEvent<MouseEvent>(this.document, "mouseup");
     const drag$ = fromEvent<MouseEvent>(this.document, "mousemove").pipe(
       takeUntil(dragEnd$)
@@ -42,17 +44,19 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
       initialY = event.clientY - currentY;
 
       //TODO shadow effect -> change to graying out the element ?
-      this.element.classList.add('free-dragging');
+      this.nativeElement.classList.add('free-dragging');
 
       // 4
       dragSub = drag$.subscribe((event: MouseEvent) => {
         event.preventDefault();
-
+        
         currentX = event.clientX - initialX;
         currentY = event.clientY - initialY;
 
-        this.element.style.transform =
-          "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+        //slip the 'div_' prefix to get the layerId
+        let layerId = +this.nativeElement.id.substring(4,this.nativeElement.id.length) ;
+        this.layerService.moveLayer(layerId,currentX, currentY, this.nativeElement) ;
+        //this.nativeElement.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
       });
     });
 
@@ -60,7 +64,8 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
     const dragEndSub = dragEnd$.subscribe(() => {
       initialX = currentX;
       initialY = currentY;
-      this.element.classList.remove('free-dragging');
+
+      this.nativeElement.classList.remove('free-dragging');
       if (dragSub) {
         dragSub.unsubscribe();
       }
@@ -75,6 +80,6 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((s) => s.unsubscribe());
+    this.subscriptions.forEach((s) => s?.unsubscribe());
   }
 }

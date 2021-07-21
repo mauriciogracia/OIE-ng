@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
 import { TextLayer } from '../../models/text-layer';
-import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop/drag-events';
 import { AppSettings } from '../../models/app-settings';
 import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
@@ -29,13 +28,14 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     private fileService : FileService,
     private appSettings: AppSettings) { }
 
-
-
   ngOnInit(): void {
     this.addDemoLayers() ;
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
-      .subscribe(layersFromService => {this.visibleLayers = layersFromService.filter(l => l.visible); console.log("layer presenter refreshed")})
+      .subscribe(layersFromService => {
+        this.visibleLayers = layersFromService.filter(l => l.visible); 
+        console.log("layer presenter refreshed");
+      });
   }
 
   ngOnDestroy(): void {
@@ -74,32 +74,4 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     const notifyChanges = true ;
     this.layerService.setSelectedLayer(layer, notifyChanges) ;
   }
-
-  layerDragStarted($event: CdkDragStart) {
-    if(this.appSettings.selectLayerWhileDragging) {
-      let layerId = +$event.source.element.nativeElement.id ;
-      let position = $event.source.getFreeDragPosition() ;
-      const notifyChanges = true ;
-      this.layerService.setSelectedLayerById(layerId, notifyChanges) ;
-
-      console.log({layerDragStarted:position}) ;
-      this.layerService.dragStart(layerId, position.x, position.y) ;
-    }
-  }
-  
-  layerDragMoved($event: CdkDragMove) {
-    let layerId = +$event.source.element.nativeElement.id ;
-    let position = $event.source.getFreeDragPosition() ;
-  
-    console.log({layerDragMoved:position}) ;
-    this.layerService.dragInProgress(layerId, position.x, position.y) ;
-  }
-
-  layerDragEnded($event: CdkDragEnd) {
-    let layerId = +$event.source.element.nativeElement.id ;
-
-    this.layerService.dragEnd(layerId) ;
-  }
-
-  
 }

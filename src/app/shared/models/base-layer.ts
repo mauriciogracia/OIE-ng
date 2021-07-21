@@ -5,6 +5,7 @@ export enum LayerType {
 }
 export class BaseLayer {
     public id = 0;
+    public divId: string = `div_${this.id}`
     public type = LayerType.Undefined ;
     public name = '';
     
@@ -18,7 +19,8 @@ export class BaseLayer {
     public rotation = 0 ;
     public scale = 1 ;
     public transform = '' ;
-
+    public nativeElement: HTMLElement | undefined;
+    
     constructor(){}
     
     

@@ -1,13 +1,12 @@
 <scrollbar class="layers" >
     <div #divLayers *ngFor="let layer of visibleLayers">
         <div 
-            id={{layer.id}}
+            id={{layer.divId}}
             class = "floatLayer" 
             appFreeDragging
             (click)="selectLayerByClick(layer)"
             [style.left.px]="layer.left"
             [style.top.px]="layer.top"
-            [style.transform]="layer.transform"
             [style.z-index]="layer.z_index"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
         >

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ImageLayer } from '../../models/image-layer';
 import { MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';

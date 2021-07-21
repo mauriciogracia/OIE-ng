@@ -16,7 +16,6 @@ TODO
     - https://indepth.dev/posts/1396/drag-drop-directive
     - https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag
     - https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
-    - my question - https://stackoverflow.com/questions/68246400/dragging-and-positioning-elements-is-not-updating-model-as-expected-is-conflict
 
 >> Export (generate the JSON from the layers)
     / New  
