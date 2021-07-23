@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ImageLayer } from '../../models/image-layer';
 import { LayerService } from '../../services/layer.service';
 import { BaseLayer, LayerType } from '../../models/base-layer';
@@ -14,22 +14,26 @@ import { Subject } from 'rxjs';
   templateUrl: './layer-presenter.component.html',
   styleUrls: ['./layer-presenter.component.css']
 })
-export class LayerPresenter implements OnInit, OnDestroy  {
+export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   /* this is done to make the types visible to the template/html*/
   layerType = LayerType ;
   imageLayer = ImageLayer ;
   textLayer = TextLayer ;
 
+  numDemoLayers = 22 ;
   visibleLayers : BaseLayer[] = [] ;
   unsubscribeFromAllLayersObs$: Subject<boolean> = new Subject();
   
   constructor(
     private layerService : LayerService, 
     private fileService : FileService,
-    private appSettings: AppSettings) { }
+    private appSettings: AppSettings,
+    private elementRef : ElementRef
+    ) { }
 
   ngOnInit(): void {
     this.addDemoLayers() ;
+    this.positionDemoLayers() ;
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
       .subscribe(layersFromService => {
@@ -38,9 +42,49 @@ export class LayerPresenter implements OnInit, OnDestroy  {
       });
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribeFromAllLayersObs$.next(true);
-    this.unsubscribeFromAllLayersObs$.complete();
+  ngAfterViewInit(): void {
+    this.linkDivToLayers() ;
+  }
+
+  linkDivToLayers() {
+    //TODO watch out, since when a layer becomes visible its div will not be linked 
+    console.log('linkDivToLayers') ;
+    this.layerService.getCurrentVisibleLayers().forEach(layer => { layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) }) ;
+  }
+
+  positionDemoLayers() {
+    for(let i = 2; i <= this.numDemoLayers ; i++) {
+      this.positionLayer(i, 100+i*15,100+i*15) ;
+    }
+  }
+  
+  getHtmlNodeByLayerid(layerId: number):HTMLElement | null {
+    const ne = this.elementRef.nativeElement as HTMLElement ;
+    return ne.querySelector(`#div_${layerId}`) as HTMLElement;
+  }
+
+  positionLayer(layerId: number, newLeft: number, newTop: number) {
+    let layer = this.layerService.getLayerById(layerId) ;
+
+    if(layer) {
+      layer.left = newLeft ;
+      layer.top = newTop ;
+      layer.deltaX = 0 ;
+      layer.deltaY = 0 ;
+
+      this.layerService.updateTransform(layer) ;
+    }
+  }
+
+  moveLayer(layerId: number, dx: number, dy: number) {
+    let layer = this.layerService.getLayerById(layerId) ;
+
+    //debug console.log(`moveLayer:${layerId},${dx},${dy}`) ;
+    if(layer) {
+      layer.deltaX = dx ;
+      layer.deltaY = dy ;
+      this.layerService.updateTransform(layer) ;
+    }
   }
 
   addDemoLayers() {
@@ -55,12 +99,11 @@ export class LayerPresenter implements OnInit, OnDestroy  {
     
     this.layerService.addLayer(imgLayer,notifyChanges) ;
 
-    for(let i=1; i < 22 ; i++) {
+    for(let i = 2; i <= this.numDemoLayers ; i++) {
       const x = new TextLayer();
       x.text = `Text Layer - ${i} : - }`;
       x.name = `text_${i}` ;
       let layerId = this.layerService.addLayer(x, notifyChanges) ;
-      this.layerService.positionLayer(layerId, 100+i*15,100+i*15) ;
     }
 
     this.layerService.notifyLayerChanges();
@@ -73,5 +116,10 @@ export class LayerPresenter implements OnInit, OnDestroy  {
   selectLayerByClick(layer: BaseLayer) {
     const notifyChanges = true ;
     this.layerService.setSelectedLayer(layer, notifyChanges) ;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeFromAllLayersObs$.next(true);
+    this.unsubscribeFromAllLayersObs$.complete();
   }
 }

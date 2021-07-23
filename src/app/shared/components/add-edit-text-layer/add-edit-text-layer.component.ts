@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA,MatDialogRef} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
 import { TextLayer } from '../../models/text-layer';
+import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
 
 @Component({
   selector: 'app-add-edit-layer',
@@ -18,7 +19,8 @@ export class AddEditTextLayerComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditTextLayerComponent>,
     @Inject(MAT_DIALOG_DATA) private data: TextLayer,
-    private layerService : LayerService
+    private layerService : LayerService,
+    private layerPresenter: LayerPresenter
     ) {}
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class AddEditTextLayerComponent implements OnInit {
       layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
     
-    this.layerService.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
+    this.layerPresenter.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     this.close() ;
   }

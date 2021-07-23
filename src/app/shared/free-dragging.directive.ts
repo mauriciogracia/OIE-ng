@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, Inject, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { LayerPresenter } from './components/layer-presenter/layer-presenter.component';
 import { LayerService } from './services/layer.service';
 
 @Directive({
@@ -15,7 +16,7 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
   constructor(
     private elementRef: ElementRef,
     @Inject(DOCUMENT) private document: any,
-    private layerService: LayerService
+    private layerPresenter : LayerPresenter
   ) {
     this.nativeElement = this.elementRef.nativeElement as HTMLElement;
   }
@@ -25,6 +26,7 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
   }
 
   initDrag(): void {
+    let isDragging = false ;
     const dragStart$ = fromEvent<MouseEvent>(this.nativeElement, "mousedown");
     const dragEnd$ = fromEvent<MouseEvent>(this.document, "mouseup");
     const drag$ = fromEvent<MouseEvent>(this.document, "mousemove").pipe(
@@ -42,21 +44,23 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
     const dragStartSub = dragStart$.subscribe((event: MouseEvent) => {
       initialX = event.clientX - currentX;
       initialY = event.clientY - currentY;
-
+      isDragging = true ;
       //TODO shadow effect -> change to graying out the element ?
       this.nativeElement.classList.add('free-dragging');
 
       // 4
       dragSub = drag$.subscribe((event: MouseEvent) => {
-        event.preventDefault();
-        
-        currentX = event.clientX - initialX;
-        currentY = event.clientY - initialY;
+        if(isDragging) {
+          event.preventDefault();
+          
+          currentX = event.clientX - initialX;
+          currentY = event.clientY - initialY;
 
-        //slip the 'div_' prefix to get the layerId
-        let layerId = +this.nativeElement.id.substring(4,this.nativeElement.id.length) ;
-        this.layerService.moveLayer(layerId,currentX, currentY, this.nativeElement) ;
-        //this.nativeElement.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+          //skip the 'div_' prefix to get the layerId
+          let layerId = +this.nativeElement.id.substring(4,this.nativeElement.id.length) ;
+          this.layerPresenter.moveLayer(layerId, currentX, currentY);
+          //this.layerPresenter.moveLayer(layerId,currentX, currentY, this.nativeElement) ;
+        }
       });
     });
 
@@ -69,6 +73,8 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
       if (dragSub) {
         dragSub.unsubscribe();
       }
+
+      isDragging = false ;
     });
 
     // 6

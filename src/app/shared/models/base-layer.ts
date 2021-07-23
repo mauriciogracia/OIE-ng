@@ -19,7 +19,7 @@ export class BaseLayer {
     public rotation = 0 ;
     public scale = 1 ;
     public transform = '' ;
-    public nativeElement: HTMLElement | undefined;
+    public nativeElement: HTMLElement | null = null ;
     
     constructor(){}
     

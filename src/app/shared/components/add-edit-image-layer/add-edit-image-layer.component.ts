@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ImageLayer } from '../../models/image-layer';
 import { MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
+import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
 
 @Component({
   selector: 'app-add-edit-image-layer',
@@ -19,7 +20,8 @@ export class AddEditImageLayerComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditImageLayerComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private layerService : LayerService
+    private layerService : LayerService,
+    private layerPresenter: LayerPresenter,
     ) { }
 
   ngOnInit(): void {
@@ -74,7 +76,7 @@ export class AddEditImageLayerComponent implements OnInit {
       layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
 
-    this.layerService.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
+    this.layerPresenter.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
    
     this.close() ;
   }
@@ -86,7 +88,6 @@ export class AddEditImageLayerComponent implements OnInit {
   handleFileInput(event:any) {
     const files = event.target.files ;
     this.fileToUpload = files.item(0) ;
-    console.log({fileToUpload:this.fileToUpload}) ;
   }
 
 }

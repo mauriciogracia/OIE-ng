@@ -46,7 +46,8 @@ import { FreeDraggingDirective } from './shared/free-dragging.directive';
   ],
   providers: [
     LayerService,
-    NG_EVENT_PLUGINS
+    NG_EVENT_PLUGINS,
+    LayerPresenter
   ],
   exports: [FreeDraggingDirective],
   bootstrap: [AppComponent],
