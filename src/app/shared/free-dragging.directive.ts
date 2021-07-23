@@ -16,7 +16,8 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
   constructor(
     private elementRef: ElementRef,
     @Inject(DOCUMENT) private document: any,
-    private layerPresenter : LayerPresenter
+    private layerPresenter : LayerPresenter,
+    private layerService: LayerService
   ) {
     this.nativeElement = this.elementRef.nativeElement as HTMLElement;
   }
@@ -33,6 +34,10 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
       takeUntil(dragEnd$)
     );
 
+    //skip the 'div_' prefix to get the layerId
+    let layerId = +this.nativeElement.id.substring(4,this.nativeElement.id.length) ;
+    let layer = this.layerService.getLayerById(layerId)! ;
+    
     let initialX: number,
       initialY: number,
       currentX = 0,
@@ -42,8 +47,12 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
 
     // 3
     const dragStartSub = dragStart$.subscribe((event: MouseEvent) => {
-      initialX = event.clientX - currentX;
-      initialY = event.clientY - currentY;
+      console.log({id: layerId, cx: currentX, cy:currentY}); 
+
+      let idx = layer.deltaX ;
+      let idy = layer.deltaY ;
+      initialX = event.clientX - currentX ;
+      initialY = event.clientY - currentY ;
       isDragging = true ;
       //TODO shadow effect -> change to graying out the element ?
       this.nativeElement.classList.add('free-dragging');
@@ -53,13 +62,10 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
         if(isDragging) {
           event.preventDefault();
           
-          currentX = event.clientX - initialX;
-          currentY = event.clientY - initialY;
+          currentX = event.clientX - initialX + idx;
+          currentY = event.clientY - initialY + idy;
 
-          //skip the 'div_' prefix to get the layerId
-          let layerId = +this.nativeElement.id.substring(4,this.nativeElement.id.length) ;
           this.layerPresenter.moveLayer(layerId, currentX, currentY);
-          //this.layerPresenter.moveLayer(layerId,currentX, currentY, this.nativeElement) ;
         }
       });
     });

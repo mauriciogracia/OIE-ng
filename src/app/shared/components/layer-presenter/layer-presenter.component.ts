@@ -33,7 +33,6 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
 
   ngOnInit(): void {
     this.addDemoLayers() ;
-    this.positionDemoLayers() ;
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
       .subscribe(layersFromService => {
@@ -43,7 +42,9 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   }
 
   ngAfterViewInit(): void {
+    
     this.linkDivToLayers() ;
+    this.positionDemoLayers() ;
   }
 
   linkDivToLayers() {
@@ -65,15 +66,20 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
 
   positionLayer(layerId: number, newLeft: number, newTop: number) {
     let layer = this.layerService.getLayerById(layerId) ;
-
+    
+    if(layer) {
+      this.moveLayer(layerId, newLeft - layer.left, newTop - layer.top) ;
+    }
+    /*
     if(layer) {
       layer.left = newLeft ;
       layer.top = newTop ;
+      layer.prev_deltaX = layer.deltaX ;
+      layer.prev_deltaY = layer.deltaY ;
       layer.deltaX = 0 ;
       layer.deltaY = 0 ;
-
       this.layerService.updateTransform(layer) ;
-    }
+    }*/
   }
 
   moveLayer(layerId: number, dx: number, dy: number) {

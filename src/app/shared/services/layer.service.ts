@@ -19,6 +19,10 @@ export class LayerService {
     return ((layer.scale != 1) || (layer.rotation != 0) || (layer.deltaX != 0) || (layer.deltaY != 0))  ;
   }
 
+  logTransform(layer: BaseLayer) {
+    console.log({transform: layer.transform, divStyle: layer.nativeElement?.style.cssText}) ;
+  }
+
   updateTransform(layer: BaseLayer) {
     let transform : string ;
 
@@ -39,7 +43,7 @@ export class LayerService {
             transform += `rotate(${layer.rotation}deg) ` ;
         }
 
-        transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0) ` ;
+        transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0px) ` ;
       }
     
       //is not used for painting only for exporting purposes
@@ -47,7 +51,10 @@ export class LayerService {
 
       if(layer.nativeElement) {
         layer.nativeElement.style.transform = transform ;
+        //console.log({updatedTo:layer.nativeElement.style.transform}) ;
       }
+
+      this.logTransform(layer) ;
     }
   }
 
