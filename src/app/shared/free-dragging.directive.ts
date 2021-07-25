@@ -49,8 +49,6 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
     const dragStartSub = dragStart$.subscribe((event: MouseEvent) => {
       console.log({id: layerId, cx: currentX, cy:currentY}); 
 
-      let idx = layer.deltaX ;
-      let idy = layer.deltaY ;
       initialX = event.clientX - currentX ;
       initialY = event.clientY - currentY ;
       isDragging = true ;
@@ -62,8 +60,8 @@ export class FreeDraggingDirective implements OnInit, OnDestroy {
         if(isDragging) {
           event.preventDefault();
           
-          currentX = event.clientX - initialX + idx;
-          currentY = event.clientY - initialY + idy;
+          currentX = event.clientX - initialX ;
+          currentY = event.clientY - initialY ;
 
           this.layerPresenter.moveLayer(layerId, currentX, currentY);
         }

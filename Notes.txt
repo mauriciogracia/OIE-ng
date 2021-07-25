@@ -2,6 +2,27 @@
 TODO
 *******
 
+
+
+
+
+
+CREATE A NEW BRANCH WITH THIS CUSTOM FREE DRAGGING CODE 
+
+COMPARE TO CDKDRAGGIN CODE/BEHAVIOUR TO DECIDE WHERE TO CONTINUE
+
+
+
+
+
+
+
+
+
+
+
+
+
 / Azure
     X Activate free account
     X Deploy from local env to azure web app - https://www.c-sharpcorner.com/article/easily-deploy-angular-app-to-azure-from-visual-studio-code/
