@@ -8,6 +8,7 @@ import { Design } from '../../models/design';
 import { FileService } from '../../services/file.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-layer-presenter',
@@ -79,7 +80,6 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   moveLayer(layerId: number, dx: number, dy: number) {
     let layer = this.layerService.getLayerById(layerId) ;
 
-    //debug console.log(`moveLayer:${layerId},${dx},${dy}`) ;
     if(layer) {
       layer.deltaX = dx ;
       layer.deltaY = dy ;
@@ -103,7 +103,7 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
       const x = new TextLayer();
       x.text = `Text Layer - ${i} : - }`;
       x.name = `text_${i}` ;
-      let layerId = this.layerService.addLayer(x, notifyChanges) ;
+      this.layerService.addLayer(x, notifyChanges) ;
     }
 
     this.layerService.notifyLayerChanges();
@@ -116,6 +116,22 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   selectLayerByClick(layer: BaseLayer) {
     const notifyChanges = true ;
     this.layerService.setSelectedLayer(layer, notifyChanges) ;
+  }
+
+  layerDragStarted($event: CdkDragStart) {
+    let layerId = BaseLayer.getIdFromDivId($event.source.element.nativeElement.id) ;
+
+    if(this.appSettings.selectLayerWhileDragging) {
+      const notifyChanges = true ;
+      this.layerService.setSelectedLayerById(layerId, notifyChanges) 
+    }
+  }
+
+  layerDragHappening($event: CdkDragEnd | CdkDragMove) {
+    let layerId = this.layerService.getSelectedLayer()!.id ;
+    let position = $event.source.getFreeDragPosition() ;
+
+    this.moveLayer(layerId, position.x, position.y) ;
   }
 
   ngOnDestroy(): void {

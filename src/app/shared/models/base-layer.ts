@@ -5,7 +5,7 @@ export enum LayerType {
 }
 export class BaseLayer {
     public id = 0;
-    public divId: string = `div_${this.id}`
+    public get divId() { return `div_${this.id}`}
     public type = LayerType.Undefined ;
     public name = '';
     
@@ -20,8 +20,18 @@ export class BaseLayer {
     public scale = 1 ;
     public transform = '' ;
     public nativeElement: HTMLElement | null = null ;
-    
+
     constructor(){}
+
+    public get currentPosition() {
+        return `${this.left+this.deltaX},${this.top+this.deltaY}`
+    }
+
+    public static getIdFromDivId(divId : string) {
+        return +(divId.substring(4,divId.length)) ;
+    }
+    
+    
     
     
     

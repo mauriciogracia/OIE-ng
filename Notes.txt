@@ -2,26 +2,9 @@
 TODO
 *******
 
-
-
-
-
-
-CREATE A NEW BRANCH WITH THIS CUSTOM FREE DRAGGING CODE 
-
-COMPARE TO CDKDRAGGIN CODE/BEHAVIOUR TO DECIDE WHERE TO CONTINUE
-
-
-
-
-
-
-
-
-
-
-
-
+- When editing a layer, dont allow position to be edited
+    - hide the controls
+    - disable the controls 
 
 / Azure
     X Activate free account
@@ -32,11 +15,6 @@ COMPARE TO CDKDRAGGIN CODE/BEHAVIOUR TO DECIDE WHERE TO CONTINUE
         - https://www.azuredevopslabs.com/labs/azuredevops/github-integration/
     - Blob or media storage for image upload 
         - https://stackoverflow.com/questions/24810995/image-hosting-azure
-
-/ At end of drag operation, updating layer position/transformations (moving by dialog and then dragging causes issues)
-    - https://indepth.dev/posts/1396/drag-drop-directive
-    - https://stackoverflow.com/questions/54449939/how-to-get-the-position-after-drop-with-cdkdrag
-    - https://stackoverflow.com/questions/22091733/dynamically-transform-in-css-using-ng-style
 
 >> Export (generate the JSON from the layers)
     / New  

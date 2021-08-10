@@ -2,13 +2,16 @@
     <div #divLayers *ngFor="let layer of visibleLayers">
         <div 
             id={{layer.divId}}
-            class = "floatLayer" 
-            appFreeDragging
+            class = "floatLayer" cdkDrag
+            (cdkDragStarted)="layerDragStarted($event)"
+            (cdkDragMoved)="layerDragHappening($event)"
             (click)="selectLayerByClick(layer)"
+            matTooltip={{layer.currentPosition}}
             [style.left.px]="layer.left"
             [style.top.px]="layer.top"
             [style.z-index]="layer.z_index"
             [style.outline]="(layer.selected) ? 'dashed 1px red':''"
+            [cdkDragDisabled]="!(layer.selected)"
         >
             <span *ngIf="(layer.type === layerType.Text)" style="white-space: nowrap;">
                 {{(layer | castTo: textLayer).text}}

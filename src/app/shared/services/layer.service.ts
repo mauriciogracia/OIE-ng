@@ -107,7 +107,6 @@ export class LayerService {
   addLayer(layer: BaseLayer, notifyChanges: boolean): number {
     layer.z_index = this.getNewLayerDepthIndex() ;
     layer.id = this.getNewLayerId() ;
-    layer.divId = `div_${layer.id}` ;
     this.layers.push(layer) ;
     this.setSelectedLayer(layer, notifyChanges) ;
     return layer.id ;
@@ -119,6 +118,10 @@ export class LayerService {
 
   anyLayerSelected() {
     return (this.selectedLayerId !== -1) ;
+  }
+
+  isLayerSelected(layerId: number) {
+    return (this.anyLayerSelected) && (layerId == this.selectedLayerId); 
   }
 
   unselectPreviousLayer(notifyChanges: boolean) {
