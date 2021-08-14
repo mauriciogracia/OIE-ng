@@ -1,10 +1,10 @@
 *******
 TODO
 *******
+- Show tooltip on top (not below)
 
 - When editing a layer, dont allow position to be edited
-    - hide the controls
-    - disable the controls 
+    - hide or disable the position controls
 
 / Azure
     X Activate free account

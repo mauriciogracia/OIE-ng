@@ -7,6 +7,7 @@
             (cdkDragMoved)="layerDragHappening($event)"
             (click)="selectLayerByClick(layer)"
             matTooltip={{layer.currentPosition}}
+            matTooltipPosition="above"
             [style.left.px]="layer.left"
             [style.top.px]="layer.top"
             [style.z-index]="layer.z_index"
