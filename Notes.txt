@@ -1,10 +1,9 @@
 *******
 TODO
 *******
-- Show tooltip on top (not below)
 
-- When editing a layer, dont allow position to be edited
-    - hide or disable the position controls
+/ When editing a layer, dont allow position to be edited
+    - disable the position controls
 
 / Azure
     X Activate free account
@@ -83,6 +82,12 @@ TODO
 ********
   DONE
 ********
+X Make wider the numeric input controls
+
+X Show tooltip on top (not below)
+
+X Fix scrolling issue when showing tooltip and dragging
+
 X avoid calling methods in HTML templates
     X Use observable for getLayers() list - https://angular.io/guide/observables-in-angular
     X use console.log in those functions to check how often is being used
