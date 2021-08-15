@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ImageLayer } from '../../models/image-layer';
 import { MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
-import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-add-edit-image-layer',
@@ -21,7 +21,7 @@ export class AddEditImageLayerComponent implements OnInit {
     private dialogRef: MatDialogRef<AddEditImageLayerComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private layerService : LayerService,
-    private layerPresenter: LayerPresenter,
+    private dialogService: DialogService,
     ) { }
 
   ngOnInit(): void {
@@ -36,9 +36,7 @@ export class AddEditImageLayerComponent implements OnInit {
 
     if(this.isEditing) {
       let imgLayer : ImageLayer = this.data as ImageLayer;
-      this.addEditImageLayerForm.patchValue(imgLayer) ;
-      this.addEditImageLayerForm!.controls['left'].setValue(imgLayer.left + imgLayer.deltaX) ;
-      this.addEditImageLayerForm!.controls['top'].setValue(imgLayer.top + imgLayer.deltaY) ;
+      this.dialogService.showCurrentLayerData(imgLayer, this.addEditImageLayerForm) ;
     }
     else 
     {
@@ -47,38 +45,16 @@ export class AddEditImageLayerComponent implements OnInit {
   }
 
   save() {
-    let layer : ImageLayer ;
-    let layerId = -1 ;
-
-    if(this.isEditing) {
-      layer = this.data ;
-      layerId = layer.id ;
-    }
-    else {
-      layer = new ImageLayer() ;
-    }
-    //When an existing layer is selected updating the layer data is enough
-    layer.name = this.addEditImageLayerForm!.controls['name'].value ;
-    layer.scale = this.addEditImageLayerForm!.controls['scale'].value ;
-    layer.rotation = this.addEditImageLayerForm!.controls['rotation'].value ;
-
-    let imgURL:string = this.addEditImageLayerForm!.controls['img_src'].value ;
-
-    if(imgURL){
-      layer.img_src = imgURL ;
-    }
-    else {
-      layer.img_src = 'assets/text_02.png' ;
-    }
-
+    let layer : ImageLayer = (this.isEditing) ? this.data : new ImageLayer() ;
+    
+    this.dialogService.updateLayerWithForm(layer, this.addEditImageLayerForm!)
+    this.dialogService.setLayerImageOrSample(layer, this.addEditImageLayerForm!) ;
+    
     if(!this.isEditing) {
       const notifyChanges = true ;
-      layerId = this.layerService.addLayer(layer, notifyChanges) ;
+      this.layerService.addLayer(layer, notifyChanges) ;
     }
 
-    //since editing position is now disabled this is no longer needed
-    //this.layerPresenter.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
-   
     this.close() ;
   }
 

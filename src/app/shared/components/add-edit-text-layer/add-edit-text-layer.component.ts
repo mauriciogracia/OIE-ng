@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA,MatDialogRef} from "@angular/material/dialog";
 import { LayerService } from '../../services/layer.service';
 import { TextLayer } from '../../models/text-layer';
-import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-add-edit-layer',
@@ -21,7 +21,7 @@ export class AddEditTextLayerComponent implements OnInit {
     private dialogRef: MatDialogRef<AddEditTextLayerComponent>,
     @Inject(MAT_DIALOG_DATA) private data: TextLayer,
     private layerService : LayerService,
-    private layerPresenter: LayerPresenter
+    private dialogService : DialogService,
     ) {}
 
   ngOnInit(): void {
@@ -34,9 +34,7 @@ export class AddEditTextLayerComponent implements OnInit {
     
     if(this.isEditing) {
       let txtLayer : TextLayer = this.data as TextLayer;
-      this.addEditTextLayerForm.patchValue(txtLayer) ;
-      this.addEditTextLayerForm.controls['left'].setValue(txtLayer.left + txtLayer.deltaX) ;
-      this.addEditTextLayerForm.controls['top'].setValue(txtLayer.top + txtLayer.deltaY) ;
+      this.dialogService.showCurrentLayerData(txtLayer, this.addEditTextLayerForm) ;
     }
     else 
     {
@@ -45,28 +43,15 @@ export class AddEditTextLayerComponent implements OnInit {
   }
 
   save() {
-    let layer : TextLayer ;
-    let layerId = -1 ; 
+    let layer : TextLayer = (this.isEditing) ? this.data : new TextLayer() ;
 
-    if(this.isEditing) {
-      layer = this.data ;
-      layerId = layer.id ;
-    }
-    else {
-      layer = new TextLayer() ;
-    }
-    //When an existing layer is selected updating the layer data is enough
-    layer.name = this.addEditTextLayerForm!.controls['name'].value  ;
-    layer.text = this.addEditTextLayerForm!.controls['text'].value ;
+    this.dialogService.updateLayerWithForm(layer, this.addEditTextLayerForm!) ;
     
     if(!this.isEditing) 
     {
       const notifyChanges = true ;
-      layerId = this.layerService.addLayer(layer, notifyChanges) ;
+      this.layerService.addLayer(layer, notifyChanges) ;
     }
-    
-    //since editing position is now disabled this is no longer needed
-    //this.layerPresenter.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     this.close() ;
   }

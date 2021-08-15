@@ -43,9 +43,7 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   }
 
   ngAfterViewInit(): void {
-    
     this.linkDivToLayers() ;
-    this.positionDemoLayers() ;
   }
 
   linkDivToLayers() {
@@ -53,13 +51,7 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
     console.log('linkDivToLayers') ;
     this.layerService.getCurrentVisibleLayers().forEach(layer => { layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) }) ;
   }
-
-  positionDemoLayers() {
-    for(let i = 2; i <= this.numDemoLayers ; i++) {
-      this.positionLayer(i, 100+i*15,100+i*15) ;
-    }
-  }
-  
+ 
   getHtmlNodeByLayerid(layerId: number):HTMLElement | null {
     const ne = this.elementRef.nativeElement as HTMLElement ;
     return ne.querySelector(`#div_${layerId}`) as HTMLElement;
@@ -101,6 +93,8 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
 
     for(let i = 2; i <= this.numDemoLayers ; i++) {
       const x = new TextLayer();
+      x.left = 100+i*15 ;
+      x.top = 100+i*15 ;
       x.text = `Text Layer - ${i} : - }`;
       x.name = this.layerService.getSuggestedLayerName() ;
       this.layerService.addLayer(x, notifyChanges) ;

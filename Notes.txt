@@ -2,9 +2,7 @@
 TODO
 *******
 
-- refactor the logic of image and text dialogs
-
-- can you free hand paint over the existing layers ? (pencil, brushes) ?
+/ can you free hand paint over the existing layers ? (pencil, brushes) ?
     - https://www.npmjs.com/package/canvas-sketch
     - https://www.npmjs.com/package/simple-drawing-board
 
@@ -84,6 +82,10 @@ TODO
 ********
   DONE
 ********
+X Fix positioning console error of demo layers
+
+X refactor the logic of image and text dialogs
+
 X Fix layer name issues
     X when adding a "sample" text layer, the name is empty on the list of layers
     X allow text layers to have also a name
