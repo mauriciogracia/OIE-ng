@@ -1,7 +1,11 @@
 *******
 TODO
 *******
-
+- Rotation is only being applied after the layers is moved
+    X Fix for existing layer
+    - fix for NEW layer (the nativeelement is null, so updating the tranform has to be done later)
+        https://nitayneeman.com/posts/listening-to-dom-changes-using-mutationobserver-in-angular/
+        
 / can you free hand paint over the existing layers ? (pencil, brushes) ?
     - https://www.npmjs.com/package/canvas-sketch
     - https://www.npmjs.com/package/simple-drawing-board
