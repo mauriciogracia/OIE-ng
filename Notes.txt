@@ -2,6 +2,11 @@
 TODO
 *******
 
+- Fix layer name issues
+    - when adding a "sample" text layer, the name is empty on the list of layers
+    - allow text layers to have also a name
+    - layers are being labeld "text_XX" while others "layer_XX"
+
 - can you free hand paint over the existing layers ? (pencil, brushes) ?
 
 / Azure
@@ -24,6 +29,7 @@ TODO
     - Save/Export functionality
         X button 
         - Export as propietary format *.oie (format : JSON)
+        - Export using actual Font of each text layer
         X Export as HTML (div, images, styles)
         X Layer with position transform are not exported correctly
         - Check export for layers with rotation and scale 
@@ -35,29 +41,25 @@ TODO
 / FIX Height of Vertical scrolling on layerList by using Flex
     - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
-
-
-/ Add/Edit image layer (reuse dialog for edit)
+/ Add/Edit image layer 
     X Add/Change image by URL (no need to host the file)
     X Position (initial/relacote)
     X Scale (initial/new scale)
-    / Rotate (initial/new scale)
+    / Rotate (initial/new scale) << not working when adding/editing
 
 / Add/Edit TextLayer 
     X Text
     X Position
     X Layer name is the 10 characters of the text
-    - Scale
     - Font
-    - Size 
+    - Size vs Scale ?
     - Color - https://www.npmjs.com/search?q=color%20picker
-    - Bold, Italic, Subrayado, Strike..etc
+    - Bold, Italic, Underlines, Strike..etc
 
 / Improvements for all Dialogs
     X Titles should be ADD or EDIT (not both)
     / vertical size of dialog makes its use on mobile (landscape) imposible
     - Validate data of Dialog forms (numeric fields, etc)
-    - Enter should trigger default blue button ?
 
 - Allow multiple selection to allow certain operations on that selection
 
@@ -69,8 +71,10 @@ TODO
     
     - Add tooltips to all buttons (mobile ?)
 
-    - Show current design name on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
- 
+    - Show current design name 
+        - on the title of the app - https://stackoverflow.com/questions/34602806/how-to-change-page-title-in-angular2-router
+        - somewhere else that is less complicated
+        
 - UNDO / REDO 
     - each action that changes the layering in anyway needs to be kept, undoing is reverting the previous stored action (opposite)
     - how many steps back ?
