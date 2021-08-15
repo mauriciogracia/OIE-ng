@@ -2,9 +2,11 @@
 TODO
 *******
 
-- refactor the logic of image and tex dialogs
+- refactor the logic of image and text dialogs
 
 - can you free hand paint over the existing layers ? (pencil, brushes) ?
+    - https://www.npmjs.com/package/canvas-sketch
+    - https://www.npmjs.com/package/simple-drawing-board
 
 / Azure
     X Activate free account
