@@ -11,11 +11,11 @@ import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
   styleUrls: ['./add-edit-image-layer.component.css']
 })
 export class AddEditImageLayerComponent implements OnInit {
-  title = `${this.data ? 'Edit' : 'Add'} image layer` ;
+  isEditing = this.data ;
+  title = `${this.isEditing ? 'Edit' : 'Add'} image layer` ;
   fileToUpload: File | null = null;
   addEditImageLayerForm: FormGroup | undefined ;
- 
-
+  
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditImageLayerComponent>,
@@ -28,13 +28,13 @@ export class AddEditImageLayerComponent implements OnInit {
     this.addEditImageLayerForm = this.fb.group({
       img_src : ['http://...'],
       name: [''],
-      left : [1],
-      top : [1],
+      left : [{value:1, disabled: this.isEditing}],
+      top : [{value:1, disabled: this.isEditing}],
       scale : [1],
       rotation : [0],
     });
 
-    if(this.data) {
+    if(this.isEditing) {
       let imgLayer : ImageLayer = this.data as ImageLayer;
       this.addEditImageLayerForm.patchValue(imgLayer) ;
       this.addEditImageLayerForm!.controls['left'].setValue(imgLayer.left + imgLayer.deltaX) ;
@@ -50,7 +50,7 @@ export class AddEditImageLayerComponent implements OnInit {
     let layer : ImageLayer ;
     let layerId = -1 ;
 
-    if(this.data) {
+    if(this.isEditing) {
       layer = this.data ;
       layerId = layer.id ;
     }
@@ -71,12 +71,13 @@ export class AddEditImageLayerComponent implements OnInit {
       layer.img_src = 'assets/text_02.png' ;
     }
 
-    if(!this.data) {
+    if(!this.isEditing) {
       const notifyChanges = true ;
       layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
 
-    this.layerPresenter.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
+    //since editing position is now disabled this is no longer needed
+    //this.layerPresenter.positionLayer(layerId, this.addEditImageLayerForm!.controls['left'].value, this.addEditImageLayerForm!.controls['top'].value) ;
    
     this.close() ;
   }

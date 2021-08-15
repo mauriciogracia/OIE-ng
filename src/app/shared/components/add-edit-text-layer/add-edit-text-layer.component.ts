@@ -11,7 +11,8 @@ import { LayerPresenter } from '../layer-presenter/layer-presenter.component';
   styleUrls: ['./add-edit-text-layer.component.css']
 })
 export class AddEditTextLayerComponent implements OnInit {
-  title = `${this.data ? 'Edit' : 'Add'} text layer` ;
+  isEditing = this.data ;
+  title = `${this.isEditing ? 'Edit' : 'Add'} text layer` ;
   fileToUpload: File | null = null;
   addEditTextLayerForm: FormGroup | undefined ;
   
@@ -26,11 +27,11 @@ export class AddEditTextLayerComponent implements OnInit {
   ngOnInit(): void {
     this.addEditTextLayerForm = this.fb.group({
       text: ['sample'],
-      left : [1],
-      top : [1],
+      left : [{value:1, disabled: this.isEditing}],
+      top : [{value:1, disabled: this.isEditing}],
     });
     
-    if(this.data) {
+    if(this.isEditing) {
       let txtLayer : TextLayer = this.data as TextLayer;
       this.addEditTextLayerForm.patchValue(txtLayer) ;
       this.addEditTextLayerForm.controls['left'].setValue(txtLayer.left + txtLayer.deltaX) ;
@@ -42,7 +43,7 @@ export class AddEditTextLayerComponent implements OnInit {
     let layer : TextLayer ;
     let layerId = -1 ; 
 
-    if(this.data) {
+    if(this.isEditing) {
       layer = this.data ;
       layerId = layer.id ;
     }
@@ -53,13 +54,14 @@ export class AddEditTextLayerComponent implements OnInit {
     layer.name = layer.text.substring(0,10).padEnd(10,' ') ;
     layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     
-    if(!this.data) 
+    if(!this.isEditing) 
     {
       const notifyChanges = true ;
       layerId = this.layerService.addLayer(layer, notifyChanges) ;
     }
     
-    this.layerPresenter.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
+    //since editing position is now disabled this is no longer needed
+    //this.layerPresenter.positionLayer(layerId, this.addEditTextLayerForm!.controls['left'].value, this.addEditTextLayerForm!.controls['top'].value) ;
     
     this.close() ;
   }

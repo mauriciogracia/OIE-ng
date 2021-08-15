@@ -2,8 +2,7 @@
 TODO
 *******
 
-/ When editing a layer, dont allow position to be edited
-    - disable the position controls
+- can you free hand paint over the existing layers ? (pencil, brushes) ?
 
 / Azure
     X Activate free account
@@ -36,7 +35,7 @@ TODO
 / FIX Height of Vertical scrolling on layerList by using Flex
     - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
-- can you free hand paint over the existing layers ? (pencil, brushes) ?
+
 
 / Add/Edit image layer (reuse dialog for edit)
     X Add/Change image by URL (no need to host the file)
@@ -82,6 +81,10 @@ TODO
 ********
   DONE
 ********
+X When editing a layer, dont allow position to be edited : disable the position controls
+
+X Fix add/save buttons
+
 X Make wider the numeric input controls
 
 X Show tooltip on top (not below)
