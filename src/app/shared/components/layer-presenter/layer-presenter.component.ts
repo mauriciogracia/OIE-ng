@@ -102,7 +102,7 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
     for(let i = 2; i <= this.numDemoLayers ; i++) {
       const x = new TextLayer();
       x.text = `Text Layer - ${i} : - }`;
-      x.name = `text_${i}` ;
+      x.name = this.layerService.getSuggestedLayerName() ;
       this.layerService.addLayer(x, notifyChanges) ;
     }
 

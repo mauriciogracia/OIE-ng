@@ -27,6 +27,7 @@ export class AddEditTextLayerComponent implements OnInit {
   ngOnInit(): void {
     this.addEditTextLayerForm = this.fb.group({
       text: ['sample'],
+      name: [''],
       left : [{value:1, disabled: this.isEditing}],
       top : [{value:1, disabled: this.isEditing}],
     });
@@ -36,6 +37,10 @@ export class AddEditTextLayerComponent implements OnInit {
       this.addEditTextLayerForm.patchValue(txtLayer) ;
       this.addEditTextLayerForm.controls['left'].setValue(txtLayer.left + txtLayer.deltaX) ;
       this.addEditTextLayerForm.controls['top'].setValue(txtLayer.top + txtLayer.deltaY) ;
+    }
+    else 
+    {
+      this.addEditTextLayerForm!.controls['name'].setValue(this.layerService.getSuggestedLayerName()) ;
     }
   }
 
@@ -51,7 +56,7 @@ export class AddEditTextLayerComponent implements OnInit {
       layer = new TextLayer() ;
     }
     //When an existing layer is selected updating the layer data is enough
-    layer.name = layer.text.substring(0,10).padEnd(10,' ') ;
+    layer.name = this.addEditTextLayerForm!.controls['name'].value  ;
     layer.text = this.addEditTextLayerForm!.controls['text'].value ;
     
     if(!this.isEditing) 

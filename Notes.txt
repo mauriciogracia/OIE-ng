@@ -2,10 +2,7 @@
 TODO
 *******
 
-- Fix layer name issues
-    - when adding a "sample" text layer, the name is empty on the list of layers
-    - allow text layers to have also a name
-    - layers are being labeld "text_XX" while others "layer_XX"
+- refactor the logic of image and tex dialogs
 
 - can you free hand paint over the existing layers ? (pencil, brushes) ?
 
@@ -85,6 +82,11 @@ TODO
 ********
   DONE
 ********
+X Fix layer name issues
+    X when adding a "sample" text layer, the name is empty on the list of layers
+    X allow text layers to have also a name
+    X layers are being labeld "text_XX" while others "layer_XX"
+
 X When editing a layer, dont allow position to be edited : disable the position controls
 
 X Fix add/save buttons
