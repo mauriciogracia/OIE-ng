@@ -16,6 +16,10 @@ export class DialogService {
     formGroup.controls['top'].setValue(layer.top + layer.deltaY) ;
   }
 
+  showCurrentData(data:any, formGroup:FormGroup) {
+    formGroup.patchValue(data) ;
+  }
+
   updateLayerWithForm(layer:BaseLayer, formGroup:FormGroup) {
      layer = Object.assign(layer, formGroup.value) ;
   }

@@ -30,15 +30,12 @@ export class TransformLayerComponent implements OnInit {
       rotation : [0],
     });
 
-      let imgLayer : ImageLayer = this.data as ImageLayer;
-      this.dialogService.showCurrentLayerData(imgLayer, this.transformLayerForm) ;
+    this.dialogService.showCurrentData(this.data, this.transformLayerForm) ;
   }
 
   save() {
-    let layer : BaseLayer = this.data ;
-    
-    this.dialogService.updateLayerWithForm(layer, this.transformLayerForm!)
-    this.layerService.updateTransform(layer) ;
+    this.dialogService.updateLayerWithForm(this.data, this.transformLayerForm!)
+    this.layerService.updateTransform(this.data) ;
 
     this.close() ;
   }

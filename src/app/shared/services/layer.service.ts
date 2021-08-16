@@ -26,7 +26,6 @@ export class LayerService {
   updateTransform(layer: BaseLayer) {
     let transform : string ;
 
-
     //translate -> rotate -> scale
     // taken from https://www.stefanjudis.com/blog/order-in-css-transformation-transform-functions-vs-individual-transforms/
     if(layer) {
@@ -56,9 +55,6 @@ export class LayerService {
 
       if(layer.nativeElement) {
         layer.nativeElement.style.transform = transform ;
-      }
-      else {
-        console.log({updateTransform:'withoutElement'}) ;
       }
     }
   }
