@@ -26,6 +26,9 @@ export class LayerService {
   updateTransform(layer: BaseLayer) {
     let transform : string ;
 
+
+    //translate -> rotate -> scale
+    // taken from https://www.stefanjudis.com/blog/order-in-css-transformation-transform-functions-vs-individual-transforms/
     if(layer) {
       if(!this.hasTransform(layer)) {
         transform = 'none' ;
@@ -33,9 +36,8 @@ export class LayerService {
       else {
         transform = '' ;
 
-        if(layer.scale != 1)
-        {
-            transform += `scale(${layer.scale}) ` ;
+        if((layer.deltaX !== 0) || (layer.deltaY !== 0)) {
+          transform += `translate(${layer.deltaX}px, ${layer.deltaY}px) ` ;
         }
 
         if(layer.rotation != 0)
@@ -43,7 +45,10 @@ export class LayerService {
             transform += `rotate(${layer.rotation}deg) ` ;
         }
 
-        transform += `translate3d(${layer.deltaX}px, ${layer.deltaY}px, 0px) ` ;
+        if(layer.scale != 1)
+        {
+            transform += `scale(${layer.scale}) ` ;
+        }
       }
     
       //is not used for painting only for exporting purposes
