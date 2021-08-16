@@ -37,7 +37,8 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
       .subscribe(layersFromService => {
-        this.visibleLayers = layersFromService.filter(l => l.visible); 
+        this.visibleLayers = layersFromService.filter(l => l.visible);
+        this.linkDivToLayers() ; 
         console.log("layer presenter refreshed");
       });
   }
@@ -49,7 +50,9 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   linkDivToLayers() {
     //TODO watch out, since when a layer becomes visible its div will not be linked 
     console.log('linkDivToLayers') ;
-    this.layerService.getCurrentVisibleLayers().forEach(layer => { layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) }) ;
+    this.layerService.getCurrentVisibleLayers()
+      .filter(l => !l.nativeElement)
+      .forEach(layer => { layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) ; this.layerService.updateTransform(layer)}) ;
   }
  
   getHtmlNodeByLayerid(layerId: number):HTMLElement | null {

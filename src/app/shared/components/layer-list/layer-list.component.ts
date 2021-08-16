@@ -27,7 +27,6 @@ export class LayerListComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
     .subscribe(layersFromService => {
       this.layers = layersFromService ; 
-      console.log("layer list refreshed")
     });
   }
 

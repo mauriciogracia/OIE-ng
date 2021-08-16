@@ -56,10 +56,10 @@ export class LayerService {
 
       if(layer.nativeElement) {
         layer.nativeElement.style.transform = transform ;
-        //console.log({updatedTo:layer.nativeElement.style.transform}) ;
       }
-
-      this.logTransform(layer) ;
+      else {
+        console.log({updateTransform:'withoutElement'}) ;
+      }
     }
   }
 
