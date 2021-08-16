@@ -26,12 +26,10 @@ export class AddEditImageLayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.addEditImageLayerForm = this.fb.group({
-      img_src : ['http://...'],
+      img_src : [''],
       name: [''],
       left : [{value:1, disabled: this.isEditing}],
       top : [{value:1, disabled: this.isEditing}],
-      scale : [1],
-      rotation : [0],
     });
 
     if(this.isEditing) {

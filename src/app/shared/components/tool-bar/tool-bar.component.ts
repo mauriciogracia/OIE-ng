@@ -90,6 +90,10 @@ export class ToolBarComponent implements OnInit {
     }
   }
 
+  onTransformLayer() {
+    
+  }
+
   onCopyLayer() {
     const notifyChanges = true ;
     this.layerService.duplicateSelectedLayer(notifyChanges) ;

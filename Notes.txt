@@ -1,9 +1,15 @@
 *******
 TODO
 *******
+/ Decouple the rotate/scale tranform  
+    X toolbar icon
+    / new dialog
+    - remove scale/rotate from other dialogs
+
 - Rotation is only being applied after the layers is moved
     X Fix for existing layer
     - fix for NEW layer (the nativeelement is null, so updating the tranform has to be done later)
+        https://www.positronx.io/understand-angular-change-detection-strategy/
         https://nitayneeman.com/posts/listening-to-dom-changes-using-mutationobserver-in-angular/
         
 / can you free hand paint over the existing layers ? (pencil, brushes) ?
