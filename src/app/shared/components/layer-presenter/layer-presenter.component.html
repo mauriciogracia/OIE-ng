@@ -1,6 +1,7 @@
 <scrollbar class="layers" >
-    <div #divLayers *ngFor="let layer of visibleLayers">
+    <div #divLayers *ngFor="let layer of allLayers">
         <div 
+            [hidden]="!layer.visible"
             id={{layer.divId}}
             class = "floatLayer" cdkDrag
             (cdkDragStarted)="layerDragStarted($event)"

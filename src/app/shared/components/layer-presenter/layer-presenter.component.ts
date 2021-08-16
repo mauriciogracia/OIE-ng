@@ -22,7 +22,7 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   textLayer = TextLayer ;
 
   numDemoLayers = 22 ;
-  visibleLayers : BaseLayer[] = [] ;
+  allLayers : BaseLayer[] = [] ;
   unsubscribeFromAllLayersObs$: Subject<boolean> = new Subject();
   
   constructor(
@@ -36,8 +36,8 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
     this.addDemoLayers() ;
     this.layerService.getAllLayersObs()
       .pipe(takeUntil(this.unsubscribeFromAllLayersObs$))
-      .subscribe(layersFromService => {
-        this.visibleLayers = layersFromService.filter(l => l.visible);
+      .subscribe((allLayers) => {
+        this.allLayers = allLayers ;
         this.linkDivToLayers() ; 
         console.log("layer presenter refreshed");
       });
@@ -48,11 +48,13 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit  {
   }
 
   linkDivToLayers() {
-    //TODO watch out, since when a layer becomes visible its div will not be linked 
     console.log('linkDivToLayers') ;
-    this.layerService.getCurrentVisibleLayers()
+    this.allLayers
       .filter(l => !l.nativeElement)
-      .forEach(layer => { layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) ; this.layerService.updateTransform(layer)}) ;
+      .forEach(layer => { 
+        layer.nativeElement = this.getHtmlNodeByLayerid(layer.id) ; 
+        this.layerService.updateTransform(layer) ;
+      }) ;
   }
  
   getHtmlNodeByLayerid(layerId: number):HTMLElement | null {

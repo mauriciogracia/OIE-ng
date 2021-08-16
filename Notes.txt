@@ -74,6 +74,8 @@ TODO
   DONE
 ********
 
+X Fix issue of hiding/showing a transformed layer 
+
 X Decouple the rotate/scale tranform  
     X toolbar icon
     X new dialog
