@@ -20,6 +20,7 @@ import { AddEditTextLayerComponent } from './shared/components/add-edit-text-lay
 import { MatInputModule } from "@angular/material/input";
 import { FileSaverModule } from 'ngx-filesaver';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TransformLayerComponent } from './shared/components/transform-layer/transform-layer.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ToolBarComponent,
     AddEditImageLayerComponent,
     AddEditTextLayerComponent,
+    TransformLayerComponent,
     LayerListComponent,
     CastTo,
   ],
@@ -54,6 +56,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   entryComponents: [
     AddEditImageLayerComponent,
     AddEditTextLayerComponent,
+    TransformLayerComponent,
   ]
 })
 export class AppModule { }

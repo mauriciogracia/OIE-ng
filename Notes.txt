@@ -1,36 +1,16 @@
 *******
 TODO
 *******
-/ Decouple the rotate/scale tranform  
-    X toolbar icon
-    / new dialog
-    - remove scale/rotate from other dialogs
 
-- Rotation is only being applied after the layers is moved
-    X Fix for existing layer
-    - fix for NEW layer (the nativeelement is null, so updating the tranform has to be done later)
-        https://www.positronx.io/understand-angular-change-detection-strategy/
-        https://nitayneeman.com/posts/listening-to-dom-changes-using-mutationobserver-in-angular/
-        
 / can you free hand paint over the existing layers ? (pencil, brushes) ?
     - https://www.npmjs.com/package/canvas-sketch
     - https://www.npmjs.com/package/simple-drawing-board
 
-/ Azure
-    X Activate free account
-    X Deploy from local env to azure web app - https://www.c-sharpcorner.com/article/easily-deploy-angular-app-to-azure-from-visual-studio-code/
-    - Configure pipeline to take code from git hub and deployed when pushed (to specific branch) ?
-        - https://portal.azure.com/#create/Microsoft.AzureProject
-        - https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml
-        - https://www.azuredevopslabs.com/labs/azuredevops/github-integration/
-    - Blob or media storage for image upload 
-        - https://stackoverflow.com/questions/24810995/image-hosting-azure
-
 >> Export (generate the JSON from the layers)
-    / New  
+    / New design 
         X button
         - ask for confirmation when changesArePending
-    - Load 
+    - Load design
         - button
         - parse file without uploading - https://stackoverflow.com/questions/47581687/read-a-file-and-parse-its-content
     - Save/Export functionality
@@ -48,19 +28,10 @@ TODO
 / FIX Height of Vertical scrolling on layerList by using Flex
     - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
 
-/ Add/Edit image layer 
-    X Add/Change image by URL (no need to host the file)
-    X Position (initial/relacote)
-    X Scale (initial/new scale)
-    / Rotate (initial/new scale) << not working when adding/editing
-
-/ Add/Edit TextLayer 
-    X Text
-    X Position
-    X Layer name is the 10 characters of the text
-    - Font
-    - Size vs Scale ?
+- TextLayer allow :
+    - Size 
     - Color - https://www.npmjs.com/search?q=color%20picker
+    - Font
     - Bold, Italic, Underlines, Strike..etc
 
 / Improvements for all Dialogs
@@ -88,10 +59,36 @@ TODO
     - saving clears this data ?
 
 - Create generic confirmation dialog - https://stackoverflow.com/questions/41684114/easy-way-to-make-a-confirmation-dialog-in-angular 
- 
+
+/ Azure
+    X Activate free account
+    X Deploy from local env to azure web app - https://www.c-sharpcorner.com/article/easily-deploy-angular-app-to-azure-from-visual-studio-code/
+    - Configure pipeline to take code from git hub and deployed when pushed (to specific branch) ?
+        - https://portal.azure.com/#create/Microsoft.AzureProject
+        - https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml
+        - https://www.azuredevopslabs.com/labs/azuredevops/github-integration/
+    - Blob or media storage for image upload 
+        - https://stackoverflow.com/questions/24810995/image-hosting-azure
+
 ********
   DONE
 ********
+
+X Decouple the rotate/scale tranform  
+    X toolbar icon
+    X new dialog
+    X remove scale/rotate from other dialogs
+    X fix scale/rotate for both type of layers
+
+X Add/Edit TextLayer 
+    X Text
+    X Position
+    X Layer name is the 10 characters of the text
+
+X Add/Edit image layer 
+    X Add/Change image by URL (no need to host the file)
+    X Position (initial/relacote)
+
 X Fix positioning console error of demo layers
 
 X refactor the logic of image and text dialogs

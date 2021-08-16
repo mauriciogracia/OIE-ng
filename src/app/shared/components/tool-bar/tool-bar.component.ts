@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { LayerType } from '../../models/base-layer';
+import { BaseLayer, LayerType } from '../../models/base-layer';
 import { Design } from '../../models/design';
 import { ImageLayer } from '../../models/image-layer';
 import { TextLayer } from '../../models/text-layer';
@@ -8,6 +8,7 @@ import { FileService } from '../../services/file.service';
 import { LayerService } from '../../services/layer.service';
 import { AddEditImageLayerComponent } from '../add-edit-image-layer/add-edit-image-layer.component';
 import { AddEditTextLayerComponent } from '../add-edit-text-layer/add-edit-text-layer.component';
+import { TransformLayerComponent } from '../transform-layer/transform-layer.component';
 
 @Component({
   selector: 'app-tool-bar',
@@ -91,7 +92,11 @@ export class ToolBarComponent implements OnInit {
   }
 
   onTransformLayer() {
-    
+    const layer = this.layerService.getSelectedLayer() ;
+
+    if(layer) {
+      this.showDialog(TransformLayerComponent,(layer as BaseLayer)) ;
+    }
   }
 
   onCopyLayer() {

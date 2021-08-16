@@ -1,20 +1,6 @@
 <h2 mat-dialog-title>{{title}}</h2>
-<mat-dialog-content [formGroup]="addEditImageLayerForm!" (ngSubmit)="save()">
+<mat-dialog-content [formGroup]="transformLayerForm!" (ngSubmit)="save()">
     <div>
-        <mat-form-field appearance="outline" class="fullWidth">
-            <mat-label>Image URL</mat-label>
-            <input matInput id="img_src" type="text" formControlName="img_src">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline" class="inputNumeric">
-            <mat-label>Left position</mat-label>
-            <input matInput id="left" type="number" formControlName="left">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="inputNumeric">
-            <mat-label>Top position</mat-label>
-            <input matInput id="top" type="number" formControlName="top">
-        </mat-form-field>
         <mat-form-field appearance="outline" class="inputNumeric">
             <mat-label>Scale</mat-label>
             <input matInput id="scale" type="number" formControlName="scale">
@@ -24,20 +10,9 @@
             <input matInput id="rotation" type="number" formControlName="rotation">
         </mat-form-field>
     </div>
-    <div>
-        <mat-form-field appearance="outline" class="fullWidth">
-            <mat-label>Layer name</mat-label>
-            <input matInput id="name" type="text" formControlName="name">
-        </mat-form-field>
-    </div>
-    
-    <!-- //TODO -- Select file to upload...
-        <input type="file"
-           id="file"
-           (change)="handleFileInput($event)">-->
 </mat-dialog-content>
 <mat-dialog-actions>
     <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">{{isEditing ? 'Save' : 'Add' }}</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Apply</button>
 </mat-dialog-actions>
 
