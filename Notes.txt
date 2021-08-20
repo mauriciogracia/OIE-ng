@@ -6,33 +6,30 @@ TODO
     - https://www.npmjs.com/package/canvas-sketch
     - https://www.npmjs.com/package/simple-drawing-board
 
->> Export (generate the JSON from the layers)
+- TextLayer allow :
+    - "[style]" atribute should be generated but a single getter method
+    - Size 
+    - Color - https://www.npmjs.com/search?q=color%20picker
+    - Font
+    - Bold, Italic, Underlines, Strike..etc
+
+- Export as format *.oie (format : JSON)
+    - import from JSON
+
+- Export as image
+    - https://stackoverflow.com/questions/10721884/render-html-to-an-image
+    - https://www.npmjs.com/package/dom-to-image
+
+- Export (generate the JSON from the layers)
     / New design 
         X button
         - ask for confirmation when changesArePending
     - Load design
         - button
         - parse file without uploading - https://stackoverflow.com/questions/47581687/read-a-file-and-parse-its-content
-    - Save/Export functionality
-        X button 
-        - Export as propietary format *.oie (format : JSON)
-        - Export using actual Font of each text layer
-        X Export as HTML (div, images, styles)
-        X Layer with position transform are not exported correctly
-        - Check export for layers with rotation and scale 
-
-        - Export as image
-            - https://stackoverflow.com/questions/10721884/render-html-to-an-image
-            - https://www.npmjs.com/package/dom-to-image
 
 / FIX Height of Vertical scrolling on layerList by using Flex
     - vertical scrolling of Layerlist on mobile is not working as expected (height of scroller contains seems too tall)
-
-- TextLayer allow :
-    - Size 
-    - Color - https://www.npmjs.com/search?q=color%20picker
-    - Font
-    - Bold, Italic, Underlines, Strike..etc
 
 / Improvements for all Dialogs
     X Titles should be ADD or EDIT (not both)
@@ -73,6 +70,13 @@ TODO
 ********
   DONE
 ********
+
+X Export to HTML 
+    X button 
+    X Export as HTML (div, images, styles)
+    X Layer with position transform are not exported correctly
+    X Check export for layers with rotation and scale 
+    X Export using actual Font attributes of each text layer
 
 X Fix issue of hiding/showing a transformed layer 
 

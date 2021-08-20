@@ -5,9 +5,7 @@
     <!-- <button mat-icon-button (click)="onFileUpload()">
         <mat-icon>upload_file</mat-icon>
     </button> -->
-    <button mat-icon-button (click)="onFileDownload()">
-        <mat-icon>cloud_download</mat-icon>
-    </button>
+    
     <button mat-icon-button (click)="onAddImageLayer()">
         <mat-icon>library_add</mat-icon>
     </button>
@@ -22,6 +20,9 @@
     </button>
     <button mat-icon-button [disabled]="!anyLayerSelected()" (click)="onCopyLayer()">
         <mat-icon>content_copy</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onFileDownload()">
+        <mat-icon>cloud_download</mat-icon>
     </button>
     <button mat-icon-button (click)="onSettings()">
         <mat-icon>settings</mat-icon>

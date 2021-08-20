@@ -41,6 +41,12 @@ export class FileService {
     style += `z-index: ${layer.z_index}; ` ;
     style += `transform: ${layer.transform}; ` ;
 
+    if(layer.type == LayerType.Text) {
+      style += `font-family: ${(layer as TextLayer).fontFamily}; ` ;
+      style += `font-size: ${(layer as TextLayer).fontSize}; ` ;
+      style += `font-weight: ${(layer as TextLayer).fontWeight}; ` ;
+    }
+
     style = `style="${style}"` ;
     
     return style ;
