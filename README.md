@@ -7,7 +7,8 @@ It currently supports
  - moving, rotating and scaling layers 
  - change layer order
  - duplicating layers
- 
+
+For a full list of all the features/ideas to be implemented check the Note.txt that is part of the code - https://github.com/mauriciogracia/OIE-ng/blob/main/Notes.txt 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
 ## Development server
