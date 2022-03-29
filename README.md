@@ -8,6 +8,8 @@ It currently supports
  - change layer order
  - duplicating layers
 
+![image](https://user-images.githubusercontent.com/2321661/160521310-41a181cf-5d4a-4105-9bb5-8ede7b03a2a6.png)
+
 For a full list of all the features/ideas to be implemented check the Note.txt that is part of the code - https://github.com/mauriciogracia/OIE-ng/blob/main/Notes.txt 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
