@@ -21,30 +21,30 @@ export class ToolBarComponent implements OnInit {
     private dialog: MatDialog,
     private layerService: LayerService,
     private fileService: FileService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }
 
   version() {
-    return this.layerService.version ;
+    return this.layerService.version;
   }
-  
+
   onNewDesign() {
     //TODO confirmation dialog when changes have been made that are not saved/exported. see hasPendingChanges in FileService
-    const notifyChanges = true ;
-    this.layerService.clearLayers(notifyChanges) ;
-    this.fileService.currentDesign = new Design({name:"demo.oie"}) ;
+    const notifyChanges = true;
+    this.layerService.clearLayers(notifyChanges);
+    this.fileService.currentDesign = new Design({ name: "demo.oie" });
   }
 
   onFileUpload() {
-    window.alert("File upload and display") ;
+    window.alert("File upload and display");
   }
 
   onFileDownload() {
     //TODO this.fileService.exportToImage() ;
 
-    this.fileService.exportToHTML() ;
+    this.fileService.exportToHTML();
   }
 
   onAddImageLayer() {
@@ -61,50 +61,50 @@ export class ToolBarComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    if(data !== null) {
-      dialogConfig.data = data ;
+    if (data !== null) {
+      dialogConfig.data = data;
     }
 
-    dialogConfig.panelClass = 'custom-dialog-container' ;
+    dialogConfig.panelClass = 'custom-dialog-container';
 
     let diagRef = this.dialog.open(x, dialogConfig);
-    diagRef.updatePosition({left: '50px', top: '20px'}) ;
+    diagRef.updatePosition({ left: '50px', top: '20px' });
   }
 
   anyLayerSelected() {
-    return this.layerService.isAnyLayerSelected() ;
+    return this.layerService.isAnyLayerSelected();
   }
 
   onEditLayer() {
-    const layer = this.layerService.getSelectedLayer() ;
+    const layer = this.layerService.getSelectedLayer();
 
-    if(layer) {
-      if(layer.type === LayerType.Image) {
-        this.showDialog(AddEditImageLayerComponent,(layer as ImageLayer)) ;
+    if (layer) {
+      if (layer.type === LayerType.Image) {
+        this.showDialog(AddEditImageLayerComponent, (layer as ImageLayer));
       }
-      else if (layer.type === LayerType.Text){
-        this.showDialog(AddEditTextLayerComponent,(layer as TextLayer)) ;
+      else if (layer.type === LayerType.Text) {
+        this.showDialog(AddEditTextLayerComponent, (layer as TextLayer));
       }
       else {
-        console.log({newtypeOfLayer:layer}) ;
+        console.log({ newtypeOfLayer: layer });
       }
     }
   }
 
   onTransformLayer() {
-    const layer = this.layerService.getSelectedLayer() ;
+    const layer = this.layerService.getSelectedLayer();
 
-    if(layer) {
-      this.showDialog(TransformLayerComponent,(layer as BaseLayer)) ;
+    if (layer) {
+      this.showDialog(TransformLayerComponent, (layer as BaseLayer));
     }
   }
 
   onCopyLayer() {
-    const notifyChanges = true ;
-    this.layerService.duplicateSelectedLayer(notifyChanges) ;
+    const notifyChanges = true;
+    this.layerService.duplicateSelectedLayer(notifyChanges);
   }
 
   onSettings() {
-    window.alert("settings") ;
+    window.alert("settings to be implemented - mgg.isco@gmail.com");
   }
 }

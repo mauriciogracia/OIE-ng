@@ -2,11 +2,9 @@
 TODO
 *******
 
-/ can you free hand paint over the existing layers ? (pencil, brushes) ?
-    - https://www.npmjs.com/package/canvas-sketch
-    - https://www.npmjs.com/package/simple-drawing-board
+- BUG: Duplicating a layer makes them stick together (if you move after copying, they will move to same location)
 
-- TextLayer allow :
+- TextLayer creation and edit should allow :
     - "[style]" atribute should be generated but a single getter method
     - Size 
     - Color - https://www.npmjs.com/search?q=color%20picker
@@ -56,6 +54,10 @@ TODO
     - saving clears this data ?
 
 - Create generic confirmation dialog - https://stackoverflow.com/questions/41684114/easy-way-to-make-a-confirmation-dialog-in-angular 
+
+/ can you free hand paint over the existing layers ? (pencil, brushes) ?
+    - https://www.npmjs.com/package/canvas-sketch
+    - https://www.npmjs.com/package/simple-drawing-board
 
 / Azure
     X Activate free account
