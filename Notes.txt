@@ -2,14 +2,12 @@
 TODO
 *******
 
-- BUG: Duplicating a layer makes them stick together (if you move after copying, they will move to same location)
-
-- TextLayer creation and edit should allow :
-    - "[style]" atribute should be generated but a single getter method
+- TextLayer creation and edit should allow to select:
     - Size 
     - Color - https://www.npmjs.com/search?q=color%20picker
     - Font
     - Bold, Italic, Underlines, Strike..etc
+    - "[style]" atribute should be generated but a single getter method
 
 - Export as format *.oie (format : JSON)
     - import from JSON
@@ -72,6 +70,7 @@ TODO
 ********
   DONE
 ********
+X BUG: Duplicating a layer makes them stick together (if you move one after copying, they will move to same location)
 
 X Export to HTML 
     X button 

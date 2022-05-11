@@ -129,7 +129,6 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit {
   layerDragHappening($event: CdkDragEnd | CdkDragMove) {
     let layerId = this.layerService.getSelectedLayer()!.id;
     let position = $event.source.getFreeDragPosition();
-
     this.moveLayer(layerId, position.x, position.y);
   }
 

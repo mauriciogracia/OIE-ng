@@ -1,13 +1,15 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BaseLayer } from '../models/base-layer';
+import { BaseLayer, LayerType } from '../models/base-layer';
+import { ImageLayer } from '../models/image-layer';
+import { TextLayer } from '../models/text-layer';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LayerService {
-  public version = "2022.05.10 - 11:45 pm";
+  public version = "2022.05.11 - 00:29 am";
 
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
@@ -64,7 +66,6 @@ export class LayerService {
   notifyLayerChanges() {
     this.allLayersObs$.next(this.layers);
   }
-
 
   clearLayers(notifyChanges: boolean) {
     this.layers = [];
@@ -212,10 +213,24 @@ export class LayerService {
   }
 
   duplicateSelectedLayer(notifyChanges: boolean) {
-    let newLayer = new BaseLayer();
-    Object.assign(newLayer, this.getSelectedLayer());
+    let selLayer = this.getSelectedLayer();
 
-    this.addLayer(newLayer, notifyChanges);
+    if (selLayer?.type == LayerType.Text) {
+      let txtLayer = new TextLayer();
+      txtLayer.left = 2;
+      txtLayer.top = 2;
+      txtLayer.text = (selLayer as TextLayer).text;
+      txtLayer.name = this.getSuggestedLayerName();
+      this.addLayer(txtLayer, notifyChanges);
+    }
+    else {
+      let imgLayer = new ImageLayer();
+      imgLayer.img_src = (selLayer as ImageLayer).img_src;
+      imgLayer.scale = (selLayer as ImageLayer).scale;
+      imgLayer.name = this.getSuggestedLayerName();
+      this.addLayer(imgLayer, notifyChanges);
+    }
+
   }
 
   logLayers() {
