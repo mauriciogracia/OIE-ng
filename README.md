@@ -1,9 +1,24 @@
 # OIE-ng
 
+OIE aims to be an Online Image Editor inspired in some ways by GIMP and others. It works on desktop and mobile
+
+It currently supports 
+ - adding, editing, removing layers (text, images)
+ - moving, rotating and scaling layers 
+ - change layer order
+ - duplicating layers
+
+![image](https://user-images.githubusercontent.com/2321661/160521310-41a181cf-5d4a-4105-9bb5-8ede7b03a2a6.png)
+
+For a full list of all the features/ideas to be implemented check the Note.txt that is part of the code - https://github.com/mauriciogracia/OIE-ng/blob/main/Notes.txt 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
 ## Development server
+Download the sourcecode and install all the dependencies
 
+$npm ci
+
+Then run 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
