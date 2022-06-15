@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayerPresenter } from './layer-presenter.component';
-import {CastTo} from '../../castTo-pipe' ;
+import { CastToPipe } from '../../pipes/castTo-pipe';
 
 describe('LayerPresenterComponent', () => {
   let component: LayerPresenter;
@@ -9,9 +9,9 @@ describe('LayerPresenterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayerPresenter, CastTo ]
+      declarations: [LayerPresenter, CastToPipe]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

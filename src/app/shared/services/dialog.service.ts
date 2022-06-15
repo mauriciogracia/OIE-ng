@@ -10,28 +10,31 @@ export class DialogService {
 
   constructor() { }
 
-  showCurrentLayerData(layer:BaseLayer, formGroup:FormGroup) {
-    formGroup.patchValue(layer) ;
-    formGroup.controls['left'].setValue(layer.left + layer.deltaX) ;
-    formGroup.controls['top'].setValue(layer.top + layer.deltaY) ;
+  showCurrentLayerData(layer: BaseLayer, formGroup: FormGroup) {
+    formGroup.patchValue(layer);
+    formGroup.controls['left'].setValue(layer.left + layer.deltaX);
+    formGroup.controls['top'].setValue(layer.top + layer.deltaY);
   }
 
-  showCurrentData(data:any, formGroup:FormGroup) {
-    formGroup.patchValue(data) ;
+  showCurrentData(data: any, formGroup: FormGroup) {
+    formGroup.patchValue(data);
   }
 
-  updateLayerWithForm(layer:BaseLayer, formGroup:FormGroup) {
-     layer = Object.assign(layer, formGroup.value) ;
+  updateLayerWithForm(layer: BaseLayer, formGroup: FormGroup) {
+    layer = Object.assign(layer, formGroup.value);
   }
-  
-  setLayerImageOrSample(layer:ImageLayer, formGroup:FormGroup) {
-    let imgURL:string = formGroup.controls['img_src'].value ;
-    
-    if(imgURL){
-      layer.img_src = imgURL ;
+
+  setLayerImageOrSample(layer: ImageLayer, formGroup: FormGroup) {
+    let imgURL: string = formGroup.controls['img_src'].value;
+    let src: string;
+
+    if (imgURL) {
+      src = imgURL;
     }
     else {
-      layer.img_src = 'assets/text_02.png' ;
+      src = 'assets/text_02.png';
     }
+
+    layer.img_src = src;
   }
 }

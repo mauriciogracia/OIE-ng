@@ -84,17 +84,23 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  addDemoGifAnimated(notifyChanges: boolean, left: number, top: number, src: string) {
+    const imgLayer = new ImageLayer(src);
+    imgLayer.type = LayerType.Animated;
+    imgLayer.left = left;
+    imgLayer.top = top;
+    imgLayer.scale = 1;
+    imgLayer.name = `ag_${left}_${top}`;
+    this.layerService.addLayer(imgLayer, notifyChanges);
+
+  }
   addDemoLayers() {
     let notifyChanges = false;
     const design = new Design({ name: "demo.oie" });
     this.fileService.currentDesign = design;
 
-    const imgLayer = new ImageLayer();
-    imgLayer.img_src = "assets/back_01.jpg";
-    imgLayer.scale = 1;
-    imgLayer.name = "background";
+    this.addDemoGifAnimated(notifyChanges, 1, 1, 'https://giphy.com/embed/ZkwSxuckDvf7q');
 
-    this.layerService.addLayer(imgLayer, notifyChanges);
 
     for (let i = 2; i <= this.numDemoLayers; i++) {
       const x = new TextLayer();
@@ -104,6 +110,9 @@ export class LayerPresenter implements OnInit, OnDestroy, AfterViewInit {
       x.name = this.layerService.getSuggestedLayerName();
       this.layerService.addLayer(x, notifyChanges, i == 2);
     }
+
+    //<iframe src="https://gifer.com/embed/WTw" frameBorder="0"></iframe>
+    this.addDemoGifAnimated(notifyChanges, 200, 200, 'https://giphy.com/embed/o3rUR0ITFIXw4');
 
     this.layerService.notifyLayerChanges();
   }

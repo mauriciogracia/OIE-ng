@@ -10,86 +10,82 @@ import { LayerService } from './layer.service';
   providedIn: 'root'
 })
 export class FileService {
-  public currentDesign : Design | null = null;
-  public hasPendingChanges : boolean = false ;
+  public currentDesign: Design | null = null;
+  public hasPendingChanges: boolean = false;
 
   constructor(
-    private layerService : LayerService,
+    private layerService: LayerService,
     private fileSaverService: FileSaverService
   ) { }
 
-  public export() : string {
-    return JSON.stringify(this.currentDesign) ;
+  public export(): string {
+    return JSON.stringify(this.currentDesign);
   }
 
   public import(fileContent: string) {
     try {
-      this.currentDesign = JSON.parse(fileContent) ;
+      this.currentDesign = JSON.parse(fileContent);
     }
-    catch (e) 
-    {
-      console.log({exception:e}) ;
-      this.currentDesign = null ;
+    catch (e) {
+      console.log({ exception: e });
+      this.currentDesign = null;
     }
   }
 
   buildLayerStyle(layer: BaseLayer) {
     let style = 'position: absolute;transform-origin: left top ;'
 
-    style += `left: ${layer.left}px; ` ;
-    style += `top: ${layer.top}px; ` ;
-    style += `z-index: ${layer.z_index}; ` ;
-    style += `transform: ${layer.transform}; ` ;
+    style += `left: ${layer.left}px; `;
+    style += `top: ${layer.top}px; `;
+    style += `z-index: ${layer.z_index}; `;
+    style += `transform: ${layer.transform}; `;
 
-    if(layer.type == LayerType.Text) {
-      style += `font-family: ${(layer as TextLayer).fontFamily}; ` ;
-      style += `font-size: ${(layer as TextLayer).fontSize}; ` ;
-      style += `font-weight: ${(layer as TextLayer).fontWeight}; ` ;
+    if (layer.type == LayerType.Text) {
+      style += `font-family: ${(layer as TextLayer).fontFamily}; `;
+      style += `font-size: ${(layer as TextLayer).fontSize}; `;
+      style += `font-weight: ${(layer as TextLayer).fontWeight}; `;
     }
 
-    style = `style="${style}"` ;
-    
-    return style ;
+    style = `style="${style}"`;
+
+    return style;
   }
 
   exportLayerToHTML(layer: BaseLayer) {
-    let div = `<div id="${layer.id}" ${this.buildLayerStyle(layer)}>` ;
+    let div = `<div id="${layer.id}" ${this.buildLayerStyle(layer)}>`;
 
-    if(layer.type === LayerType.Image)
-    {
-      let img = (layer as ImageLayer).getImageurl() ;
-      div += `<img src="${img}" alt="image:${img}">` ;
+    if (layer.type === LayerType.Image) {
+      let img = (layer as ImageLayer).getImagePath();
+      div += `<img src="${img}" alt="image:${img}">`;
     }
-    else if(layer.type === LayerType.Text)
-    {
-      div += `<span style="white-space: nowrap;">${(layer as TextLayer).text}</span>` ;
+    else if (layer.type === LayerType.Text) {
+      div += `<span style="white-space: nowrap;">${(layer as TextLayer).text}</span>`;
     }
 
-    div += '</div>' ;
+    div += '</div>';
 
-    return div ;
+    return div;
   }
 
   exportToHTML() {
-    let title: string = this.currentDesign!.name ;
-    let html = `<!DOCTYPE html><html lang="en"><head><title>${title}</title></head><body>` ;
-    
-    this.layerService.getCurrentVisibleLayers().forEach(layer => {
-      html += this.exportLayerToHTML(layer) ;
-    });
-    
-    html += "</body></html>" ;
+    let title: string = this.currentDesign!.name;
+    let html = `<!DOCTYPE html><html lang="en"><head><title>${title}</title></head><body>`;
 
-    this.browserSaveAs(html, `${title}.html`) ;
+    this.layerService.getCurrentVisibleLayers().forEach(layer => {
+      html += this.exportLayerToHTML(layer);
+    });
+
+    html += "</body></html>";
+
+    this.browserSaveAs(html, `${title}.html`);
   }
-      
-  browserSaveAs(blob: any, filename:string) {
+
+  browserSaveAs(blob: any, filename: string) {
     try {
       this.fileSaverService.save(blob, filename);
     }
-    catch (e)
-    {
-      console.log(e) ;
+    catch (e) {
+      console.log(e);
     }
   }
 
@@ -103,15 +99,15 @@ export class FileService {
       Since I'm ussing google fonts from other sites this error is happening
       Error while reading CSS rules from null SecurityError: CSSStyleSheet.cssRules getter: Not allowed to access cross-origin stylesheet
       */
-     /*
-      domtoimage.toBlob(this.exportElement.nativeElement)
-      .then(function (blob:any) {
-          //window.saveAs(blob, 'my-node.png');
-          //FileSaver.saveAs(blob, "abc.png");
-          console.log({imgBlob:blob})
-      });
-     
-    }
-     */
+    /*
+     domtoimage.toBlob(this.exportElement.nativeElement)
+     .then(function (blob:any) {
+         //window.saveAs(blob, 'my-node.png');
+         //FileSaver.saveAs(blob, "abc.png");
+         console.log({imgBlob:blob})
+     });
+    
+   }
+    */
   }
 }

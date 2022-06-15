@@ -5,10 +5,13 @@
             (click)="selectLayerByClick(layer)" matTooltip={{layer.currentPosition}} matTooltipPosition="above"
             [style.left.px]="layer.left" [style.top.px]="layer.top" [style.z-index]="layer.z_index"
             [style.outline]="(layer.selected) ? 'dashed 2px red':''" [cdkDragDisabled]="!(layer.selected)">
-            <span *ngIf="(layer.type === layerType.Text)" style="white-space: nowrap;">
+            <span *ngIf="(layer.type === layerType.Text)" style="white-space: nowrap; color:darkgreen">
                 {{(layer | castTo: textLayer).text}}
             </span>
             <img *ngIf="(layer.type === layerType.Image)" [src]="(layer | castTo: imageLayer).img_src">
+            <iframe *ngIf="(layer.type === layerType.Animated)"
+                [src]='(layer | castTo: imageLayer).img_src | safeHtml: "resourceUrl"' frameBorder="0"
+                class="giphy-embed" allowFullScreen></iframe>
         </div>
     </div>
 </scrollbar>

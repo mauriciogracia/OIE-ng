@@ -1,6 +1,7 @@
 *******
 TODO
 *******
+/ Add supporte for animated GIF support iframes combined with canvas ?
 
 - TextLayer creation and edit should allow to select:
     - Size 

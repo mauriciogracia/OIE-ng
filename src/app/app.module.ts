@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollbarModule } from './shared/components/scrollbar/scrollbar.module';
 import { NG_EVENT_PLUGINS } from '@tinkoff/ng-event-plugins';
 import { MatIconModule } from '@angular/material/icon';
-import { CastTo } from './shared/castTo-pipe';
+import { CastToPipe } from './shared/pipes/castTo-pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from "@angular/material/dialog";
 import { AddEditTextLayerComponent } from './shared/components/add-edit-text-layer/add-edit-text-layer.component';
@@ -21,6 +21,7 @@ import { MatInputModule } from "@angular/material/input";
 import { FileSaverModule } from 'ngx-filesaver';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TransformLayerComponent } from './shared/components/transform-layer/transform-layer.component';
+import { SafeHtmlPipe } from './shared/pipes/safeHTML-pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TransformLayerComponent } from './shared/components/transform-layer/tra
     AddEditTextLayerComponent,
     TransformLayerComponent,
     LayerListComponent,
-    CastTo,
+    CastToPipe,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

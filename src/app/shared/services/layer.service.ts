@@ -9,7 +9,7 @@ import { TextLayer } from '../models/text-layer';
 })
 
 export class LayerService {
-  public version = "2022.05.11 - 00:29 am";
+  public version = "2022.06.14 - 9:35 pm";
 
   private layers: BaseLayer[] = [];
   private selectedLayerId = -1;
@@ -224,8 +224,7 @@ export class LayerService {
       this.addLayer(txtLayer, notifyChanges);
     }
     else {
-      let imgLayer = new ImageLayer();
-      imgLayer.img_src = (selLayer as ImageLayer).img_src;
+      let imgLayer = new ImageLayer((selLayer as ImageLayer).img_src);
       imgLayer.scale = (selLayer as ImageLayer).scale;
       imgLayer.name = this.getSuggestedLayerName();
       this.addLayer(imgLayer, notifyChanges);
