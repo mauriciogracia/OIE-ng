@@ -4,7 +4,7 @@ OIE aims to be an Online Image Editor inspired in some ways by GIMP and others. 
 
 It currently supports 
  - adding, editing, removing layers (text, images)
- - moving, rotating and scaling layers 
+ - positioning, rotating and scaling layers 
  - change layer order
  - duplicating layers
 
@@ -14,7 +14,7 @@ For a full list of all the features/ideas to be implemented check the Note.txt t
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
 ## Development server
-Download the sourcecode and install all the dependencies
+Download the sourcecode and install all the dependencies (nvm 12)
 
 $npm ci
 
